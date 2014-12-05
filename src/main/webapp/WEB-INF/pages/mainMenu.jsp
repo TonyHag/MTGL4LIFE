@@ -1,0 +1,24 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: eirikskogland
+  Date: 03.12.14
+  Time: 12:12
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Main Menu</title>
+</head>
+<body>
+    <h1>Welcome ${user}</h1>
+    <table>
+
+        <tr><td><a href="/lobby/main">Start match</a></td></tr>
+        <tr><td><a href="/stats/${user}">Stats</a></td></tr>
+        <tr><td><a href="/notifications">Notifications</a></td></tr>
+        <tr><td><a href="/mainMenu/logout">Log out</a></td></tr>
+    </table>
+
+</body>
+</html>
