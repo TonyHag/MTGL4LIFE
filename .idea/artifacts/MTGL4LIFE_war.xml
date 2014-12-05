@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="MTGL4LIFE:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="MTGL4LIFE.war">
+      <element id="artifact" artifact-name="MTGL4LIFE:war exploded" />
+    </root>
+  </artifact>
+</component>
