@@ -18,7 +18,9 @@
 
 <table>
     <c:forEach items="${notifications}" var="notification">
-        <tr><td>Winner: </td> <td><form action="/gameConfirmation/accept/${notification.gameId}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept"></form></td></tr>
+        <tr><td>Winner: </td> <td><form action="/gameConfirmation/accept/${notification.gameId}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept"></form></td>
+                              <td><form action="/gameConfirmation/reject/${notification.gameId}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Reject"></form></td>
+        </tr>
     </c:forEach>
 </table>
 

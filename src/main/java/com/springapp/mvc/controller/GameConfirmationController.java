@@ -64,7 +64,7 @@ public class GameConfirmationController {
 
                     // Hvis alle har svart på notification
                 } else if(confirmationData.getAccepted().size() == 0 && confirmationData.getPlayersRejected() > 0) {
-                    System.out.println("GameConfirmationController: Players rejected, not updating players");
+                    System.out.println("GameConfirmationController: Enough players rejected, not updating players");
 
                     // slett game og gameconfirmation
 
@@ -82,26 +82,51 @@ public class GameConfirmationController {
     }
 
     @RequestMapping(value = "/gameConfirmation/reject/{gameId}", method = RequestMethod.GET)
-    public String reject(@PathVariable("gameId") int gameId, ModelMap model, HttpServletRequest request) {
+    public String reject(@PathVariable("gameId") int gameId, ModelMap model, HttpServletRequest request,@RequestParam("notificationId") int notificationId) {
         if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
 
             HttpSession session = request.getSession();
             SessionData sessionData = (SessionData) session.getAttribute("sessionData");
             int userId = sessionData.getUserId();
 
-            MockDB.getConfirmationData(gameId).playerRejected(userId);
-            GameConfirmationData confirmationData= MockDB.getConfirmationData(gameId);
+            if (MockDB.getConfirmationData(gameId).getAccepted().contains(userId)) {
 
-            System.out.println("GameConfirmationController: Player rejected");
-            if(confirmationData.getAccepted().size() == 0) { // Hvis alle har svart på notification
+                MockDB.getConfirmationData(gameId).playerRejected(userId);
+                MockDB.deleteNotification(notificationId);
 
-                // slett game og gameconfirmation
+                System.out.println("GameConfirmationController: Player rejected");
+                GameConfirmationData confirmationData = MockDB.getConfirmationData(gameId);
 
 
+                // Hvis alle har acceptet
+                if (confirmationData.getAccepted().size() == 0 && confirmationData.getPlayersRejected() == 0) {
+                    System.out.println("GameConfirmationController: Updating players");
+
+                    Game game = MockDB.getGame(gameId);
+
+                    // oppdater spillere
+                    ArrayList<Integer> winners = game.getWinners();
+                    for (Integer winnerId : winners) {
+                        MockDB.addUserWin(winnerId);
+                    }
+
+                    ArrayList<Integer> losers = MockDB.getGame(gameId).getLosers();
+                    for (Integer loserId : losers) {
+                        MockDB.addUserLoss(loserId);
+                    }
+
+                    // slett game og gameconfirmation
+
+
+                    // Hvis alle har svart på notification
+                } else if (confirmationData.getAccepted().size() == 0 && confirmationData.getPlayersRejected() > 0) {
+                    System.out.println("GameConfirmationController: Enough players rejected, not updating players");
+
+                    // slett game og gameconfirmation
+
+                }
+                return "redirect:/notifications";
             }
-
-            return "redirect:/notifications";
-
         }
 
         return "redirect:/login";
