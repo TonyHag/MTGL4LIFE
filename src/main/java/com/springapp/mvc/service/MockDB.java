@@ -15,6 +15,9 @@ public class MockDB {
     public static ArrayList<Game> games = new ArrayList<Game>();
     public static ArrayList<Notification> notifications = new ArrayList<Notification>();
     public static ArrayList<GameConfirmationData> gameConfirmations = new ArrayList<GameConfirmationData>();
+    public static ArrayList<Lobby> lobbies = new ArrayList<Lobby>();
+
+
 
 
     // --------------- User operations -------------
@@ -31,7 +34,6 @@ public class MockDB {
                 break;
             }
         }
-
         return isUser;
     }
 
@@ -41,7 +43,6 @@ public class MockDB {
                 return u.getUsername();
             }
         }
-
         return null;
     }
 
@@ -180,6 +181,54 @@ public class MockDB {
     // ---------------------------------------------
     // ---------------------------------------------
 
+
+
+
+
+    // ------------------ Lobby --------------------
+    // ---------------------------------------------
+
+    public static void addLobby(Lobby lobby) {
+        lobbies.add(lobby);
+    }
+
+    public static Lobby getLobby(int lobbyId) {
+
+        for(Lobby lobby : lobbies) {
+            if(lobby.getId() == lobbyId) {
+                return lobby;
+            }
+        }
+
+        System.out.println("Lobby not found");
+        return null;
+    }
+
+    public static void deleteLobby(int lobbyId) {
+
+        for(Lobby lobby : lobbies) {
+            if(lobby.getId() == lobbyId) {
+                lobbies.remove(lobbyId);
+                break;
+            }
+        }
+    }
+
+    public static void updateLobby(Lobby lobby) {
+        for(Lobby l : lobbies) {
+            if(l.getId() == lobby.getId()) {
+                lobbies.remove(l);
+                lobbies.add(lobby);
+                break;
+            }
+        }
+    }
+
+
+
+
+    // ---------------------------------------------
+    // ---------------------------------------------
 
 
 

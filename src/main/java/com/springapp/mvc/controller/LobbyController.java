@@ -1,92 +1,123 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.Game;
-import com.springapp.mvc.model.LobbyData;
+import com.springapp.mvc.model.Lobby;
 import com.springapp.mvc.model.Player;
-import com.springapp.mvc.service.IdService;
 import com.springapp.mvc.service.MockDB;
 import com.springapp.mvc.service.SessionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 /**
  * Created by eirikskogland on 03.12.14.
  */
 @Controller
-@RequestMapping("/lobby")
 public class LobbyController {
 
 
-    @RequestMapping(value = "/main", method = RequestMethod.GET)
+    @RequestMapping(value = "/lobby", method = RequestMethod.GET)
     public String getLobbyPage(ModelMap model, HttpServletRequest request) {
 
-        if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
 
-            LobbyData lobbyData;
+        /*
+        !!!!!! Lag ny lobby, redirect til lobby/{lobbyId}
+         */
 
-            // Hvis det er første gang man besøker, vil lobbydata være null, og denne må opprettes og settes i session
-            if(SessionService.getLobbyData(request) == null) {
-                lobbyData = new LobbyData();
-                lobbyData.setHostId(SessionService.getLoggedInUserId(request));
-                lobbyData.setHostUsername(SessionService.getLoggedInUser(request));
-                SessionService.setLobbyData(lobbyData, request);
+        if(SessionService.getLoggedInUser(request) != null &&
+                SessionService.getLobby(request) == null) { // hvis logget inn og lobby ikke finnes
 
-            } else {
-                lobbyData = SessionService.getLobbyData(request);
-            }
+            Lobby lobby = new Lobby();
 
-            // attributter legges til modellen
-            model.addAttribute("host", lobbyData.getHostUsername());
-            model.addAttribute("inviteError", lobbyData.getInviteError());
-            model.addAttribute("invitedPlayers", lobbyData.getInvitedPlayerUsernames());
+            lobby.setHostId(SessionService.getLoggedInUserId(request));
+            lobby.setHostUsername(SessionService.getLoggedInUser(request));
+
+            MockDB.addLobby(lobby);
+
+            model.addAttribute(lobby);
+            SessionService.setLobby(lobby, request);
 
 
-            return "lobby";
+            return "redirect:lobby/" + lobby.getId();
         }
 
         return "redirect:/login";
 
     }
 
-    @RequestMapping(value = "/invite", method = RequestMethod.POST)
+    @RequestMapping(value = "/lobby/{lobbyId}")
+    public String getExistingLobby(ModelMap model, HttpServletRequest request, @PathVariable("lobbyId") int lobbyId) {
+
+        if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
+
+            Lobby lobby = MockDB.getLobby(lobbyId);
+
+            if(lobby != null && SessionService.getLoggedInUserId(request) == lobby.getHostId()) {  // lobby finnes og bruker er eier
+
+                model.addAttribute(lobby);
+                SessionService.setLobby(lobby, request);
+                return "lobby";
+
+            }
+
+            return "redirect:/mainMenu";
+
+        }
+
+        return "redirect:/login";
+
+    }
+
+    @RequestMapping(value = "/lobby/invite", method = RequestMethod.POST)
     public String invitePlayer(ModelMap model, HttpServletRequest request, @RequestParam(value="invitePlayer") String invitePlayer) {
 
         if(SessionService.getLoggedInUser(request) != null &&
-                SessionService.getLobbyData(request) != null) { // hvis logget inn og har opprettet lobby
+                SessionService.getLobby(request) != null) { // hvis logget inn og har opprettet lobby
 
-            LobbyData lobbyData = SessionService.getLobbyData(request);
+            Lobby lobby = SessionService.getLobby(request);
 
             // Sjekk at man ikke inviterer seg selv
-            if(lobbyData.getHostUsername().equals(invitePlayer)) {
-                lobbyData.setInviteError("Invite a friend!");
-                SessionService.setLobbyData(lobbyData, request);
-                return "redirect:main";
+            if(lobby.getHostUsername().equals(invitePlayer)) {
+                lobby.setInviteError("Invite a friend!");
+                SessionService.setLobby(lobby, request);
+                MockDB.updateLobby(lobby);
+                return "redirect:" + lobby.getId();
             }
 
             // Sjekk at man ikke inviterer samme flere ganger
-            for(String name : lobbyData.getInvitedPlayerUsernames()) {
+            for(String name : lobby.getInvitedPlayerUsernames()) {
                 if(name.equals(invitePlayer)) {
-                    lobbyData.setInviteError("Player already invited");
-                    return "redirect:main";
+                    lobby.setInviteError("Player already invited");
+                    SessionService.setLobby(lobby, request);
+                    MockDB.updateLobby(lobby);
+
+                    return "redirect:" + lobby.getId();
                 }
             }
 
             // Sjekk at spiller eksisterer
             if(MockDB.isUser(invitePlayer)) {
 
-                lobbyData.setInviteError("");
-                lobbyData.getInvitedPlayerUsernames().add(invitePlayer);
-                return "redirect:main";
+                lobby.setInviteError("");
+                lobby.getInvitedPlayerUsernames().add(invitePlayer);
+                SessionService.setLobby(lobby, request);
+                MockDB.updateLobby(lobby);
+
+                return "redirect:" + lobby.getId();
 
             } else {
 
-                lobbyData.setInviteError("Player not found");
-                return "redirect:main";
+                lobby.setInviteError("Player not found");
+                SessionService.setLobby(lobby, request);
+                MockDB.updateLobby(lobby);
+
+                return "redirect:" + lobby.getId();
 
             }
         }
@@ -94,35 +125,37 @@ public class LobbyController {
         return "redirect:/login";
     }
 
-    @RequestMapping(value ="/startGame", method = RequestMethod.GET)
+    @RequestMapping(value ="/lobby/startGame", method = RequestMethod.GET)
     public String startGame(ModelMap model, HttpServletRequest request) {
 
         if(SessionService.getLoggedInUser(request) != null &&
-                SessionService.getLobbyData(request) != null) { // hvis logget inn
+                SessionService.getLobby(request) != null) { // hvis logget inn
 
-            LobbyData lobbyData = SessionService.getLobbyData(request);
+            Lobby lobby = MockDB.getLobby(SessionService.getLobby(request).getId());
+            lobby.setPlayers(new ArrayList<Player>()); // hvis lobby har spillere fra før//  hindrer dobbelt opp med spillere
+
             // Legg til host som player
             Player hostPlayer = new Player();
-            hostPlayer.setUserId(lobbyData.getHostId());
-            hostPlayer.setUsername(lobbyData.getHostUsername());
+            hostPlayer.setUserId(lobby.getHostId());
+            hostPlayer.setUsername(lobby.getHostUsername());
             hostPlayer.setHp(20);
-            lobbyData.getPlayers().add(hostPlayer);
+            lobby.getPlayers().add(hostPlayer);
 
             // legg til resten av inviterte spillere til players
-            for(String username : lobbyData.getInvitedPlayerUsernames()) {
+            for(String username : lobby.getInvitedPlayerUsernames()) {
                 Player p = new Player();
                 p.setUserId(MockDB.getUserId(username));
                 p.setUsername(username);
                 p.setHp(20);
-                lobbyData.getPlayers().add(p);
+                lobby.getPlayers().add(p);
             }
 
 
             // Opprett nytt game
 
-            Game game = new Game(hostPlayer.getUserId(), lobbyData.getId());
-            game.setPlayers(lobbyData.getPlayers());
-            game.setHostId(lobbyData.getHostId());
+            Game game = new Game(hostPlayer.getUserId(), lobby.getId());
+            game.setPlayers(lobby.getPlayers());
+            game.setHostId(lobby.getHostId());
             MockDB.addGame(game);
 
             return ("redirect:/game/" + game.getId());

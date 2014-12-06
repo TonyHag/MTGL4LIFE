@@ -1,6 +1,6 @@
 package com.springapp.mvc.service;
 
-import com.springapp.mvc.model.LobbyData;
+import com.springapp.mvc.model.Lobby;
 import com.springapp.mvc.model.SessionData;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,27 +52,27 @@ public class SessionService {
 
     }
 
-    public static LobbyData getLobbyData(HttpServletRequest request) {
+    public static Lobby getLobby(HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         SessionData sessionData = (SessionData) session.getAttribute("sessionData");
 
-        return sessionData.getLobbyData();
+        return sessionData.getLobby();
     }
 
-    public static void setLobbyData(LobbyData lobbyData, HttpServletRequest request) {
+    public static void setLobby(Lobby lobby, HttpServletRequest request) {
 
         HttpSession session = request.getSession();
         SessionData sessionData = (SessionData) session.getAttribute("sessionData");
 
-        sessionData.setLobbyData(lobbyData);
+        sessionData.setLobby(lobby);
 
     }
 
-    public static void deleteLobbyData(HttpServletRequest request) {
+    public static void deleteLobby(HttpServletRequest request) {
         HttpSession session = request.getSession();
         SessionData sessionData = (SessionData) session.getAttribute("sessionData");
-        sessionData.setLobbyData(null);
+        sessionData.setLobby(null);
 
     }
 

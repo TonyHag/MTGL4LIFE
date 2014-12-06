@@ -41,7 +41,6 @@ public class LoginController {
         }
 
         System.out.println("Login form submitted");
-        String returnJsp = "login";
 
         if(ValidationService.validateLogin(username, EncryptionService.encryptPassword(password))){ // hvis gyldig login
 

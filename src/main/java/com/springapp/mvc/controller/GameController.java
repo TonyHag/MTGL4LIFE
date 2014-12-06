@@ -92,8 +92,9 @@ public class GameController {
 
                 MockDB.addGameConfirmationData(confirmationData);
                 NotificationService.sendNotifications(game);
+                sessionData.getLobby().getId();
+                return "redirect:/lobby/" + sessionData.getLobby().getId();
 
-                return "redirect:/lobby/main";
 
             }
 

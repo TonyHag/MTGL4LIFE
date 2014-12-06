@@ -7,17 +7,26 @@ import java.util.ArrayList;
 /**
  * Created by eirikskogland on 05.12.14.
  */
-public class LobbyData {
+public class Lobby {
 
     private int id;
     private int hostId;
     private String hostUsername;
-    ArrayList<String> invitedPlayerUsernames = new ArrayList<String>();
-    ArrayList<Player> players = new ArrayList<Player>();
-    String inviteError = null;
+    private ArrayList<String> invitedPlayerUsernames = new ArrayList<String>();
+    private ArrayList<Player> players = new ArrayList<Player>();
+    private String inviteError = null;
 
+    private boolean active;
 
-    public LobbyData() {
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public Lobby() {
         id = IdService.getLobbyId();
     }
 

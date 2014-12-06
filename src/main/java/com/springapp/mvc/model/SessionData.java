@@ -9,7 +9,7 @@ public class SessionData {
 
     String username;
     int userId;
-    LobbyData lobbyData;
+    Lobby lobby;
     ArrayList<Notification> notifications = new ArrayList<Notification>();
 
     public ArrayList<Notification> getNotifications() {
@@ -36,12 +36,12 @@ public class SessionData {
         this.userId = userId;
     }
 
-    public LobbyData getLobbyData() {
-        return lobbyData;
+    public Lobby getLobby() {
+        return lobby;
     }
 
-    public void setLobbyData(LobbyData lobbyData) {
-        this.lobbyData = lobbyData;
+    public void setLobby(Lobby lobby) {
+        this.lobby = lobby;
     }
 
 }

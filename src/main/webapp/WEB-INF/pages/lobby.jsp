@@ -19,7 +19,7 @@
 
 <form action="/lobby/invite" method="post">
     <table>
-        <tr><td><input type ="text" name="invitePlayer" /></td> <td> <input type="submit" value="Invite"></td> <td>${inviteError}</td></tr>
+        <tr><td><input type ="text" name="invitePlayer" /></td> <td> <input type="submit" value="Invite"></td> <td>${lobby.inviteError}</td></tr>
     </table>
 </form>
 
@@ -27,8 +27,8 @@
 
 <table>
     <tr><th>Players in lobby</th></tr>
-    <tr><td>${host}</td> <td>host</td></tr>
-    <c:forEach items="${invitedPlayers}" var="invitedPlayer">
+    <tr><td>${lobby.hostUsername}</td> <td>host</td></tr>
+    <c:forEach items="${lobby.invitedPlayerUsernames}" var="invitedPlayer">
         <tr><td> ${invitedPlayer} </td></tr>
     </c:forEach>
 </table>
