@@ -1,9 +1,6 @@
 package com.springapp.mvc.service;
 
-import com.springapp.mvc.model.Game;
-import com.springapp.mvc.model.Notification;
-import com.springapp.mvc.model.User;
-import com.springapp.mvc.model.UserStatistics;
+import com.springapp.mvc.model.*;
 
 import java.util.ArrayList;
 
@@ -17,7 +14,7 @@ public class MockDB {
     public static ArrayList<User> users = new ArrayList<User>();
     public static ArrayList<Game> games = new ArrayList<Game>();
     public static ArrayList<Notification> notifications = new ArrayList<Notification>();
-
+    public static ArrayList<GameConfirmationData> gameConfirmations = new ArrayList<GameConfirmationData>();
 
 
     // --------------- User operations -------------
@@ -104,6 +101,17 @@ public class MockDB {
         return null;
     }
 
+    public static UserStatistics getUserStats(int userId) {
+
+        for(User u : users) {
+            if(u.getId() == userId) {
+                System.out.println("MockDB: Stats found for " + u.getUsername());
+                return u.getStats();
+            }
+        }
+        return null;
+    }
+
     // ---------------------------------------------
     // ---------------------------------------------
 
@@ -158,6 +166,15 @@ public class MockDB {
             }
         }
         return null;
+    }
+
+    public static void deleteGame(int gameId) {
+        for(Game game : games) {
+            if(game.getId() == gameId) {
+                games.remove(game);
+                break;
+            }
+        }
     }
 
     // ---------------------------------------------
@@ -222,6 +239,50 @@ public class MockDB {
         }
         return 0;
     }
+
+    // ---------------------------------------------
+    // ---------------------------------------------
+
+
+
+
+
+
+
+
+    // ------------- Game confirmation -------------
+    // ---------------------------------------------
+
+
+
+    public static GameConfirmationData getConfirmationData(int gameId) {
+        for (GameConfirmationData data : gameConfirmations) {
+
+            if(data.getGameId() == gameId) {
+                return  data;
+            }
+
+        }
+        return null;
+    }
+
+    public static void addGameConfirmationData(GameConfirmationData data) {
+        gameConfirmations.add(data);
+        System.out.println("MockDB: ConfirmationData added, id: " + data.getGameId());
+    }
+
+    public static void deleteGameConfirmation(int gameId)  {
+        for(GameConfirmationData data : gameConfirmations) {
+            if (data.getGameId() == gameId) {
+                System.out.println("MockDB: ConfirmationData deletede, id: " + data.getGameId());
+                gameConfirmations.remove(data);
+                break;
+            }
+
+        }
+    }
+
+
 
     // ---------------------------------------------
     // ---------------------------------------------

@@ -1,7 +1,6 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.Game;
-import com.springapp.mvc.model.GameData;
 import com.springapp.mvc.model.LobbyData;
 import com.springapp.mvc.model.Player;
 import com.springapp.mvc.service.IdService;
@@ -33,8 +32,8 @@ public class LobbyController {
             // Hvis det er første gang man besøker, vil lobbydata være null, og denne må opprettes og settes i session
             if(SessionService.getLobbyData(request) == null) {
                 lobbyData = new LobbyData();
-                lobbyData.setHost(SessionService.getLoggedInUser(request));
-                lobbyData.setHostId(MockDB.getUserId(lobbyData.getHost()));
+                lobbyData.setHostId(SessionService.getLoggedInUserId(request));
+                lobbyData.setHostUsername(SessionService.getLoggedInUser(request));
                 SessionService.setLobbyData(lobbyData, request);
 
             } else {
@@ -42,7 +41,7 @@ public class LobbyController {
             }
 
             // attributter legges til modellen
-            model.addAttribute("host", lobbyData.getHost());
+            model.addAttribute("host", lobbyData.getHostUsername());
             model.addAttribute("inviteError", lobbyData.getInviteError());
             model.addAttribute("invitedPlayers", lobbyData.getInvitedPlayerUsernames());
 
@@ -63,7 +62,7 @@ public class LobbyController {
             LobbyData lobbyData = SessionService.getLobbyData(request);
 
             // Sjekk at man ikke inviterer seg selv
-            if(lobbyData.getHost().equals(invitePlayer)) {
+            if(lobbyData.getHostUsername().equals(invitePlayer)) {
                 lobbyData.setInviteError("Invite a friend!");
                 SessionService.setLobbyData(lobbyData, request);
                 return "redirect:main";
@@ -105,7 +104,7 @@ public class LobbyController {
             // Legg til host som player
             Player hostPlayer = new Player();
             hostPlayer.setUserId(lobbyData.getHostId());
-            hostPlayer.setUsername(lobbyData.getHost());
+            hostPlayer.setUsername(lobbyData.getHostUsername());
             hostPlayer.setHp(20);
             lobbyData.getPlayers().add(hostPlayer);
 
@@ -120,23 +119,13 @@ public class LobbyController {
 
 
             // Opprett nytt game
-            Game game = new Game();
-            int gameId = IdService.getGameId();
+
+            Game game = new Game(hostPlayer.getUserId(), lobbyData.getId());
             game.setPlayers(lobbyData.getPlayers());
-            game.setId(gameId);
             game.setHostId(lobbyData.getHostId());
             MockDB.addGame(game);
 
-            GameData gameData = new GameData();
-            gameData.setHost(lobbyData.getHost());
-            gameData.setHostId(lobbyData.getHostId());
-            gameData.setGameId(gameId);
-            gameData.setPlayers(lobbyData.getPlayers());
-
-            SessionService.setGameData(gameData, request);
-            SessionService.deleteLobbyData(request);
-
-            return ("redirect:/game/" + gameId);
+            return ("redirect:/game/" + game.getId());
 
         }
 

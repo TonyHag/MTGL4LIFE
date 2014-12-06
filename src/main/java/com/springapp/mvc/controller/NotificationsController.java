@@ -44,7 +44,7 @@ public class NotificationsController {
     }
 
 
-
+                         /*
     @RequestMapping(value = "notifications/accept/{notificationId}", method = RequestMethod.GET)
     public String acceptNotification(@PathVariable("notificationId") int notificationId, ModelMap model, HttpServletRequest request) {
         if(SessionService.getSessionData(request) != null) {
@@ -53,7 +53,6 @@ public class NotificationsController {
             // Sjekker om brukeren har rettigheter til å slette notifikasjon
             if(sessionData.getUserId() == MockDB.getNotificationOwnerId(notificationId)) {
                 // Fjern notifikasjon med gameconfimationService
-                GameConfirmationService.acceptGame(notificationId);
                 return "redirect:/notifications";
             } else {
                 model.addAttribute("removeNotificationError", "Not your notification >.<");
@@ -66,7 +65,7 @@ public class NotificationsController {
     }
 
 
-
+             */
 
 
 }

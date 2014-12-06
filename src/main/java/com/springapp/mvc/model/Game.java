@@ -1,5 +1,7 @@
 package com.springapp.mvc.model;
 
+import com.springapp.mvc.service.IdService;
+
 import java.util.ArrayList;
 
 /**
@@ -7,10 +9,45 @@ import java.util.ArrayList;
  */
 public class Game {
 
-    private ArrayList<Player> players;
+    private boolean active;
     private int id;
-    private int startingHp;
     private int hostId;
+    private ArrayList<Player> players;
+    private int lobbyId;
+
+    private ArrayList<Integer> winners;
+    private ArrayList<Integer> losers;
+
+
+    private int startingHp;
+
+
+    public Game(int hostId, int lobbyId) {
+        active = true;
+        id = IdService.getGameId();
+        this.hostId = hostId;
+        this.lobbyId = lobbyId;
+        startingHp = 20;
+
+
+    }
+
+
+    // Konstruktør til å kopiere et game, men med ny id
+    public Game(Game game) {
+        this.active = true;
+        this.id = IdService.getGameId();
+        this.hostId = game.getHostId();
+        this.players = game.getPlayers();
+        this.lobbyId = game.getLobbyId();
+
+        winners = new ArrayList<Integer>();
+        losers = new ArrayList<Integer>();
+
+        this.startingHp = game.getStartingHp();
+
+    }
+
 
     public int getHostId() {
         return hostId;
@@ -42,5 +79,37 @@ public class Game {
 
     public void setStartingHp(int startingHp) {
         this.startingHp = startingHp;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public int getLobbyId() {
+        return lobbyId;
+    }
+
+    public void setLobbyId(int lobbyId) {
+        this.lobbyId = lobbyId;
+    }
+
+    public ArrayList<Integer> getWinners() {
+        return winners;
+    }
+
+    public void setWinners(ArrayList<Integer> winners) {
+        this.winners = winners;
+    }
+
+    public ArrayList<Integer> getLosers() {
+        return losers;
+    }
+
+    public void setLosers(ArrayList<Integer> losers) {
+        this.losers = losers;
     }
 }

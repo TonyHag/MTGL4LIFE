@@ -1,5 +1,6 @@
 package com.springapp.mvc.service;
 
+import com.springapp.mvc.model.Game;
 import com.springapp.mvc.model.Notification;
 import com.springapp.mvc.model.Player;
 
@@ -10,21 +11,21 @@ import java.util.ArrayList;
  */
 public class NotificationService {
 
-    public static void sendNotifications(ArrayList<Player> players, int senderId, int gameId, String winner, int winnerId) {
+    public static void sendNotifications(Game game) {
+
+        ArrayList<Player> players = game.getPlayers();
         for (Player p : players) {
-            if(p.getUserId() != senderId) { // hindrer notification til seg selv
                 Notification notification = new Notification();
+
                 notification.setId(IdService.getNotificationId());
-                notification.setGameId(gameId);
-                notification.setSenderId(senderId);
+                notification.setGameId(game.getId());
                 notification.setReceiverId(p.getUserId());
-                notification.setWinner(winner);
-                notification.setWinnerId(winnerId);
+                notification.setWinners(game.getWinners());
                 MockDB.addNotification(notification);
                 System.out.println("Notification sent to: " + p.getUsername());
-            }
-
         }
+
+
     }
 
     public static void deleteNotification(int userId, int notificationId) {

@@ -10,7 +10,6 @@ public class SessionData {
     String username;
     int userId;
     LobbyData lobbyData;
-    GameData gameData;
     ArrayList<Notification> notifications = new ArrayList<Notification>();
 
     public ArrayList<Notification> getNotifications() {
@@ -45,11 +44,4 @@ public class SessionData {
         this.lobbyData = lobbyData;
     }
 
-    public GameData getGameData() {
-        return gameData;
-    }
-
-    public void setGameData(GameData gameData) {
-        this.gameData = gameData;
-    }
 }

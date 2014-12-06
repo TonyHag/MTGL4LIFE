@@ -1,5 +1,7 @@
 package com.springapp.mvc.model;
 
+import com.springapp.mvc.service.IdService;
+
 import java.util.ArrayList;
 
 /**
@@ -7,12 +9,17 @@ import java.util.ArrayList;
  */
 public class LobbyData {
 
+    private int id;
+    private int hostId;
+    private String hostUsername;
     ArrayList<String> invitedPlayerUsernames = new ArrayList<String>();
     ArrayList<Player> players = new ArrayList<Player>();
-    String host = null;
-    int hostId = 0;
     String inviteError = null;
 
+
+    public LobbyData() {
+        id = IdService.getLobbyId();
+    }
 
     public ArrayList<String> getInvitedPlayerUsernames() {
         return invitedPlayerUsernames;
@@ -30,14 +37,6 @@ public class LobbyData {
         this.players = players;
     }
 
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
     public String getInviteError() {
         return inviteError;
     }
@@ -52,5 +51,21 @@ public class LobbyData {
 
     public void setHostId(int hostId) {
         this.hostId = hostId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getHostUsername() {
+        return hostUsername;
+    }
+
+    public void setHostUsername(String hostUsername) {
+        this.hostUsername = hostUsername;
     }
 }

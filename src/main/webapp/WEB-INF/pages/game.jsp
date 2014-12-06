@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
 <html>
@@ -25,12 +26,15 @@
 
     <table>
         <form action="/game/declareWinner" method="post">
+            <input type="hidden" name="gameId" value="${game.id}" />
             <tr>
                 <td>
                     <select name="winner">
                         <c:forEach items="${game.players}" var="player"> <option value="${player.username}">${player.username}</option></c:forEach>
                     </select>
+
                 </td>
+
                 <td>
                     <input type="submit" value="Declare Winner">
                 </td>

@@ -1,6 +1,5 @@
 package com.springapp.mvc.service;
 
-import com.springapp.mvc.model.GameData;
 import com.springapp.mvc.model.LobbyData;
 import com.springapp.mvc.model.SessionData;
 
@@ -77,29 +76,5 @@ public class SessionService {
 
     }
 
-
-    public static GameData getGameData(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        SessionData sessionData = (SessionData) session.getAttribute("sessionData");
-
-        return sessionData.getGameData();
-    }
-
-    public static void setGameData(GameData gameData, HttpServletRequest request) {
-
-        HttpSession session = request.getSession();
-        SessionData sessionData = (SessionData) session.getAttribute("sessionData");
-
-        sessionData.setGameData(gameData);
-    }
-
-    public static void deleteGameData(HttpServletRequest request) {
-
-        HttpSession session = request.getSession();
-        SessionData sessionData = (SessionData) session.getAttribute("sessionData");
-        sessionData.setGameData(null);
-
-
-    }
 
 }

@@ -1,28 +1,23 @@
 package com.springapp.mvc.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by eirikskogland on 04.12.14.
  */
 public class Notification {
 
-    private int id, senderId, receiverId, gameId;
-    private String winner;
-    private int winnerId;
+    private int id, receiverId, gameId;
+    private ArrayList<Integer> winners;
 
-    public int getWinnerId() {
-        return winnerId;
+
+
+    public ArrayList<Integer> getWinners() {
+        return winners;
     }
 
-    public void setWinnerId(int winnerId) {
-        this.winnerId = winnerId;
-    }
-
-    public String getWinner() {
-        return winner;
-    }
-
-    public void setWinner(String winner) {
-        this.winner = winner;
+    public void setWinners(ArrayList<Integer> winners) {
+        this.winners = winners;
     }
 
     public int getId() {
@@ -31,14 +26,6 @@ public class Notification {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getSenderId() {
-        return senderId;
-    }
-
-    public void setSenderId(int senderId) {
-        this.senderId = senderId;
     }
 
     public int getReceiverId() {

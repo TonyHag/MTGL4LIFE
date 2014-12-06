@@ -20,13 +20,13 @@ public class UserStatistics {
     public void addWin() {
         wins++;
         total++;
-        winPercentage = (double) wins/total;
+        winPercentage = (double) wins/total*100;
     }
 
     public void addLoss() {
         losses++;
         total++;
-        winPercentage = (double) wins/total;
+        winPercentage = (double) wins/total*100;
 
     }
 

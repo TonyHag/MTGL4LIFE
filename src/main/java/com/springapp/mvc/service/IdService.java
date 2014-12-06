@@ -8,7 +8,18 @@ public class IdService {
     private static int userId = 0;
     private static int gameId = 0;
     private static int notificationId = 0;
+    private static int gameConfirmationId = 0;
+    private static int lobbyId = 0;
 
+    public static int getLobbyId() {
+        lobbyId++;
+        return lobbyId;
+    }
+
+    public static int getGameConfirmationId() {
+        gameConfirmationId++;
+        return gameConfirmationId;
+    }
 
     public static int getUserId() {
         userId++;
