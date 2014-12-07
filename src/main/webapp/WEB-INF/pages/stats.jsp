@@ -12,6 +12,10 @@
     <title>Stats</title>
 </head>
 <body>
+<jsp:include page="nav.jsp">
+    <jsp:param name="user" value="${user}"></jsp:param>
+</jsp:include>
+
 
 <h1>Statistics for ${stats.username}</h1>
 

@@ -23,8 +23,11 @@
     -->
 
 <body>
+<jsp:include page="nav.jsp">
+    <jsp:param name="user" value="${user}"></jsp:param>
+</jsp:include>
 
-    <table>
+<table>
         <form action="/game/declareWinner" method="post">
             <input type="hidden" name="gameId" value="${game.id}" />
             <tr>

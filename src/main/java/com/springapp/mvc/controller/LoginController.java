@@ -26,7 +26,7 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginForm(ModelMap model, HttpServletRequest request) {
         if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
-           return "redirect:mainMenu";
+           return "redirect:main";
         }
 
         System.out.println("Getting login page");
@@ -37,7 +37,7 @@ public class LoginController {
     public String submitLoginForm(ModelMap model,  HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "username") String username, @RequestParam(value = "password") String password) {
 
         if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
-            return "redirect:mainMenu";
+            return "redirect:main";
         }
 
         System.out.println("Login form submitted");
@@ -51,7 +51,7 @@ public class LoginController {
             HttpSession session = request.getSession();
             session.setAttribute("sessionData", sessionData);
 
-            return "redirect:mainMenu";
+            return "redirect:main";
 
         } else {
 

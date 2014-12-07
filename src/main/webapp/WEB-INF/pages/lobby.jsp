@@ -14,6 +14,9 @@
     <title>Lobby</title>
 </head>
 <body>
+<jsp:include page="nav.jsp">
+    <jsp:param name="user" value="${user}"></jsp:param>
+</jsp:include>
 
 <h1>Invite players</h1>
 

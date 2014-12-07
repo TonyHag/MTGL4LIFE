@@ -12,7 +12,11 @@
 <head>
     <title>Notifications</title>
 </head>
+
 <body>
+<jsp:include page="nav.jsp">
+    <jsp:param name="user" value="${user}"></jsp:param>
+</jsp:include>
 
 <h1>Your notifications</h1>
 

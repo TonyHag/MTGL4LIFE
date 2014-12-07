@@ -11,13 +11,16 @@
     <title>Main Menu</title>
 </head>
 <body>
+<jsp:include page="nav.jsp">
+    <jsp:param name="user" value="${user}"></jsp:param>
+</jsp:include>
     <h1>Welcome ${user}</h1>
     <table>
 
         <tr><td><a href="/lobby">Start match</a></td></tr>
         <tr><td><a href="/stats/${user}">Stats</a></td></tr>
         <tr><td><a href="/notifications">Notifications</a></td></tr>
-        <tr><td><a href="/mainMenu/logout">Log out</a></td></tr>
+        <tr><td><a href="/main/logout">Log out</a></td></tr>
     </table>
 
 </body>

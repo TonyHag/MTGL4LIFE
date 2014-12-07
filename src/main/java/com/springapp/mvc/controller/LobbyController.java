@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
@@ -30,21 +31,29 @@ public class LobbyController {
         !!!!!! Lag ny lobby, redirect til lobby/{lobbyId}
          */
 
-        if(SessionService.getLoggedInUser(request) != null &&
-                SessionService.getLobby(request) == null) { // hvis logget inn og lobby ikke finnes
+        if(SessionService.getLoggedInUser(request) != null) {
+            String username = SessionService.getLoggedInUser(request);
+            model.addAttribute("user", username);
 
-            Lobby lobby = new Lobby();
-
-            lobby.setHostId(SessionService.getLoggedInUserId(request));
-            lobby.setHostUsername(SessionService.getLoggedInUser(request));
-
-            MockDB.addLobby(lobby);
-
-            model.addAttribute(lobby);
-            SessionService.setLobby(lobby, request);
+            if(SessionService.getLobby(request) == null) { // lobby ikke finnes
 
 
-            return "redirect:lobby/" + lobby.getId();
+                Lobby lobby = new Lobby();
+
+                lobby.setHostId(SessionService.getLoggedInUserId(request));
+                lobby.setHostUsername(SessionService.getLoggedInUser(request));
+
+                MockDB.addLobby(lobby);
+
+                model.addAttribute(lobby);
+                SessionService.setLobby(lobby, request);
+
+
+                return "redirect:lobby/" + lobby.getId();
+            } else {
+                return "redirect:lobby/" + SessionService.getLobby(request).getId();
+
+            }
         }
 
         return "redirect:/login";
@@ -55,6 +64,8 @@ public class LobbyController {
     public String getExistingLobby(ModelMap model, HttpServletRequest request, @PathVariable("lobbyId") int lobbyId) {
 
         if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
+            String username = SessionService.getLoggedInUser(request);
+            model.addAttribute("user", username);
 
             Lobby lobby = MockDB.getLobby(lobbyId);
 
@@ -66,7 +77,7 @@ public class LobbyController {
 
             }
 
-            return "redirect:/mainMenu";
+            return "redirect:/main";
 
         }
 
@@ -79,6 +90,8 @@ public class LobbyController {
 
         if(SessionService.getLoggedInUser(request) != null &&
                 SessionService.getLobby(request) != null) { // hvis logget inn og har opprettet lobby
+            String username = SessionService.getLoggedInUser(request);
+            model.addAttribute("user", username);
 
             Lobby lobby = SessionService.getLobby(request);
 
@@ -130,6 +143,8 @@ public class LobbyController {
 
         if(SessionService.getLoggedInUser(request) != null &&
                 SessionService.getLobby(request) != null) { // hvis logget inn
+            String user = SessionService.getLoggedInUser(request);
+            model.addAttribute("user", user);
 
             Lobby lobby = MockDB.getLobby(SessionService.getLobby(request).getId());
             lobby.setPlayers(new ArrayList<Player>()); // hvis lobby har spillere fra før//  hindrer dobbelt opp med spillere

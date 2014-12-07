@@ -27,6 +27,9 @@ public class GameController {
 
         if(SessionService.getLoggedInUser(request) != null) {
 
+            String username = SessionService.getLoggedInUser(request);
+            model.addAttribute("user", username);
+
             // hent game info fra db
             Game game = MockDB.getGame(gameId);
 
@@ -36,7 +39,7 @@ public class GameController {
                 // Sjekk at innlogget bruker er host
                 if(SessionService.getLoggedInUserId(request) != game.getHostId()) {
                     // returner ikke tilgang
-                    return "redirect:/mainMenu";
+                    return "redirect:/main";
                 }
                 model.addAttribute("game", game);
 
@@ -46,7 +49,7 @@ public class GameController {
                 System.out.println("GameController: Game is null!");
 
 
-                return "redirect:/mainMenu";
+                return "redirect:/main";
             }
 
 
@@ -61,6 +64,8 @@ public class GameController {
     public String declareWinner(@RequestParam("gameId") int gameId, ModelMap model, @RequestParam("winner") String winnerName, HttpServletRequest request) {
 
         if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
+            String username = SessionService.getLoggedInUser(request);
+            model.addAttribute("user", username);
 
             HttpSession session = request.getSession();
             SessionData sessionData = (SessionData) session.getAttribute("sessionData");

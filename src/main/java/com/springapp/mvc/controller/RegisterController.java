@@ -22,7 +22,7 @@ public class RegisterController {
     @RequestMapping(method = RequestMethod.GET)
     public String getRegisterForm(ModelMap model, HttpServletRequest request) {
         if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
-            return "redirect:mainMenu";
+            return "redirect:main";
         }
 
         System.out.println("Getting register page");
@@ -32,7 +32,7 @@ public class RegisterController {
     @RequestMapping(method = RequestMethod.POST)
     public String submitRegisterForm(ModelMap model, HttpServletRequest request, @ModelAttribute RegisterFormData data, BindingResult result) {
         if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
-            return "redirect:mainMenu";
+            return "redirect:main";
         }
 
         System.out.println("Registerform submitted");

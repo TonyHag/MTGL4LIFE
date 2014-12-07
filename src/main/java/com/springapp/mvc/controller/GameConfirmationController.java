@@ -27,6 +27,8 @@ public class GameConfirmationController {
     @RequestMapping(value = "/gameConfirmation/accept/{gameId}", method = RequestMethod.GET)
     public String accept(@PathVariable("gameId") int gameId, ModelMap model, HttpServletRequest request, @RequestParam("notificationId") int notificationId) {
         if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
+            String username = SessionService.getLoggedInUser(request);
+            model.addAttribute("user", username);
 
             HttpSession session = request.getSession();
             SessionData sessionData = (SessionData) session.getAttribute("sessionData");
@@ -84,6 +86,8 @@ public class GameConfirmationController {
     @RequestMapping(value = "/gameConfirmation/reject/{gameId}", method = RequestMethod.GET)
     public String reject(@PathVariable("gameId") int gameId, ModelMap model, HttpServletRequest request,@RequestParam("notificationId") int notificationId) {
         if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
+            String username = SessionService.getLoggedInUser(request);
+            model.addAttribute("user", username);
 
             HttpSession session = request.getSession();
             SessionData sessionData = (SessionData) session.getAttribute("sessionData");

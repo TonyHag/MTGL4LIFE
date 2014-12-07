@@ -14,26 +14,25 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 @Controller
-public class MainMenuController {
+public class MainController {
 
-    @RequestMapping(value = "/mainMenu", method = RequestMethod.GET)
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String getMainMenu(ModelMap model, HttpServletRequest request) {
 
         if(SessionService.getLoggedInUser(request) != null) {
 
             String username = SessionService.getLoggedInUser(request);
-
             model.addAttribute("user", username);
 
 
-            return "mainMenu";
+            return "main";
 
         }
 
         return "redirect:/login";
     }
 
-    @RequestMapping(value = "/mainMenu/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/main/logout", method = RequestMethod.GET)
     public String logOut(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
         System.out.println("Log out");

@@ -28,6 +28,8 @@ public class NotificationsController {
     public String getNotificationsPage(ModelMap model, HttpServletRequest request) {
 
           if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
+              String username = SessionService.getLoggedInUser(request);
+              model.addAttribute("user", username);
 
               HttpSession session = request.getSession();
               SessionData sessionData = (SessionData) session.getAttribute("sessionData");
