@@ -7,7 +7,8 @@ public class ValidationService {
 
 
 
-    public static boolean validateLogin(String username, String password) {
+
+    public boolean validateLogin(String username, String password) {
         boolean valid = false;
 
         if(MockDB.isUser(username) && MockDB.passwordMatch(username, password)) {
@@ -16,7 +17,7 @@ public class ValidationService {
         return valid;
     }
 
-    public static boolean validateUsername(String username) {
+    public boolean validateUsername(String username) {
         boolean valid = true;
 
         if(username == null){
@@ -37,7 +38,7 @@ public class ValidationService {
         return valid;
     }
 
-    public static boolean validatePassword(String password) {
+    public boolean validatePassword(String password) {
         boolean valid = true;
 
         if(password == null) {
@@ -54,7 +55,7 @@ public class ValidationService {
         return valid;
     }
 
-    public static boolean validateEmail(String email) {
+    public boolean validateEmail(String email) {
         boolean valid = true;
 
         if(email == null) {

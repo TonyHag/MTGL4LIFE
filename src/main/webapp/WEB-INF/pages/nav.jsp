@@ -26,7 +26,7 @@
                 <a href="/stats/${user}">Stats</a>
             </th>
             <th>
-                <a href="#" >Leaderboards</a>
+                <a href="/leaderboard" >Leaderboards</a>
             </th>
             <th>
                 <a href="#">About</a>

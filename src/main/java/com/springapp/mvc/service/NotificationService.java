@@ -11,24 +11,34 @@ import java.util.ArrayList;
  */
 public class NotificationService {
 
-    public static void sendNotifications(Game game) {
+    public void sendNotifications(Game game) {
 
         ArrayList<Player> players = game.getPlayers();
         for (Player p : players) {
-                Notification notification = new Notification();
 
-                notification.setId(IdService.getNotificationId());
-                notification.setGameId(game.getId());
-                notification.setReceiverId(p.getUserId());
-                notification.setWinners(game.getWinners());
-                MockDB.addNotification(notification);
-                System.out.println("Notification sent to: " + p.getUsername());
+            Notification notification = new Notification();
+            notification.setType("gameConfirmation");
+            notification.setGameId(game.getId());
+            notification.setReceiverId(p.getUserId());
+            notification.setWinners(game.getWinners());
+            MockDB.addNotification(notification);
+            System.out.println("Notification sent to: " + p.getUsername());
         }
+    }
 
+    public void sendLeaderboardInvitation(int userId, int senderId, int leaderboardId) {
+
+        Notification notification = new Notification();
+        notification.setType("leaderboardInvitation");
+        notification.setLeaderboardId(leaderboardId);
+        notification.setReceiverId(userId);
+        notification.setMessage("Leaderboard invitation from " + MockDB.getUsername(senderId));
+        MockDB.addNotification(notification);
+        System.out.println("Notification sent to: " + MockDB.getUsername(userId));
 
     }
 
-    public static void deleteNotification(int userId, int notificationId) {
+    public void deleteNotification(int userId, int notificationId) {
 
         if(MockDB.getNotificationOwnerId(notificationId) == userId) {
             MockDB.deleteNotification(notificationId);
@@ -37,7 +47,7 @@ public class NotificationService {
 
     }
 
-    public static ArrayList<Notification> getNotifications(int userId) {
+    public ArrayList<Notification> getNotifications(int userId) {
 
         return MockDB.getNotifications(userId);
 

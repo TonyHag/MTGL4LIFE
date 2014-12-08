@@ -73,6 +73,7 @@ public class LobbyController {
 
                 model.addAttribute(lobby);
                 SessionService.setLobby(lobby, request);
+
                 return "lobby";
 
             }
@@ -83,6 +84,39 @@ public class LobbyController {
 
         return "redirect:/login";
 
+    }
+
+    @RequestMapping(value = "/lobby/removePlayer")
+    public String removePlayer(ModelMap model, HttpServletRequest request, @RequestParam(value="removePlayer") String removePlayer) {
+
+        if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
+            String username = SessionService.getLoggedInUser(request);
+            model.addAttribute("user", username);
+
+            int lobbyId = SessionService.getLobby(request).getId();
+            Lobby lobby = MockDB.getLobby(lobbyId);
+
+            if(lobby != null && SessionService.getLoggedInUserId(request) == lobby.getHostId()) {  // lobby finnes og bruker er eier
+
+                // Fjerner invitert spiller hvis spiller er med
+                if(lobby.getInvitedPlayerUsernames().contains(removePlayer)) {
+                    lobby.getInvitedPlayerUsernames().remove(removePlayer);
+                    System.out.println("Player removed: " + removePlayer);
+                }
+
+                model.addAttribute(lobby);
+                SessionService.setLobby(lobby, request);
+                MockDB.updateLobby(lobby);
+                return "redirect:" + lobbyId;
+
+            }
+
+            return "redirect:/main";
+
+        }
+
+
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "/lobby/invite", method = RequestMethod.POST)
@@ -137,6 +171,8 @@ public class LobbyController {
 
         return "redirect:/login";
     }
+
+
 
     @RequestMapping(value ="/lobby/startGame", method = RequestMethod.GET)
     public String startGame(ModelMap model, HttpServletRequest request) {

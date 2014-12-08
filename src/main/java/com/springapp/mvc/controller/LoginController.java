@@ -5,6 +5,7 @@ import com.springapp.mvc.service.EncryptionService;
 import com.springapp.mvc.service.MockDB;
 import com.springapp.mvc.service.SessionService;
 import com.springapp.mvc.service.ValidationService;
+import com.sun.xml.internal.ws.developer.MemberSubmissionAddressing;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +43,10 @@ public class LoginController {
 
         System.out.println("Login form submitted");
 
-        if(ValidationService.validateLogin(username, EncryptionService.encryptPassword(password))){ // hvis gyldig login
+        ValidationService validation = new ValidationService();
+        EncryptionService encryptionService = new EncryptionService();
+
+        if(validation.validateLogin(username, encryptionService.encryptPassword(password))){ // hvis gyldig login
 
             // Opprett ny session id + andre ting som må gjøres ved login
             SessionData sessionData = new SessionData();

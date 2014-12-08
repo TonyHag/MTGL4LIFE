@@ -2,6 +2,7 @@ package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +17,7 @@ public class MockDB {
     public static ArrayList<Notification> notifications = new ArrayList<Notification>();
     public static ArrayList<GameConfirmationData> gameConfirmations = new ArrayList<GameConfirmationData>();
     public static ArrayList<Lobby> lobbies = new ArrayList<Lobby>();
+    public static ArrayList<Leaderboard> leaderboards = new ArrayList<Leaderboard>();
 
 
 
@@ -23,6 +25,22 @@ public class MockDB {
     // --------------- User operations -------------
     // ---------------------------------------------
 
+    public static void addLeaderboardIdToUser(int userId, int leaderboardId) {
+        for(User u : users) {
+            if(u.getId() == userId) {
+                u.getLeaderBoardIds().add(leaderboardId);
+            }
+        }
+    }
+
+    public static ArrayList<Integer> getLeaderboardIdsForUser(int userId) {
+        for(User u : users) {
+            if(u.getId() == userId) {
+                return u.getLeaderBoardIds();
+            }
+        }
+        return null;
+    }
 
     // Sjekker om et brukernavn eksisterer
     public static boolean isUser (String username){
@@ -71,7 +89,6 @@ public class MockDB {
 
         return available;
     }
-
 
     public static void addUserWin(int userId) {
         for (User u : users) {
@@ -237,6 +254,144 @@ public class MockDB {
 
 
 
+
+    // --------------- Leaderboards ----------------
+    // ---------------------------------------------
+
+    public static boolean isPlayerInLeaderboard(int userId, int leaderboardId) {
+        for(Leaderboard leaderboard : leaderboards) {
+            if(leaderboard.getId() == leaderboardId) {
+                for(UserStatistics stats : leaderboard.getPlayerStats()) {
+                    if(stats.getUserId() == userId) {
+                        return true;
+                    }
+                }
+            }
+        }
+         return false;
+    }
+
+    public static void addUserWinToLeaderboard(int userId, int leaderboardId) {
+        for(Leaderboard leaderboard : leaderboards) {
+            if(leaderboard.getId() == leaderboardId) {
+                ArrayList<UserStatistics> stats = leaderboard.getPlayerStats();
+                for(UserStatistics s : stats) {
+                    if(s.getUserId() == userId) {
+                        s.addWin();
+                    }
+                }
+                leaderboard.setPlayerStats(stats);
+                break;
+            }
+
+        }
+    }
+
+    public static void addUserLossToLeaderboard(int userId, int leaderboardId) {
+        for(Leaderboard leaderboard : leaderboards) {
+            if(leaderboard.getId() == leaderboardId) {
+                ArrayList<UserStatistics> stats = leaderboard.getPlayerStats();
+                for(UserStatistics s : stats) {
+                    if(s.getUserId() == userId) {
+                        s.addLoss();
+                    }
+                }
+                leaderboard.setPlayerStats(stats);
+                break;
+            }
+
+        }
+    }
+
+
+    public static String getLeaderboardNameById(int leaderboardId) {
+        for(Leaderboard leaderboard : leaderboards) {
+            if(leaderboard.getId() == leaderboardId) {
+                return leaderboard.getName();
+            }
+        }
+        return null;
+
+    }
+
+    public static int getOwnerId(int leaderboardId) {
+
+        for(Leaderboard leaderboard : leaderboards) {
+            if(leaderboard.getId() == leaderboardId) {
+                return leaderboard.getOwnerId();
+            }
+        }
+
+        System.out.println("MockDB: Leaderboard not found");
+        return 0;
+    }
+
+    public static void addLeaderboard(Leaderboard leaderboard) {
+        leaderboards.add(leaderboard);
+    }
+
+    public static Leaderboard getLeaderboard(int id) {
+
+        for(Leaderboard leaderboard : leaderboards) {
+            if(leaderboard.getId() == id) {
+                return leaderboard;
+            }
+        }
+
+        System.out.println("MockDB: Leaderboard not found");
+        return null;
+    }
+
+    public static void deleteLeaderboard(int id) {
+
+        for(Leaderboard leaderboard : leaderboards) {
+            if(leaderboard.getId() == id) {
+                leaderboards.remove(id);
+                break;
+            }
+        }
+    }
+
+    public static void updateLeaderboard(Leaderboard leaderboard) {
+        for(Leaderboard l : leaderboards) {
+            if(l.getId() == leaderboard.getId()) {
+                leaderboards.remove(l);
+                leaderboards.add(leaderboard);
+                break;
+            }
+        }
+    }
+
+    public static void addPlayerToLeaderboard(int leaderboardId, int userId) {
+        for(Leaderboard l : leaderboards) {
+            if(l.getId() == leaderboardId) {
+                l.addUser(userId);
+                break;
+            }
+        }
+    }
+
+    public static void removePlayerFromLeaderboard(int leaderboardId, int userId) {
+        for(Leaderboard l : leaderboards) {
+            if(l.getId() == leaderboardId) {
+                l.removeUser(userId);
+                break;
+            }
+        }
+    }
+
+
+
+    // ---------------------------------------------
+    // ---------------------------------------------
+
+
+
+
+
+
+
+
     // --------------- Notification ----------------
     // ---------------------------------------------
 
@@ -301,6 +456,7 @@ public class MockDB {
 
     // ------------- Game confirmation -------------
     // ---------------------------------------------
+
 
 
 

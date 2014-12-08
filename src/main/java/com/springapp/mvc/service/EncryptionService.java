@@ -7,7 +7,7 @@ import java.security.MessageDigest;
  */
 public class EncryptionService {
 
-    public static String encryptPassword(String password){
+    public String encryptPassword(String password){
         String encryptedPassword = "";
 
         try {

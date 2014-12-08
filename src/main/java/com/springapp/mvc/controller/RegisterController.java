@@ -48,14 +48,11 @@ public class RegisterController {
         String password2 = data.getPassword2();
         String email = data.getEmail();
 
-        System.out.println("Entered:" );
-        System.out.println("Username: " + username);
-        System.out.println("Password: " + password1 + ", " + password2);
-        System.out.println("email: " + email);
         boolean validInput = true;
 
+        ValidationService validation = new ValidationService();
         // valider brukernavn
-        if(ValidationService.validateUsername(username)) {
+        if(validation.validateUsername(username)) {
             model.remove("usernameError");
             model.addAttribute("validUsername", username);
         } else {
@@ -64,7 +61,7 @@ public class RegisterController {
         }
 
         // Valider passord1
-        if(ValidationService.validatePassword(password1)) {
+        if(validation.validatePassword(password1)) {
             model.remove("password1Error");
 
             // Valider passord2, ikke vits å validere passord2 hvis passord1 ikke er valid
@@ -82,7 +79,7 @@ public class RegisterController {
 
 
         // Valider email
-        if(ValidationService.validateEmail(email)) {
+        if(validation.validateEmail(email)) {
             model.remove("emailError");
             model.addAttribute("validEmail", email);
         } else {
@@ -93,15 +90,11 @@ public class RegisterController {
         if(validInput) {
 
             // Krypter passord
-            String encryptedPassword = EncryptionService.encryptPassword(password1);
-
-
-
-            // generer unik id
-            int id = IdService.getUserId();
+            EncryptionService encryptionService = new EncryptionService();
+            String encryptedPassword = encryptionService.encryptPassword(password1);
 
             // Opprett ny bruker
-            User newUser = new User(id, username, encryptedPassword, email);
+            User newUser = new User(username, encryptedPassword, email);
             // lagre i database
             MockDB.addUser(newUser);
             // returner til login

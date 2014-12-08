@@ -32,7 +32,7 @@
     <tr><th>Players in lobby</th></tr>
     <tr><td>${lobby.hostUsername}</td> <td>host</td></tr>
     <c:forEach items="${lobby.invitedPlayerUsernames}" var="invitedPlayer">
-        <tr><td> ${invitedPlayer} </td></tr>
+        <tr><td> ${invitedPlayer} </td> <form action="/lobby/removePlayer"><input type ="hidden" name="removePlayer" value="${invitedPlayer}"/> <td> <input type="submit" value="Remove"></td></form> </tr>
     </c:forEach>
 </table>
 

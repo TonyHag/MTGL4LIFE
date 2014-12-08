@@ -1,20 +1,32 @@
 package com.springapp.mvc.model;
 
+import com.springapp.mvc.service.MockDB;
+
 /**
  * Created by eirikskogland on 05.12.14.
  */
 public class UserStatistics {
 
     private String username;
+    private int userId;
     private int wins, losses, total;
     private double winPercentage;
 
-    public UserStatistics() {
-        username = "n/a";
+    public UserStatistics(int userId) {
+        this.userId = userId;
+        username = MockDB.getUsername(userId);
         wins = 0;
         losses = 0;
         total = 0;
         winPercentage = 0.0;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void addWin() {

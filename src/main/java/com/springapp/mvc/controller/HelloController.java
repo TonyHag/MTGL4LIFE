@@ -18,11 +18,12 @@ public class HelloController {
 	public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Some users added");
 
+        EncryptionService encryptionService = new EncryptionService();
         MockDB.users = new ArrayList<User>();
-        MockDB.addUser(new User(IdService.getUserId(), "Tony", EncryptionService.encryptPassword("asdf"), "asdf"));
-        MockDB.addUser(new User(IdService.getUserId(), "Jonas", EncryptionService.encryptPassword("asdf"), "asdf"));
-        MockDB.addUser(new User(IdService.getUserId(), "Håkon", EncryptionService.encryptPassword("asdf"), "asdf"));
-        MockDB.addUser(new User(IdService.getUserId(), "Eirik", EncryptionService.encryptPassword("asdf"), "asdf"));
+        MockDB.addUser(new User("Tony", encryptionService.encryptPassword("asdf"), "asdf"));
+        MockDB.addUser(new User("Jonas", encryptionService.encryptPassword("asdf"), "asdf"));
+        MockDB.addUser(new User("Håkon", encryptionService.encryptPassword("asdf"), "asdf"));
+        MockDB.addUser(new User("Eirik", encryptionService.encryptPassword("asdf"), "asdf"));
 
 
         System.out.println("HelloPage");

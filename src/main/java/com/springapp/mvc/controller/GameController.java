@@ -96,7 +96,10 @@ public class GameController {
                 GameConfirmationData confirmationData = new GameConfirmationData(game);
 
                 MockDB.addGameConfirmationData(confirmationData);
-                NotificationService.sendNotifications(game);
+
+                NotificationService notificationService = new NotificationService();
+                notificationService.sendNotifications(game);
+
                 sessionData.getLobby().getId();
                 return "redirect:/lobby/" + sessionData.getLobby().getId();
 

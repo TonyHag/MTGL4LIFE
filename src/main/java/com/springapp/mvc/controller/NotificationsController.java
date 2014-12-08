@@ -2,7 +2,6 @@ package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.Notification;
 import com.springapp.mvc.model.SessionData;
-import com.springapp.mvc.service.GameConfirmationService;
 import com.springapp.mvc.service.MockDB;
 import com.springapp.mvc.service.NotificationService;
 import com.springapp.mvc.service.SessionService;
@@ -34,7 +33,8 @@ public class NotificationsController {
               HttpSession session = request.getSession();
               SessionData sessionData = (SessionData) session.getAttribute("sessionData");
               int userId = sessionData.getUserId();
-              ArrayList<Notification> notifications = NotificationService.getNotifications(userId);
+              NotificationService notificationService = new NotificationService();
+              ArrayList<Notification> notifications = notificationService.getNotifications(userId);
               //sessionData.setNotifications(notifications);
               model.addAttribute("notifications", notifications);
 

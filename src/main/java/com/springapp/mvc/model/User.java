@@ -1,5 +1,9 @@
 package com.springapp.mvc.model;
 
+import com.springapp.mvc.service.IdService;
+
+import java.util.ArrayList;
+
 /**
  * Created by eirikskogland on 02.12.14.
  */
@@ -9,16 +13,26 @@ public class User {
     private int id;
 
     private UserStatistics stats;
+    private ArrayList<Integer> leaderBoardIds;
 
-    public User(int id, String username, String password, String email) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
 
-        this.id = id;
-        stats = new UserStatistics();
+        this.id = IdService.getUserId();
+        stats = new UserStatistics(this.id);
         stats.setUsername(username);
+        leaderBoardIds = new ArrayList<Integer>();
 
+    }
+
+    public ArrayList<Integer> getLeaderBoardIds() {
+        return leaderBoardIds;
+    }
+
+    public void setLeaderBoardIds(ArrayList<Integer> leaderBoardIds) {
+        this.leaderBoardIds = leaderBoardIds;
     }
 
     public void addWin() {

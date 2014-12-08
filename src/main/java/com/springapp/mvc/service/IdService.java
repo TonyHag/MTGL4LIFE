@@ -10,8 +10,15 @@ public class IdService {
     private static int notificationId = 0;
     private static int gameConfirmationId = 0;
     private static int lobbyId = 0;
+    private static int leaderboardId = 0;
+
+    public static int getLeaderboardId() {
+        leaderboardId++;
+        return leaderboardId;
+    }
 
     public static int getLobbyId() {
+
         lobbyId++;
         return lobbyId;
     }

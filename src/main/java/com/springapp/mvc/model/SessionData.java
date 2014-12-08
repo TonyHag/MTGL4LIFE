@@ -7,10 +7,19 @@ import java.util.ArrayList;
  */
 public class SessionData {
 
-    String username;
-    int userId;
-    Lobby lobby;
-    ArrayList<Notification> notifications = new ArrayList<Notification>();
+    private String username;
+    private int userId;
+    private Lobby lobby;
+    private ArrayList<Notification> notifications = new ArrayList<Notification>();
+    private Leaderboard createLeaderboard;
+
+    public Leaderboard getCreateLeaderboard() {
+        return createLeaderboard;
+    }
+
+    public void setCreateLeaderboard(Leaderboard createLeaderboard) {
+        this.createLeaderboard = createLeaderboard;
+    }
 
     public ArrayList<Notification> getNotifications() {
         return notifications;

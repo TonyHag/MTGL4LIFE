@@ -1,7 +1,6 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.*;
-import com.springapp.mvc.service.GameConfirmationService;
 import com.springapp.mvc.service.MockDB;
 import com.springapp.mvc.service.NotificationService;
 import com.springapp.mvc.service.SessionService;
@@ -50,14 +49,37 @@ public class GameConfirmationController {
 
                     Game game = MockDB.getGame(gameId);
 
+                    ArrayList<Player> players = game.getPlayers();
                     // oppdater spillere
                     ArrayList<Integer> winners = game.getWinners();
-                    for(Integer winnerId : winners) {
+
+                    int sameLeaderboardId = -1;
+                    for(Integer i : winners) {
+                        ArrayList<Integer> leaderboardIds = MockDB.getLeaderboardIdsForUser(i);
+
+                        for(Integer leaderboardId : leaderboardIds) {
+                            if(playersInSameLeaderboard(leaderboardId, players)) {
+                                sameLeaderboardId = leaderboardId;
+                            }
+                        }
+
+
+                    }
+
+                    for (Integer winnerId : winners) {
+                        if(sameLeaderboardId != -1) {
+                            System.out.println("Adding win to leaderboard");
+                            MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId);
+                        }
                         MockDB.addUserWin(winnerId);
                     }
 
                     ArrayList<Integer> losers = MockDB.getGame(gameId).getLosers();
                     for(Integer loserId : losers) {
+                        if(sameLeaderboardId != -1) {
+                            System.out.println("Adding win to leaderboard");
+                            MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId);
+                        }
                         MockDB.addUserLoss(loserId);
                     }
 
@@ -107,18 +129,39 @@ public class GameConfirmationController {
                     System.out.println("GameConfirmationController: Updating players");
 
                     Game game = MockDB.getGame(gameId);
-
+                    ArrayList<Player> players = game.getPlayers();
                     // oppdater spillere
                     ArrayList<Integer> winners = game.getWinners();
+
+                    int sameLeaderboardId = -1;
+                    for(Integer i : winners) {
+                        ArrayList<Integer> leaderboardIds = MockDB.getLeaderboardIdsForUser(i);
+
+                        for(Integer leaderboardId : leaderboardIds) {
+                            if(playersInSameLeaderboard(leaderboardId, players)) {
+                                sameLeaderboardId = leaderboardId;
+                            }
+                        }
+
+
+                    }
+
                     for (Integer winnerId : winners) {
+                        if(sameLeaderboardId != -1) {
+                            System.out.println("Adding win to leaderboard");
+                            MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId);
+                        }
                         MockDB.addUserWin(winnerId);
                     }
 
                     ArrayList<Integer> losers = MockDB.getGame(gameId).getLosers();
-                    for (Integer loserId : losers) {
+                    for(Integer loserId : losers) {
+                        if(sameLeaderboardId != -1) {
+                            System.out.println("Adding win to leaderboard");
+                            MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId);
+                        }
                         MockDB.addUserLoss(loserId);
                     }
-
                     // slett game og gameconfirmation
 
 
@@ -134,6 +177,17 @@ public class GameConfirmationController {
         }
 
         return "redirect:/login";
+    }
+
+
+    private boolean playersInSameLeaderboard(int leaderboardId, ArrayList<Player> players) {
+
+        for(Player p : players) {
+            if(!MockDB.isPlayerInLeaderboard(p.getUserId(), leaderboardId)) {
+               return false;
+            }
+        }
+        return true;
     }
 
 
