@@ -20,8 +20,9 @@
 
 <h1>Your notifications</h1>
 
-<h2>Game Confirmations</h2>
+<h3>Game Confirmations</h3>
 <table>
+
     <c:forEach items="${notifications}" var="notification">
         <c:if test="${notification.type == 'gameConfirmation'}">
             <tr><td>Winner: </td> <td><form action="/gameConfirmation/accept/${notification.gameId}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept"></form></td>
@@ -29,10 +30,11 @@
             </tr>
         </c:if>
     </c:forEach>
+
 </table>
 
 
-<h2>Leaderboard invitations</h2>
+<h3>Leaderboard invitations </h3>
 <table>
 
     <c:forEach items="${notifications}" var="notification">

@@ -32,7 +32,7 @@ public class NotificationService {
         notification.setType("leaderboardInvitation");
         notification.setLeaderboardId(leaderboardId);
         notification.setReceiverId(userId);
-        notification.setMessage("Leaderboard invitation from " + MockDB.getUsername(senderId));
+        notification.setMessage(MockDB.getUsername(senderId) + " invited you to the leaderboard " + MockDB.getLeaderboardNameById(leaderboardId));
         MockDB.addNotification(notification);
         System.out.println("Notification sent to: " + MockDB.getUsername(userId));
 

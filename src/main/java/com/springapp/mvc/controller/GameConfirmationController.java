@@ -53,13 +53,15 @@ public class GameConfirmationController {
                     // oppdater spillere
                     ArrayList<Integer> winners = game.getWinners();
 
+                    // Sjekke om alle tilhører samme leaderboard
                     int sameLeaderboardId = -1;
-                    for(Integer i : winners) {
+                    for(Integer i : winners) { // sjekker for vinnerens leaderboard om alle andre tilhører samme
                         ArrayList<Integer> leaderboardIds = MockDB.getLeaderboardIdsForUser(i);
 
                         for(Integer leaderboardId : leaderboardIds) {
                             if(playersInSameLeaderboard(leaderboardId, players)) {
-                                sameLeaderboardId = leaderboardId;
+                                sameLeaderboardId = leaderboardId; // siste leaderboard med alle vil være gjeldene
+                                // her bør det lages en liste av sammeLeaderBoardIds hvis alle er med i flere leaderboards
                             }
                         }
 

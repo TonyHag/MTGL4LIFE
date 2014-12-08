@@ -249,6 +249,25 @@ public class LeaderboardController {
         return "redirect:/login";
     }
 
+    @RequestMapping(value = "/leaderboard/reject/{leaderboardId}", method = RequestMethod.POST)
+    public String rejectInvitation(@PathVariable("leaderboardId") int leaderboardId, @RequestParam("notificationId") int notificationId, HttpServletRequest request, ModelMap model) {
+
+        if(SessionService.getLoggedInUser(request) != null ) { // hvis logget inn
+            String username = SessionService.getLoggedInUser(request);
+            model.addAttribute("user", username);
+
+            Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
+            if(leaderboard.getInvitedPlayerUsernames().contains(username)) { // Hvis spiller er invitert
+
+                MockDB.deleteNotification(notificationId);
+                leaderboard.getInvitedPlayerUsernames().remove(username);
+                MockDB.updateLeaderboard(leaderboard);
+
+                return "redirect:/notifications";
+            }
+        }
+        return "redirect:/login";
+    }
 
 
 }

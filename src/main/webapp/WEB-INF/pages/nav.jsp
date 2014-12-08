@@ -29,10 +29,10 @@
                 <a href="/leaderboard" >Leaderboards</a>
             </th>
             <th>
-                <a href="#">About</a>
+                About
             </th>
             <th>
-                <a href="#">Settings</a>
+                Settings
             </th>
 
             <th>

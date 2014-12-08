@@ -16,6 +16,8 @@
     <jsp:param name="user" value="${user}"></jsp:param>
 </jsp:include>
 
+<h1> Leaderboards </h1>
+
 <table>
     <tr>
         <td><a href="/leaderboard/create">Create leaderboard</a></td>
