@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: eirikskogland
@@ -44,7 +45,7 @@
             <td> ${playerStat.wins}         </td>
             <td> ${playerStat.losses}       </td>
             <td> ${playerStat.total}        </td>
-            <td> ${playerStat.winPercentage}</td>
+            <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${stats.winPercentage}"/></td>
             <form action="/leaderboard/manage/${leaderboard.id}/removePlayer"><input type ="hidden" name="removePlayer" value="${playerStat.username}"/> <td> <input type="submit" value="Remove"></td></form> </tr>
     </c:forEach>
 </table>
