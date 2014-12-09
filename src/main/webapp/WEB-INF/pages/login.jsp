@@ -42,7 +42,7 @@
                 <form class="form-signin" action="/login" method="post">
                     <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
                     <input type="password" class="form-control" name="password" placeholder="Password" required>
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                    <button class="btn btn-lg btn-success btn-block" type="submit">
                         Log in</button>
                     <label class="checkbox pull-left">
                         <input type="checkbox" value="remember-me">
