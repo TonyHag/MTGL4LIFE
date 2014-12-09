@@ -12,31 +12,63 @@
     <table>
         <tr>
             <th>
-                <a href="/main">Home</a>
+                <a href="/main">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-home" aria-hidden="true"></span> HOME
+                    </button>
+                </a>
             </th>
             <th>
-                <a href="/lobby">Start Match</a>
-            </th>
-
-            <th>
-                <a href="/notifications">Notifications</a>
-            </th>
-
-            <th>
-                <a href="/stats/${user}">Stats</a>
-            </th>
-            <th>
-                <a href="/leaderboard" >Leaderboards</a>
-            </th>
-            <th>
-                About
-            </th>
-            <th>
-                Settings
+                <a href="/lobby">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span> START MATCH
+                    </button>
+                </a>
             </th>
 
             <th>
-                <a href="/main/logout">Log out</a>
+                <a href="/notifications">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> NOTIFICATIONS
+                    </button>
+                </a>
+            </th>
+
+            <th>
+                <a href="/stats/${user}">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-stats" aria-hidden="true"></span> STATS
+                    </button>
+                </a>
+            </th>
+            <th>
+                <a href="/leaderboard" >
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-tower" aria-hidden="true"></span> LEADERBOARDS
+                    </button>
+                </a>
+            </th>
+            <th>
+                <a href="#">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> ABOUT
+                    </button>
+                </a>
+            </th>
+            <th>
+                <a href="#">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> SETTINGS
+                    </button>
+                </a>
+            </th>
+
+            <th>
+                <a href="/main/logout">
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> LOGOUT
+                    </button>
+                </a>
             </th>
 
 
