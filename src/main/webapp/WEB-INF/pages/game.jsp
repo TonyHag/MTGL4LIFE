@@ -36,27 +36,33 @@
 
     <div class="container" role="main">
 
-        <div class="col-xs-6">
-            <form action="/game/declareWinner" method="post">
-                <input type="hidden" name="gameId" value="${game.id}" />
-                <select name="winner">
-                    <c:forEach items="${game.players}" var="player"> <option value="${player.username}">${player.username}</option></c:forEach>
-                </select>
-                <input type="submit" value="Declare Winner" class="btn-sm btn-primary">
-            </form>
+        <div class="row">
+            <div class="col-xs-6">
+                <form action="/game/declareWinner" method="post">
+                    <input type="hidden" name="gameId" value="${game.id}" />
+                    <select name="winner">
+                        <c:forEach items="${game.players}" var="player"> <option value="${player.username}">${player.username}</option></c:forEach>
+                    </select>
+                    <input type="submit" value="Declare Winner" class="btn-sm btn-primary">
+                </form>
+            </div>
+
+
+            <div class="col-xs-6">
+                <input type="text" id="startingHp" size="4" placeholder="20"/>
+                <button class="btn btn-sm btn-primary" id="btn_reset">Reset Counters</button>
+            </div>
+
         </div>
 
 
-        <div class="col-xs-6">
-            <input type="text" id="startingHp" placeholder="20"/>
-            <button class="btn btn-sm btn-primary" id="btn_reset">Reset Counters</button>
-        </div>
 
-
-        <div class ="row">
             <c:forEach items="${game.players}" var="player" varStatus="loop">
-                <div class="col-xs-6 playerInfo">
 
+                <c:if test="${(loop.index-1)%2 == 0}"> <div class="row"> </c:if>
+
+
+                <div class="col-xs-4 playerInfo">
                     <div class="row">
                         <div class="col-xs-12">
                             <p class="playerName"> ${player.username} </p>
@@ -73,16 +79,16 @@
                         <div class="col-xs-12 text-center">
                             <button class="btn-danger btn-sm"  id="subtractHp${loop.index}">-</button>
 
-                            <input type="text" id="changeHP" placeholder="1" value="1"/>
+                            <input type="text" id="changeHP" size="4" placeholder="1" value="1"/>
 
                             <button class="btn-success btn-sm" id="addHp${loop.index}">+</button>
                         </div>
                     </div>
                 </div>
-            </c:forEach>
+                <c:if test="${(loop.index-1)%2 == 0}"> </div> </c:if>
 
+                </c:forEach>
 
-        </div>
 
 
     </div>
