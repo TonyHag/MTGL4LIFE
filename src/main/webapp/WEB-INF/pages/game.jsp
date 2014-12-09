@@ -11,6 +11,11 @@
 <html>
 <head>
     <jsp:include page="include.jsp" />
+    <script src="/resources/js/jQuery2-1-1.js" type="text/javascript"></script>
+    <script src="/resources/js/game.js" type="text/javascript" ></script>
+
+    <link href="/resources/css/bootstrap.css" rel="stylesheet">
+    <script src="/resources/js/bootstrap.js" type="text/javascript"></script>
 
     <title>Game</title>
 </head>
@@ -48,13 +53,17 @@
 
     <div class="container" role="main">
 
-        <c:forEach items="${game.players}" var="player">
+        <c:forEach items="${game.players}" var="player" varStatus="loop">
+            <div class="col-xs-6 playerInfo">
+                <div class="row">
+                    <div class="col-xs-12"><p class="playerName"> ${player.username}
+                    </p></div></div>
+                    <div class="row"><div class="col-xs-12" ><p class="playerHp" id="hp${loop.index}">${player.hp}</p></div></div>
 
-            <div class="col-xs-6 playerInfo"> <div class="row"> <div class="col-xs-12"><p class="playerName"> ${player.username} </p></div></div><div class="row"><div class="col-xs-12" ><p class="playerHp" id="hp' + newPlayer.id + '">${player.hp}</p></div></div>
-            <div class="row"> <div class="col-xs-12 text-center"><button class="btn-danger btn-sm subtractHp'+ newPlayer.id +'">-</button> <input type="text" id="changeHP" placeholder="1" value="1"/> <button class="btn-success btn-sm addHp'+ newPlayer.id +'">+</button></div></div> </div>
+            <div class="row"> <div class="col-xs-12 text-center"><button class="btn-danger btn-sm"  id="subtractHp${loop.index}">-</button> <input type="text" id="changeHP" placeholder="1" value="1"/> <button class="btn-success btn-sm" id="addHp${loop.index}">+</button></div></div> </div>
 
 
-             </c:forEach>
+        </c:forEach>
 
     </div>
 
@@ -65,6 +74,41 @@
 </table>
 
 
+<script type="text/javascript">
+    var ID = 0;
+    var players = new Array();
+    function Player() {
+        this.hp = 20;
+        this.id = ID;
+        ID++;
+
+    }
+
+    Player.prototype.addHp = function(hp) {
+        this.hp+=hp;
+    }
+
+    Player.prototype.removeHp = function(hp) {
+        this.hp-=hp;
+    }
+
+    $(function() {
+       console.log(${game.numberOfPlayers});
+
+        // for alle players, legg til eventlistener på knapper
+        for(var i = 0; i < ${game.numberOfPlayers}; i++)  {
+
+             console.log(i);
+            $("#subtractHp"+i).click(function() {
+                console.log("subtract from: " + player.id);
+            });
+
+
+        }
+    });
+
+
+</script>
 
 </body>
 </html>

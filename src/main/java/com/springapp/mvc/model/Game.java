@@ -17,6 +17,7 @@ public class Game {
 
     private ArrayList<Integer> winners;
     private ArrayList<Integer> losers;
+    private int numberOfPlayers;
 
 
     private int startingHp;
@@ -30,8 +31,16 @@ public class Game {
         startingHp = 20;
 
 
+
     }
 
+    public int getNumberOfPlayers() {
+        return numberOfPlayers;
+    }
+
+    public void setNumberOfPlayers(int numberOfPlayers) {
+        this.numberOfPlayers = numberOfPlayers;
+    }
 
     // Konstruktør til å kopiere et game, men med ny id
     public Game(Game game) {

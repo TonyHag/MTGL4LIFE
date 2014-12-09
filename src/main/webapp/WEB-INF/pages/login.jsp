@@ -14,7 +14,6 @@
 
     <title>Login</title>
 
-   <script src="/resources/js/test.js" type="text/javascript" ></script>
 </head>
 <body>
 

@@ -212,6 +212,7 @@ public class LobbyController {
                 Game game = new Game(hostPlayer.getUserId(), lobby.getId());
                 game.setPlayers(lobby.getPlayers());
                 game.setHostId(lobby.getHostId());
+                game.setNumberOfPlayers(lobby.getPlayers().size());
                 MockDB.addGame(game);
 
                 return ("redirect:/game/" + game.getId());
