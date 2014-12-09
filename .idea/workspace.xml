@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/stats.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/stats.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MTGL4LIFE.iws" />
@@ -812,7 +810,7 @@
       <workItem from="1418056717298" duration="14632000" />
       <workItem from="1418144858806" duration="664000" />
       <workItem from="1418146665413" duration="73000" />
-      <workItem from="1418156918631" duration="5771000" />
+      <workItem from="1418156918631" duration="5798000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -854,11 +852,15 @@
       <created>1418161657605</created>
       <updated>1418161657605</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="bootstrap på stats-jsp">
+      <created>1418162770925</created>
+      <updated>1418162770925</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="79497000" />
+    <option name="totallyTimeSpent" value="79524000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -975,7 +977,8 @@
     <MESSAGE value="&#10;kj" />
     <MESSAGE value="game js logicc" />
     <MESSAGE value="game js logicc fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="game js logicc fixed" />
+    <MESSAGE value="bootstrap på stats-jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="bootstrap på stats-jsp" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
