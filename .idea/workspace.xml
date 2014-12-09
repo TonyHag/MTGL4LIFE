@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LeaderboardController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LeaderboardController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/LeaderboardInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/LeaderboardInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Lobby.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Lobby.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/leaderboards.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/leaderboards.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lobby.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lobby.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MTGL4LIFE.iws" />
@@ -818,7 +812,7 @@
       <workItem from="1417788472666" duration="40736000" />
       <workItem from="1417954098135" duration="15346000" />
       <workItem from="1418056115873" duration="458000" />
-      <workItem from="1418056717298" duration="20275000" />
+      <workItem from="1418056717298" duration="20302000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -856,11 +850,15 @@
       <created>1418073091937</created>
       <updated>1418073091937</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Lagt til remove player fra manage leaderboard">
+      <created>1418123997626</created>
+      <updated>1418123997626</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78632000" />
+    <option name="totallyTimeSpent" value="78659000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -976,7 +974,8 @@
     <MESSAGE value="Endret en del" />
     <MESSAGE value="Lagt til leaderboards" />
     <MESSAGE value="Kan nå rejecte leaderboard invitation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Kan nå rejecte leaderboard invitation" />
+    <MESSAGE value="Lagt til remove player fra manage leaderboard" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lagt til remove player fra manage leaderboard" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
