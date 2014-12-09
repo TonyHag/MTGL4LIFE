@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
+    <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="Login page">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/main.css" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -70,21 +70,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.153847" vertical-offset="139" max-vertical-offset="1105">
-              <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.23977433" vertical-offset="153" max-vertical-offset="1105">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.84090906" vertical-offset="714" max-vertical-offset="2159">
-              <caret line="79" column="14" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2210">
+              <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -145,8 +145,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/stats.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/nav.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/resources/css/main.css" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp" />
       </list>
     </option>
   </component>
@@ -827,7 +827,7 @@
       <workItem from="1418144858806" duration="664000" />
       <workItem from="1418146665413" duration="73000" />
       <workItem from="1418156918631" duration="5798000" />
-      <workItem from="1418164177031" duration="1554000" />
+      <workItem from="1418164177031" duration="1864000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -913,11 +913,17 @@
       <option name="project" value="LOCAL" />
       <updated>1418165122875</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Login page">
+      <created>1418165741821</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1418165741821</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81078000" />
+    <option name="totallyTimeSpent" value="81388000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1413,18 +1419,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.153847" vertical-offset="139" max-vertical-offset="1105">
-          <caret line="39" column="39" selection-start-line="39" selection-start-column="39" selection-end-line="39" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2210">
+          <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/css/main.css">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84090906" vertical-offset="714" max-vertical-offset="2159">
-          <caret line="79" column="14" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.23977433" vertical-offset="153" max-vertical-offset="1105">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
