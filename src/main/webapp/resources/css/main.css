@@ -9,7 +9,8 @@
 -------------NAVBAR-------------------
 *************************************/
 
-#navbar {
+.navbar-brand {
+    font-family: 'Cinzel Decorative', cursive;
 
 }
 

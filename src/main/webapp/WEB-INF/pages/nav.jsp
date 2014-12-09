@@ -102,6 +102,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <img src="/resources/img/glyphicons-388-log-out.png" alt="Log Out" height="18" width="21">
                 <li><a href="/main/logout">Log Out</a></li>
 
             </ul>
