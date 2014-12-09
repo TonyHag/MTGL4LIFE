@@ -7,10 +7,19 @@ public class LeaderboardInfo {
 
     private int id;
     private String name;
+    private boolean isOwner;
 
     public LeaderboardInfo(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public boolean isOwner() {
+        return isOwner;
+    }
+
+    public void setOwner(boolean isOwner) {
+        this.isOwner = isOwner;
     }
 
     public int getId() {

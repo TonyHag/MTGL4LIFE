@@ -32,14 +32,22 @@ public class LeaderboardController {
             model.addAttribute("user", username);
 
             ArrayList<Integer> leaderboardIds = MockDB.getLeaderboardIdsForUser(SessionService.getLoggedInUserId(request));
+            if(leaderboardIds != null) {
+                ArrayList<LeaderboardInfo> leaderboardInfos = new ArrayList<LeaderboardInfo>();
 
-            ArrayList<LeaderboardInfo> leaderboardInfos = new ArrayList<LeaderboardInfo>();
+                for(Integer i : leaderboardIds) {
+                    // Hvis bruker er eier av leaderboard, vil det være en manage-knapp ved siden av navnet
+                    LeaderboardInfo info = new LeaderboardInfo(i, MockDB.getLeaderboardNameById(i));
+                    if(MockDB.getOwnerId(i) == SessionService.getLoggedInUserId(request)) {
+                        info.setOwner(true);
+                    }
+                    leaderboardInfos.add(info);
+                }
 
-            for(Integer i : leaderboardIds) {
-                leaderboardInfos.add(new LeaderboardInfo(i, MockDB.getLeaderboardNameById(i)));
+                model.addAttribute("leaderboardInfos", leaderboardInfos);
+
+
             }
-
-            model.addAttribute("leaderboardInfos", leaderboardInfos);
 
             return "leaderboards";
 
@@ -154,6 +162,14 @@ public class LeaderboardController {
 
             // hvis eier
 
+            if(SessionService.getLoggedInUserId(request) == MockDB.getOwnerId(leaderboardId)) {
+
+                int userId = MockDB.getUserId(removePlayer);
+                MockDB.removePlayerFromLeaderboard(leaderboardId, userId);
+                return "redirect:/leaderboard/manage/" + leaderboardId ;
+
+            }
+
             // hent leaderboard
             // slett spiller
             // oppdater leaderboard
@@ -161,7 +177,7 @@ public class LeaderboardController {
 
 
 
-            return "redirect:/";
+            return "redirect:/main";
 
         }
 

@@ -38,7 +38,16 @@
 
 <br>
 
-<a href="/lobby/startGame"><button>Start Game</button></a>
+<table>
+    <tr>
+         <td>
+             <a href="/lobby/startGame"><button>Start Game</button></a>
+         </td>
+         <td>
+             ${lobby.startError}
+         </td>
+    </tr>
+</table>
 
 </body>
 </html>

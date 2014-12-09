@@ -15,6 +15,15 @@ public class Lobby {
     private ArrayList<String> invitedPlayerUsernames = new ArrayList<String>();
     private ArrayList<Player> players = new ArrayList<Player>();
     private String inviteError = null;
+    private String startError = null;
+
+    public String getStartError() {
+        return startError;
+    }
+
+    public void setStartError(String startError) {
+        this.startError = startError;
+    }
 
     private boolean active;
 

@@ -68,6 +68,7 @@ public class LobbyController {
             model.addAttribute("user", username);
 
             Lobby lobby = MockDB.getLobby(lobbyId);
+            lobby.setStartError("");
 
             if(lobby != null && SessionService.getLoggedInUserId(request) == lobby.getHostId()) {  // lobby finnes og bruker er eier
 
@@ -128,6 +129,7 @@ public class LobbyController {
             model.addAttribute("user", username);
 
             Lobby lobby = SessionService.getLobby(request);
+            lobby.setStartError("");
 
             // Sjekk at man ikke inviterer seg selv
             if(lobby.getHostUsername().equals(invitePlayer)) {
@@ -182,34 +184,42 @@ public class LobbyController {
             String user = SessionService.getLoggedInUser(request);
             model.addAttribute("user", user);
 
+
             Lobby lobby = MockDB.getLobby(SessionService.getLobby(request).getId());
-            lobby.setPlayers(new ArrayList<Player>()); // hvis lobby har spillere fra før//  hindrer dobbelt opp med spillere
+            if(lobby.getInvitedPlayerUsernames().size() > 0) {  // sjekke at man ikke starter game med 1 spiller
+                lobby.setPlayers(new ArrayList<Player>()); // hvis lobby har spillere fra før//  hindrer dobbelt opp med spillere
+                lobby.setStartError("");
 
-            // Legg til host som player
-            Player hostPlayer = new Player();
-            hostPlayer.setUserId(lobby.getHostId());
-            hostPlayer.setUsername(lobby.getHostUsername());
-            hostPlayer.setHp(20);
-            lobby.getPlayers().add(hostPlayer);
+                // Legg til host som player
+                Player hostPlayer = new Player();
+                hostPlayer.setUserId(lobby.getHostId());
+                hostPlayer.setUsername(lobby.getHostUsername());
+                hostPlayer.setHp(20);
+                lobby.getPlayers().add(hostPlayer);
 
-            // legg til resten av inviterte spillere til players
-            for(String username : lobby.getInvitedPlayerUsernames()) {
-                Player p = new Player();
-                p.setUserId(MockDB.getUserId(username));
-                p.setUsername(username);
-                p.setHp(20);
-                lobby.getPlayers().add(p);
+                // legg til resten av inviterte spillere til players
+                for(String username : lobby.getInvitedPlayerUsernames()) {
+                    Player p = new Player();
+                    p.setUserId(MockDB.getUserId(username));
+                    p.setUsername(username);
+                    p.setHp(20);
+                    lobby.getPlayers().add(p);
+                }
+
+
+                // Opprett nytt game
+
+                Game game = new Game(hostPlayer.getUserId(), lobby.getId());
+                game.setPlayers(lobby.getPlayers());
+                game.setHostId(lobby.getHostId());
+                MockDB.addGame(game);
+
+                return ("redirect:/game/" + game.getId());
             }
 
-
-            // Opprett nytt game
-
-            Game game = new Game(hostPlayer.getUserId(), lobby.getId());
-            game.setPlayers(lobby.getPlayers());
-            game.setHostId(lobby.getHostId());
-            MockDB.addGame(game);
-
-            return ("redirect:/game/" + game.getId());
+            lobby.setStartError("You cant start an empty game");
+            MockDB.updateLobby(lobby);
+            return "redirect:" + lobby.getId();
 
         }
 

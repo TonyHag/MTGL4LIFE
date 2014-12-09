@@ -29,7 +29,7 @@
 <table>
     <c:forEach items="${leaderboardInfos}" var="info">
         <tr>
-            <td><a href="/leaderboard/${info.id}">${info.name}</a></td>
+            <td><a href="/leaderboard/${info.id}">${info.name}</a> <c:if test="${info.owner == true}"> <a href="/leaderboard/manage/${info.id}"><button>Manage</button></a>  </c:if></td>
         </tr>
 
     </c:forEach>
