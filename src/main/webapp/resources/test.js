@@ -3,6 +3,8 @@
  */
 
 console.log("JS TEST");
+window.alert("JS TEST");
+
 
 window.onload = function () {
     console.log("JS TEST");
