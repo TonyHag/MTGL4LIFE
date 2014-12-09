@@ -18,14 +18,31 @@
     <jsp:param name="user" value="${user}"></jsp:param>
 </jsp:include>
 
+<div class="container" role="main">
+    <h1>Statistics for ${stats.username}</h1>
 
-<h1>Statistics for ${stats.username}</h1>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Total</th>
+                <th>Win%</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>${stats.wins}</td>
+                <td>${stats.losses}</td>
+                <td>${stats.total}</td>
+                <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${stats.winPercentage}"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-<table>
-    <tr> <th>Wins</th>              <th>Losses</th>           <th>Total</th>              <th>Win%</th>        </tr>
-    <tr> <td>${stats.wins}</td> <td>${stats.losses}</td> <td>${stats.total}</td> <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${stats.winPercentage}"/></td>  </tr>
-
-</table>
+</div>
 
 
 </body>
