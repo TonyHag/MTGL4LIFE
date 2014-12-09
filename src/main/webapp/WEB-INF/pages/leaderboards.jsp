@@ -18,27 +18,46 @@
     <jsp:param name="user" value="${user}"></jsp:param>
 </jsp:include>
 
-<h1> Leaderboards </h1>
+<div class="container" role="main">
+    <h1> Leaderboards </h1>
 
-<table>
-    <tr>
-        <td><a href="/leaderboard/create">Create leaderboard</a></td>
-    </tr>
-</table>
+    <div>
+        <p>Create your own leaderboard and invite your friends</p>
+        <a href="/leaderboard/create"><button class="btn btn-primary btn-sm">Create Leaderboard</button></a>
+    </div>
 
-<h3>Your leaderboards</h3>
+    <div>
+        <h3>Your leaderboards</h3>
 
-<table>
-    <c:forEach items="${leaderboardInfos}" var="info">
-        <tr>
-            <td><a href="/leaderboard/${info.id}">${info.name}</a> <c:if test="${info.owner == true}"> <a href="/leaderboard/manage/${info.id}"><button>Manage</button></a>  </c:if></td>
-        </tr>
+    </div>
 
-    </c:forEach>
+    <div class="table-responsive">
+        <table class="table">
+            <c:forEach items="${leaderboardInfos}" var="info">
+                <thead>
 
-</table>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="/leaderboard/${info.id}">${info.name}</a></td>
+                    <c:if test="${info.owner == true}">
+                        <td> <a href="/leaderboard/manage/${info.id}"><button>Manage</button></a></td>
+                    </c:if>
+                </tr>
+                </tbody>
 
 
+
+            </c:forEach>
+
+        </table>
+    </div>
+
+
+
+
+
+</div>
 
 </body>
 </html>

@@ -18,28 +18,47 @@
 <jsp:include page="nav.jsp">
     <jsp:param name="user" value="${user}"></jsp:param>
 </jsp:include>
-<h1>Leaderboard: ${leaderboard.name}</h1>
 
-<p>${leaderboard.description}</p>
+<div class="container" role="main">
 
-<table>
-    <tr><th>Players </th></tr>
-    <tr>
-        <td>Name</td>
-        <td>Wins</td>
-        <td>Losses</td>
-        <td>Total</td>
-        <td>Win %</td>
-    </tr>
+    <h1>${leaderboard.name}</h1>
 
-    <c:forEach items="${leaderboard.playerStats}" var="playerStat">
-        <tr><td> ${playerStat.username}     </td>
-            <td> ${playerStat.wins}         </td>
-            <td> ${playerStat.losses}       </td>
-            <td> ${playerStat.total}        </td>
-            <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${stats.winPercentage}"/></td>         </tr>
-    </c:forEach>
-</table>
+    <p>${leaderboard.description}</p>
+
+    <h3>Players</h3>
+
+    <div class="table-responsive">
+        <table class="table ">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Wins</th>
+                <th>Losses</th>
+                <th>Total</th>
+                <th>Win %</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <c:forEach items="${leaderboard.playerStats}" var="playerStat">
+                <tr>
+                    <td> ${playerStat.username}     </td>
+                    <td> ${playerStat.wins}         </td>
+                    <td> ${playerStat.losses}       </td>
+                    <td> ${playerStat.total}        </td>
+                    <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${stats.winPercentage}"/></td>
+                </tr>
+            </c:forEach>
+
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+</div>
+
 
 </body>
 </html>
