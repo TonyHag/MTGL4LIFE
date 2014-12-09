@@ -1,0 +1,29 @@
+#innerContainer {
+    align-content: center;
+}
+
+.playerName {
+    text-align: center;
+    font-size: 20px;
+}
+
+.playerHp {
+    text-align: center;
+    font-size: 60px;
+
+}
+
+.playerButtons {
+    align-content: center;
+    margin: 0 auto;
+}
+
+body {
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+
+.changeHP {
+    width: 30px;
+    border-radius: 15%;
+}
