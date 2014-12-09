@@ -10,6 +10,8 @@
 
 <html>
 <head>
+    <jsp:include page="include.jsp" />
+
     <title>Notifications</title>
 </head>
 

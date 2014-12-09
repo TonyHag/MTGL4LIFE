@@ -9,6 +9,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+    <jsp:include page="include.jsp" />
+
     <title>Stats</title>
 </head>
 <body>

@@ -10,6 +10,8 @@
 
 <html>
 <head>
+    <jsp:include page="include.jsp" />
+
     <title>Login</title>
 
    <script src="/resources/js/test.js" type="text/javascript" ></script>

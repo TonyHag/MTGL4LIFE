@@ -10,7 +10,7 @@
 
 <html>
 <head>
-
+    <jsp:include page="include.jsp" />
 
     <title>Game</title>
 </head>
