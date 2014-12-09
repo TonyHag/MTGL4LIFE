@@ -15,9 +15,9 @@
 </head>
 <body>
 
-<h1>Register</h1>
 
-<form action="/register" method="post">
+
+<!--<form action="/register" method="post">
     <table>
         <tr> <td>Username: </td>        <td><input type="text" name="username" value="${validUsername}"></td>   <td>${usernameError}</td></tr>
         <tr> <td>Password: </td>        <td><input type="password" name="password1"></td>                       <td>${password1Error}</td></tr>
@@ -26,7 +26,53 @@
         <tr> <td><input type="submit" value="Register"> </td> </tr>
     </table>
 
-</form>
+</form>-->
 
+<div class="container">
+    <div class="row text-center pad-top ">
+        <div class="col-md-12">
+            <h2>Register</h2>
+        </div>
+    </div>
+    <div class="row  pad-top">
+
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>   Register Yourself </strong>
+                </div>
+                <div class="panel-body">
+                    <form role="form" action="/register" method="post">
+                        <br/>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
+                            <input type="text" class="form-control" name="username" value="${validUsername}" placeholder="Desired Username" />
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"></span>
+                            <input type="email" class="form-control" name="email" value="${validEmail}" placeholder="Your Email" />
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                            <input type="password" class="form-control" name="password1" placeholder="Desired Password" />
+                        </div>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                            <input type="password" class="form-control" name="password2" placeholder="Retype Password" />
+                        </div>
+
+                        <input class="btn btn-success" type="submit" value="Register">
+
+                        <hr />
+                        Already Registered ?  <a href="/login" >Login here</a>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
 </body>
 </html>
