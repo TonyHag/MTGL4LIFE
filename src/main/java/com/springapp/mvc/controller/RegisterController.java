@@ -21,21 +21,28 @@ public class RegisterController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getRegisterForm(ModelMap model, HttpServletRequest request) {
-        if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
-            return "redirect:main";
-        }
 
-        System.out.println("Getting register page");
+        SessionService sessionService = new SessionService(request);
+        if(sessionService.isLoggedIn()) {
+            return "redirect:/main";
+        }
+        // -- autentisering ferdig
+
+
+
         return "register";
+
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String submitRegisterForm(ModelMap model, HttpServletRequest request, @ModelAttribute RegisterFormData data, BindingResult result) {
-        if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
-            return "redirect:main";
-        }
 
-        System.out.println("Registerform submitted");
+        SessionService sessionService = new SessionService(request);
+        if(sessionService.isLoggedIn()) {
+            return "redirect:/main";
+        }
+        // -- autentisering ferdig
+
 
         // Om input parametre har errors
         if(result.hasErrors()) {

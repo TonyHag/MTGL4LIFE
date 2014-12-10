@@ -26,23 +26,23 @@ public class NotificationsController {
     @RequestMapping(value = "/notifications", method = RequestMethod.GET)
     public String getNotificationsPage(ModelMap model, HttpServletRequest request) {
 
-          if(SessionService.getLoggedInUser(request) != null) { // hvis logget inn
-              String username = SessionService.getLoggedInUser(request);
-              model.addAttribute("user", username);
+        SessionService sessionService = new SessionService(request);
+        if(!sessionService.isLoggedIn()) {
+            return "redirect:/login";
+        }
+        String username = sessionService.getUsername();
+        model.addAttribute("user", username);
 
-              HttpSession session = request.getSession();
-              SessionData sessionData = (SessionData) session.getAttribute("sessionData");
-              int userId = sessionData.getUserId();
-              NotificationService notificationService = new NotificationService();
-              ArrayList<Notification> notifications = notificationService.getNotifications(userId);
-              //sessionData.setNotifications(notifications);
-              model.addAttribute("notifications", notifications);
+        // -- autentisering ferdig
 
-              return "notifications";
 
-          }
+        NotificationService notificationService = new NotificationService();
+        // Henter notifications
+        ArrayList<Notification> notifications = notificationService.getNotifications(sessionService.getUserId());
+        model.addAttribute("notifications", notifications);
 
-          return "redirect:/login";
+        return "notifications";
+
     }
 
 

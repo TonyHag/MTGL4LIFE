@@ -19,28 +19,31 @@ public class MainController {
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String getMainMenu(ModelMap model, HttpServletRequest request) {
 
-        if(SessionService.getLoggedInUser(request) != null) {
-
-            String username = SessionService.getLoggedInUser(request);
-            model.addAttribute("user", username);
-
-
-            return "main";
-
+        SessionService sessionService = new SessionService(request);
+        if(!sessionService.isLoggedIn()) {
+            return "redirect:/login";
         }
+        // -- autentisering ferdig
+        String username = sessionService.getUsername();
+        model.addAttribute("user", username);
 
-        return "redirect:/login";
+
+        return "main";
     }
 
     @RequestMapping(value = "/main/logout", method = RequestMethod.GET)
     public String logOut(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
-        System.out.println("Log out");
-       // HttpSession session = request.getSession();
-       // session.removeAttribute("username");
-        SessionService.logOut(request);
+        SessionService sessionService = new SessionService(request);
+        if(!sessionService.isLoggedIn()) {
+            return "redirect:/login";
+        }
+        // -- autentisering ferdig
 
+
+        sessionService.logout();
         return "redirect:/login";
+
     }
 
 

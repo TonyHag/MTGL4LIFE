@@ -20,19 +20,20 @@ public class StatisticsController {
     @RequestMapping(value = "stats/{username}", method = RequestMethod.GET)
     public String getStatisticsPage(@PathVariable("username") String username, ModelMap model, HttpServletRequest request) {
 
-        if(SessionService.getLoggedInUser(request) != null) {
-            String user = SessionService.getLoggedInUser(request);
-            model.addAttribute("user", user);
-
-            UserStatistics stats = MockDB.getUserStats(username);
-            System.out.println("Stats for " + stats.getUsername());
-            model.addAttribute("stats", stats);
-
-            return "stats";
+        SessionService sessionService = new SessionService(request);
+        if(!sessionService.isLoggedIn()) {
+            return "redirect:/login";
         }
+        // -- autentisering ferdig
+        String user = sessionService.getUsername();
+        model.addAttribute("user", user);
 
-        return "redirect:/login";
+        UserStatistics stats = MockDB.getUserStats(username);
+        model.addAttribute("stats", stats);
+
+        return "stats";
     }
+
 
 
 }
