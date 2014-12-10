@@ -8,10 +8,11 @@ public class ValidationService {
 
 
 
-    public boolean validateLogin(String username, String password) {
+    public boolean validateLoginCredentials(String username, String password) {
         boolean valid = false;
 
-        if(MockDB.isUser(username) && MockDB.passwordMatch(username, password)) {
+        EncryptionService encryptionService = new EncryptionService();
+        if(MockDB.isUser(username) && MockDB.passwordMatch(username, encryptionService.encryptPassword((password)))) {
             valid = true;
         }
         return valid;
@@ -22,9 +23,7 @@ public class ValidationService {
 
         if(username == null){
             valid = false;
-        }
-
-        if(username.length() < 3 || username.length() > 30) {
+        } else if(username.length() < 3 || username.length() > 30) {
             valid = false;
         }
 
@@ -43,9 +42,7 @@ public class ValidationService {
 
         if(password == null) {
             valid = false;
-        }
-
-        if(password.length() < 4 || password.length() > 30) {
+        }  else if(password.length() < 4 || password.length() > 30) {
             valid = false;
         }
 
@@ -60,9 +57,7 @@ public class ValidationService {
 
         if(email == null) {
             valid = false;
-        }
-
-        if(email.length() < 4 || email.length() > 30) {
+        } else  if(email.length() < 4 || email.length() > 30) {
             valid = false;
         }
 
@@ -71,5 +66,23 @@ public class ValidationService {
 
         return valid;
     }
+
+    public boolean description(String description) {
+        boolean valid = true;
+
+        if(description == null){
+            valid = false;
+
+        } else if(description.length() < 3 || description.length() > 100) {
+            valid = false;
+
+        }
+
+
+        // Sjekk med regex
+
+        return valid;
+    }
+
 
 }

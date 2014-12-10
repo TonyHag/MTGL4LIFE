@@ -48,9 +48,7 @@ public class LoginController {
         System.out.println("Login form submitted");
 
         ValidationService validation = new ValidationService();
-        EncryptionService encryptionService = new EncryptionService();
-
-        if(validation.validateLogin(username, encryptionService.encryptPassword(password))){ // hvis gyldig login
+        if(validation.validateLoginCredentials(username, password)){ // hvis gyldig login
 
             Cookie sidCookie = sessionService.logIn(username); // Logger inn bruker
             response.addCookie(sidCookie); // setter cookie med sid
