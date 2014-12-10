@@ -97,11 +97,19 @@ public class SessionService {
         return sessionData.getUsername();
     }
 
+    /**
+     * Henter brukerid fra sessiondata
+     * @return
+     */
     public int getUserId() {
         SessionData sessionData = (SessionData) request.getSession().getAttribute("sessionData");
         return sessionData.getUserId();
     }
 
+    /**
+     * Henter lobby fra sessiondata
+     * @return
+     */
     public Lobby getLobby() {
 
         HttpSession session = request.getSession();
@@ -110,6 +118,10 @@ public class SessionService {
 
     }
 
+    /**
+     * Setter lobby til sessionData
+     * @param lobby
+     */
     public void setLobby(Lobby lobby) {
 
         HttpSession session = request.getSession();
