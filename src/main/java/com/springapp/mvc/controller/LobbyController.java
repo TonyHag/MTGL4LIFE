@@ -34,7 +34,10 @@ public class LobbyController {
         String username = sessionService.getUsername();
         model.addAttribute("user", username);
 
-        //TODO: Hvis bruker har et aktivt game, redirect til game
+        // Hvis bruker har et aktivt game, redirect til game
+        if(sessionService.getActiveGame() != 0) {
+            return "redirect:/game/" + sessionService.getActiveGame();
+        }
 
         if(sessionService.getLobby() == null) { // lobby ikke finnes
 
@@ -42,12 +45,13 @@ public class LobbyController {
             Lobby lobby = new Lobby();
 
             lobby.setHostId(sessionService.getUserId());
-            lobby.setHostUsername(sessionService.getUsername());
+            lobby.setHostUsername(username);
+            model.addAttribute(lobby);
+            sessionService.setLobby(lobby);
 
             MockDB.addLobby(lobby);
 
-            model.addAttribute(lobby);
-            sessionService.setLobby(lobby);
+
 
 
             return "redirect:lobby/" + lobby.getId();
@@ -70,16 +74,27 @@ public class LobbyController {
         model.addAttribute("user", username);
 
         Lobby lobby = MockDB.getLobby(lobbyId);
-        lobby.setStartError("");
 
-        if(sessionService.getUserId() == lobby.getHostId()) {  // lobby finnes og bruker er eier
+        if(lobby != null) {
 
-            model.addAttribute(lobby);
-            sessionService.setLobby(lobby);
 
-            return "lobby";
 
+            if(sessionService.getUserId() == lobby.getHostId()) {  // lobby finnes og bruker er eier
+
+
+                model.addAttribute(lobby);
+                sessionService.setLobby(lobby);
+                model.addAttribute("inviteError",sessionService.getErrorMessage("inviteError"));
+                model.addAttribute("startError",sessionService.getErrorMessage("startError"));
+                System.out.println("returning lobby " + sessionService.getErrorMessage("inviteError"));
+                return "lobby";
+
+            }
+
+        } else { // returner til ny lobby om lobby ikke finnes
+            return "redirect:/lobby";
         }
+
 
         return "redirect:/main";
 
@@ -106,17 +121,16 @@ public class LobbyController {
             // Fjerner invitert spiller hvis spiller er med
             if(lobby.getInvitedPlayerUsernames().contains(removePlayer)) {
                 lobby.getInvitedPlayerUsernames().remove(removePlayer);
-                System.out.println("Player removed: " + removePlayer);
             }
 
-            model.addAttribute(lobby);
+            //model.addAttribute(lobby);
             sessionService.setLobby(lobby);
             MockDB.updateLobby(lobby);
             return "redirect:" + lobbyId;
 
         }
 
-        return "redirect:/main";
+        return "redirect:" + lobbyId;
 
     }
 
@@ -132,32 +146,30 @@ public class LobbyController {
         model.addAttribute("user", username);
 
         Lobby lobby = sessionService.getLobby();
-        lobby.setStartError("");
+        //lobby.setStartError("");
 
         // Sjekk at man ikke inviterer seg selv
-        if(lobby.getHostUsername().equals(invitePlayer)) {
-            lobby.setInviteError("Invite a friend!");
-
-            sessionService.setLobby(lobby);
-            MockDB.updateLobby(lobby);
+        if(username.equals(invitePlayer)) {
+            sessionService.setErrorMessage("inviteError", "Invite a friend!");
+            //sessionService.setLobby(lobby);
+            //sessionService.setLobby(lobby);
+            //MockDB.updateLobby(lobby);
             return "redirect:" + lobby.getId();
         }
 
         // Sjekk at man ikke inviterer samme flere ganger
         for(String name : lobby.getInvitedPlayerUsernames()) {
             if(name.equals(invitePlayer)) {
-                lobby.setInviteError("Player already invited");
-                sessionService.setLobby(lobby);
-                MockDB.updateLobby(lobby);
-
+                sessionService.setErrorMessage("inviteError", "Player already invited");
+                //sessionService.setLobby(lobby);
+                //MockDB.updateLobby(lobby);
                 return "redirect:" + lobby.getId();
             }
         }
 
         // Sjekk at spiller eksisterer
         if(MockDB.isUser(invitePlayer)) {
-
-            lobby.setInviteError("");
+            sessionService.setErrorMessage("inviteError", null);
             lobby.getInvitedPlayerUsernames().add(invitePlayer);
             sessionService.setLobby(lobby);
             MockDB.updateLobby(lobby);
@@ -166,9 +178,9 @@ public class LobbyController {
 
         } else {
 
-            lobby.setInviteError("Player not found");
-            sessionService.setLobby(lobby);
-            MockDB.updateLobby(lobby);
+            sessionService.setErrorMessage("inviteError", "Player not found!");
+            //sessionService.setLobby(lobby);
+            //MockDB.updateLobby(lobby);
 
             return "redirect:" + lobby.getId();
 
@@ -221,12 +233,13 @@ public class LobbyController {
                 game.setHostId(lobby.getHostId());
                 game.setNumberOfPlayers(lobby.getPlayers().size());
                 MockDB.addGame(game);
+                sessionService.setActiveGame(game.getId());
 
                 return ("redirect:/game/" + game.getId());
             }
 
-            lobby.setStartError("You cant start an empty game");
-            MockDB.updateLobby(lobby);
+            sessionService.setErrorMessage("startError", "You cant start an empty game");
+            //MockDB.updateLobby(lobby);
             return "redirect:" + lobby.getId();
 
         } else {

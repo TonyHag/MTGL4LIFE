@@ -65,9 +65,8 @@ public class GameController {
         String username = sessionService.getUsername();
         model.addAttribute("user", username);
 
-        HttpSession session = request.getSession();
-        SessionData sessionData = (SessionData) session.getAttribute("sessionData");
-        int userId = sessionData.getUserId();
+        //HttpSession session = request.getSession();
+        int userId = sessionService.getUserId();
 
         Game game = MockDB.getGame(gameId);
         if(game.getHostId() == userId) { // Sjekker at man er host / evt senere om man er med i game
@@ -98,8 +97,11 @@ public class GameController {
             NotificationService notificationService = new NotificationService();
             notificationService.sendNotifications(game);
 
-            sessionData.getLobby().getId();
-            return "redirect:/lobby/" + sessionData.getLobby().getId();
+
+            sessionService.getLobby().getId();
+            sessionService.inActivateGame();
+
+            return "redirect:/lobby/" + sessionService.getLobby().getId();
 
 
         }

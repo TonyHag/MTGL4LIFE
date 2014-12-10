@@ -20,36 +20,39 @@
     <jsp:param name="user" value="${user}"></jsp:param>
 </jsp:include>
 
-<h1>Invite players</h1>
+<div class="container">
+    <h1>Invite players</h1>
 
-<form action="/lobby/invite" method="post">
+    <form action="/lobby/invite" method="post">
+        <table>
+            <tr><td><input type ="text" name="invitePlayer" /></td> <td> <input type="submit" value="Invite"></td> <td>${inviteError}</td></tr>
+        </table>
+    </form>
+
+    <br>
+
     <table>
-        <tr><td><input type ="text" name="invitePlayer" /></td> <td> <input type="submit" value="Invite"></td> <td>${lobby.inviteError}</td></tr>
+        <tr><th>Players in lobby</th></tr>
+        <tr><td>${lobby.hostUsername}</td> <td>host</td></tr>
+        <c:forEach items="${lobby.invitedPlayerUsernames}" var="invitedPlayer">
+            <tr><td> ${invitedPlayer} </td> <form action="/lobby/removePlayer"><input type ="hidden" name="removePlayer" value="${invitedPlayer}"/> <td> <input type="submit" value="Remove"></td></form> </tr>
+        </c:forEach>
     </table>
-</form>
 
-<br>
+    <br>
 
-<table>
-    <tr><th>Players in lobby</th></tr>
-    <tr><td>${lobby.hostUsername}</td> <td>host</td></tr>
-    <c:forEach items="${lobby.invitedPlayerUsernames}" var="invitedPlayer">
-        <tr><td> ${invitedPlayer} </td> <form action="/lobby/removePlayer"><input type ="hidden" name="removePlayer" value="${invitedPlayer}"/> <td> <input type="submit" value="Remove"></td></form> </tr>
-    </c:forEach>
-</table>
+    <table>
+        <tr>
+            <td>
+                <a href="/lobby/startGame"><button>Start Game</button></a>
+            </td>
+            <td>
+                ${startError}
+            </td>
+        </tr>
+    </table>
+</div>
 
-<br>
-
-<table>
-    <tr>
-         <td>
-             <a href="/lobby/startGame"><button>Start Game</button></a>
-         </td>
-         <td>
-             ${lobby.startError}
-         </td>
-    </tr>
-</table>
 
 </body>
 </html>

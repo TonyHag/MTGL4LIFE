@@ -12,9 +12,37 @@ public class SessionData {
     private Lobby lobby;
     private ArrayList<Notification> notifications = new ArrayList<Notification>();
     private Leaderboard createLeaderboard;
+    private ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
+
+    private boolean activeGame = false;
+    private int activeGameId = 0;
+
+    public boolean isActiveGame() {
+        return activeGame;
+    }
+
+    public void setActiveGame(boolean activeGame) {
+        this.activeGame = activeGame;
+    }
+
+    public int getActiveGameId() {
+        return activeGameId;
+    }
+
+    public void setActiveGameId(int activeGameId) {
+        this.activeGameId = activeGameId;
+    }
 
     public Leaderboard getCreateLeaderboard() {
         return createLeaderboard;
+    }
+
+    public ArrayList<ErrorMessage> getErrorMessages() {
+        return errorMessages;
+    }
+
+    public void setErrorMessages(ArrayList<ErrorMessage> errorMessages) {
+        this.errorMessages = errorMessages;
     }
 
     public void setCreateLeaderboard(Leaderboard createLeaderboard) {

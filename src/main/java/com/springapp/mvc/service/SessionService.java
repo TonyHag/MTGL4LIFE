@@ -1,5 +1,6 @@
 package com.springapp.mvc.service;
 
+import com.springapp.mvc.model.ErrorMessage;
 import com.springapp.mvc.model.Lobby;
 import com.springapp.mvc.model.SessionData;
 import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
@@ -83,7 +84,7 @@ public class SessionService {
                     }
                 }
             }
-            if(!cookieFound) {
+            if(!cookieFound) { // returnerer false hvis cookie ikke finnes
                 isLoggedIn = false;
             }
 
@@ -92,6 +93,37 @@ public class SessionService {
         }
         return isLoggedIn;
 
+    }
+
+    /**
+     * Setter en ny errormessage. Hvis det finnes en errormessage av samme type,
+     * vil message byttes ut, ellers legges til helt ny errormessage
+     * @param type
+     * @param message
+     */
+    public void setErrorMessage(String type, String message) {
+        boolean messageSet = false;
+        for(ErrorMessage em : getSessionData().getErrorMessages()) {
+            if(em.getType().equals(type)) {
+                em.setMessage(message);
+                messageSet = true;
+                break;
+            }
+        }
+        if(!messageSet) {
+            getSessionData().getErrorMessages().add(new ErrorMessage(type, message));
+        }
+    }
+    public String getErrorMessage(String type) {
+        SessionData sessionData = getSessionData();
+        if(sessionData.getErrorMessages() != null) {
+           for(ErrorMessage em : sessionData.getErrorMessages()) {
+               if (em.getType().equals(type)) {
+                   return em.getMessage();
+               }
+           }
+        }
+        return null;
     }
 
     /**
@@ -143,6 +175,18 @@ public class SessionService {
     public SessionData getSessionData() {
         HttpSession session = request.getSession();
         return (SessionData) session.getAttribute("sessionData");
+    }
+
+    public void setActiveGame(int gameId) {
+        getSessionData().setActiveGameId(gameId);
+    }
+
+    public void inActivateGame() {
+        getSessionData().setActiveGameId(0);
+    }
+
+    public int getActiveGame() {
+        return getSessionData().getActiveGameId();
     }
 
     // -------------------------------------------------------------------------
