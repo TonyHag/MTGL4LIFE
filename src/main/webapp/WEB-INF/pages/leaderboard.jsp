@@ -46,7 +46,7 @@
                     <td> ${playerStat.wins}         </td>
                     <td> ${playerStat.losses}       </td>
                     <td> ${playerStat.total}        </td>
-                    <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${stats.winPercentage}"/></td>
+                    <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${playerStat.winPercentage}"/></td>
                 </tr>
             </c:forEach>
 
