@@ -3,15 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameConfirmationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameConfirmationController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LeaderboardController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LeaderboardController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/NotificationsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/NotificationsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/RegisterController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/RegisterController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/SessionService.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/SessionService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StatisticsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StatisticsController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MTGL4LIFE.iws" />
@@ -122,8 +113,8 @@
           <file leaf-file-name="GameConfirmationController.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameConfirmationController.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.3134978" vertical-offset="700" max-vertical-offset="3135">
-                  <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+                <state vertical-scroll-proportion="2.5689404" vertical-offset="0" max-vertical-offset="3075">
+                  <caret line="118" column="35" selection-start-line="118" selection-start-column="35" selection-end-line="118" selection-end-column="35" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -858,7 +849,7 @@
       <workItem from="1418156918631" duration="5798000" />
       <workItem from="1418164177031" duration="920000" />
       <workItem from="1418166502055" duration="3000" />
-      <workItem from="1418199861166" duration="13059000" />
+      <workItem from="1418199861166" duration="13277000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -932,11 +923,15 @@
       <created>1418205477564</created>
       <updated>1418205477564</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Remake av session login, logout og autentisering">
+      <created>1418228745327</created>
+      <updated>1418228745327</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93506000" />
+    <option name="totallyTimeSpent" value="93724000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -960,7 +955,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23861386" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -975,7 +970,7 @@
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17358893" sideWeight="0.49926144" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17358893" sideWeight="0.49926144" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23168316" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1059,7 +1054,8 @@
     <MESSAGE value="lagt til errormessage i register" />
     <MESSAGE value="jumotron i main" />
     <MESSAGE value="fikster winpercentage i leaderboard og manage leaderboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="fikster winpercentage i leaderboard og manage leaderboard" />
+    <MESSAGE value="Remake av session login, logout og autentisering" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remake av session login, logout og autentisering" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1461,8 +1457,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameConfirmationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3134978" vertical-offset="700" max-vertical-offset="3135">
-          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.5689404" vertical-offset="0" max-vertical-offset="3075">
+          <caret line="118" column="35" selection-start-line="118" selection-start-column="35" selection-end-line="118" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

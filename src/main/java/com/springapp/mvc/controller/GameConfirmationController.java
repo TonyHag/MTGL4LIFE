@@ -33,11 +33,8 @@ public class GameConfirmationController {
         String username = sessionService.getUsername();
         model.addAttribute("user", username);
 
-        HttpSession session = request.getSession();
-        SessionData sessionData = (SessionData) session.getAttribute("sessionData");
-        int userId = sessionData.getUserId();
 
-        System.out.println("GameConfirmationController: gameConfirmation is null:  " + (MockDB.getConfirmationData(gameId) == null) );
+        int userId = sessionService.getUserId();
 
         if(MockDB.getConfirmationData(gameId).getAccepted().contains(userId)) {
 
@@ -118,9 +115,8 @@ public class GameConfirmationController {
         String username = sessionService.getUsername();
         model.addAttribute("user", username);
 
-        HttpSession session = request.getSession();
-        SessionData sessionData = (SessionData) session.getAttribute("sessionData");
-        int userId = sessionData.getUserId();
+
+        int userId = sessionService.getUserId();
 
         if (MockDB.getConfirmationData(gameId).getAccepted().contains(userId)) {
 
