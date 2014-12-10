@@ -70,17 +70,23 @@ public class SessionService {
             String SID = session.getId(); // henter sessionID fra session
 
             Cookie[] cookies = request.getCookies(); // henter cookies fra request
+            boolean cookieFound = false;
+
             for(Cookie cookie : cookies) {
                 if(cookie.getName().equals("mtgsid")) { // sjekker om sessionID cookien finnes
                     String cSID = cookie.getValue();  // henter sid lagret i cookie
+                    cookieFound = true;
                     if(!cSID.equals(SID)) {
                         isLoggedIn = false; // Hvis IDene ikke stemmer invalideres session
                         session.invalidate();
                         break;
                     }
-
                 }
             }
+            if(!cookieFound) {
+                isLoggedIn = false;
+            }
+
         } else {
             isLoggedIn = false; // Hvis session er null er ikke brukeren logget inn
         }
