@@ -44,22 +44,33 @@
                 <div class="panel-body">
                     <form role="form" action="/register" method="post">
                         <br/>
+
+                        <p>${usernameError}</p>
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fa fa-tag"  ></i></span>
                             <input type="text" class="form-control" name="username" value="${validUsername}" placeholder="Desired Username" />
                         </div>
+
+                        <p>${emailError}</p>
                         <div class="form-group input-group">
                             <span class="input-group-addon"></span>
                             <input type="email" class="form-control" name="email" value="${validEmail}" placeholder="Your Email" />
                         </div>
+
+
+                        <p>${password1Error}</p>
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
                             <input type="password" class="form-control" name="password1" placeholder="Desired Password" />
                         </div>
+
+
+                        <p>${password2Error}</p>
                         <div class="form-group input-group">
                             <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
                             <input type="password" class="form-control" name="password2" placeholder="Retype Password" />
                         </div>
+
 
                         <input class="btn btn-success" type="submit" value="Register">
 

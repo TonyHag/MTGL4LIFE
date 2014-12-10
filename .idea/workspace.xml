@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/register.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/register.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MTGL4LIFE.iws" />
@@ -28,11 +28,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="login.jsp" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="login.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59915614" vertical-offset="219" max-vertical-offset="960">
+            <state vertical-scroll-proportion="-17.75" vertical-offset="219" max-vertical-offset="960">
               <caret line="43" column="40" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegisterController.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/RegisterController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="529" max-vertical-offset="1590">
+              <caret line="93" column="47" selection-start-line="93" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lobby.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lobby.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.5" vertical-offset="180" max-vertical-offset="915">
+              <caret line="40" column="41" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/register.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5777461" vertical-offset="600" max-vertical-offset="1425">
+              <caret line="67" column="48" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LeaderboardInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/LeaderboardInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -102,6 +142,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/register.jsp" />
       </list>
     </option>
   </component>
@@ -771,7 +812,7 @@
       <workItem from="1418156918631" duration="5798000" />
       <workItem from="1418164177031" duration="920000" />
       <workItem from="1418166502055" duration="3000" />
-      <workItem from="1418199861166" duration="620000" />
+      <workItem from="1418199861166" duration="1674000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -825,11 +866,15 @@
       <created>1418164348200</created>
       <updated>1418164348200</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="tatt vekk overskrivt og lagt til errormessage i login">
+      <created>1418200641477</created>
+      <updated>1418200641477</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81067000" />
+    <option name="totallyTimeSpent" value="82121000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -948,7 +993,8 @@
     <MESSAGE value="game js logicc fixed" />
     <MESSAGE value="bootstrap på stats-jsp" />
     <MESSAGE value="fjernet img tag i nav" />
-    <option name="LAST_COMMIT_MESSAGE" value="fjernet img tag i nav" />
+    <MESSAGE value="tatt vekk overskrivt og lagt til errormessage i login" />
+    <option name="LAST_COMMIT_MESSAGE" value="tatt vekk overskrivt og lagt til errormessage i login" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -972,13 +1018,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.685155" vertical-offset="0" max-vertical-offset="13050">
           <caret line="28" column="119" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/register.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.375" vertical-offset="0" max-vertical-offset="540">
-          <caret line="23" column="53" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -1053,13 +1092,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/RegisterController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="529" max-vertical-offset="1590">
-          <caret line="93" column="47" selection-start-line="93" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="41" max-vertical-offset="690">
@@ -1099,13 +1131,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="49" max-vertical-offset="690">
           <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lobby.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.208334" vertical-offset="79" max-vertical-offset="750">
-          <caret line="36" column="16" selection-start-line="30" selection-start-column="0" selection-end-line="36" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1184,14 +1209,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
           <caret line="36" column="82" selection-start-line="36" selection-start-column="82" selection-end-line="36" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/LeaderboardInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="578">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1332,8 +1349,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/login.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59915614" vertical-offset="219" max-vertical-offset="960">
+        <state vertical-scroll-proportion="-17.75" vertical-offset="219" max-vertical-offset="960">
           <caret line="43" column="40" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/RegisterController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="529" max-vertical-offset="1590">
+          <caret line="93" column="47" selection-start-line="93" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/LeaderboardInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="578">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lobby.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.5" vertical-offset="180" max-vertical-offset="915">
+          <caret line="40" column="41" selection-start-line="40" selection-start-column="4" selection-end-line="40" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/register.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5777461" vertical-offset="600" max-vertical-offset="1425">
+          <caret line="67" column="48" selection-start-line="67" selection-start-column="48" selection-end-line="67" selection-end-column="48" />
           <folding />
         </state>
       </provider>
