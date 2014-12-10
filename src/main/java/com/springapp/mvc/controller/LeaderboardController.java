@@ -35,14 +35,14 @@ public class LeaderboardController {
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
 
-            ArrayList<Integer> leaderboardIds = MockDB.getLeaderboardIdsForUser(SessionService.getLoggedInUserId(request));
+            ArrayList<Integer> leaderboardIds = MockDB.getLeaderboardIdsForUser(sessionService.getUserId());
             if(leaderboardIds != null) {
                 ArrayList<LeaderboardInfo> leaderboardInfos = new ArrayList<LeaderboardInfo>();
 
                 for(Integer i : leaderboardIds) {
                     // Hvis bruker er eier av leaderboard, vil det være en manage-knapp ved siden av navnet
                     LeaderboardInfo info = new LeaderboardInfo(i, MockDB.getLeaderboardNameById(i));
-                    if(MockDB.getOwnerId(i) == SessionService.getLoggedInUserId(request)) {
+                    if(MockDB.getOwnerId(i) == sessionService.getUserId()) {
                         info.setOwner(true);
                     }
                     leaderboardInfos.add(info);
@@ -119,12 +119,14 @@ public class LeaderboardController {
 
         if(valid) {
 
-            Leaderboard leaderboard = new Leaderboard(SessionService.getLoggedInUserId(request));
+            int userId = sessionService.getUserId();
+
+            Leaderboard leaderboard = new Leaderboard(userId);
             leaderboard.setName(name);
             leaderboard.setDescription(description);
-            leaderboard.getPlayerStats().add(new UserStatistics(SessionService.getLoggedInUserId(request)));
+            leaderboard.getPlayerStats().add(new UserStatistics(userId));
             MockDB.addLeaderboard(leaderboard);
-            MockDB.addLeaderboardIdToUser(SessionService.getLoggedInUserId(request), leaderboard.getId());
+            MockDB.addLeaderboardIdToUser(userId, leaderboard.getId());
 
             int leaderBoardId = leaderboard.getId();
             return "redirect:/leaderboard/manage/" + leaderBoardId;
@@ -147,7 +149,7 @@ public class LeaderboardController {
         model.addAttribute("user", user);
 
         // hvis eier
-        if(SessionService.getLoggedInUserId(request) == MockDB.getOwnerId(leaderboardId))  {
+        if(sessionService.getUserId() == MockDB.getOwnerId(leaderboardId))  {
             Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
             model.addAttribute("leaderboard", leaderboard);
             return "manageLeaderboard";
@@ -170,7 +172,7 @@ public class LeaderboardController {
         model.addAttribute("user", user);
 
         // hvis eier
-        if(SessionService.getLoggedInUserId(request) == MockDB.getOwnerId(leaderboardId)) {
+        if(sessionService.getUserId() == MockDB.getOwnerId(leaderboardId)) {
 
             int userId = MockDB.getUserId(removePlayer);
             MockDB.removePlayerFromLeaderboard(leaderboardId, userId);
@@ -201,7 +203,7 @@ public class LeaderboardController {
         model.addAttribute("user", user);
 
         // Hvis eier
-        if(SessionService.getLoggedInUserId(request) == MockDB.getOwnerId(leaderboardId)) {
+        if(sessionService.getUserId() == MockDB.getOwnerId(leaderboardId)) {
             Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
 
             // Sjekk at man ikke inviterer seg selv
@@ -229,7 +231,7 @@ public class LeaderboardController {
                 MockDB.updateLeaderboard(leaderboard);
 
                 NotificationService notificationService = new NotificationService();
-                notificationService.sendLeaderboardInvitation(MockDB.getUserId(invitePlayer), SessionService.getLoggedInUserId(request), leaderboardId);
+                notificationService.sendLeaderboardInvitation(MockDB.getUserId(invitePlayer), sessionService.getUserId(), leaderboardId);
 
                 return "redirect:/leaderboard/manage/" + leaderboard.getId();
 

@@ -132,36 +132,6 @@ public class SessionService {
     // -------------------------------------------------------------------------
 
 
-    public static void setSessionData(HttpServletRequest request, SessionData sessionData) {
-        HttpSession session = request.getSession();
-        session.setAttribute("sessionData", sessionData);
-
-    }
-
-
-    public static int getLoggedInUserId(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        SessionData sessionData = (SessionData) session.getAttribute("sessionData");
-        return sessionData.getUserId();
-    }
-
-
-    public static void logOut(HttpServletRequest request) {
-
-        HttpSession session = request.getSession();
-        session.removeAttribute("sessionData");
-
-        System.out.println("user logged out");
-
-    }
-
-
-    public static void deleteLobby(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        SessionData sessionData = (SessionData) session.getAttribute("sessionData");
-        sessionData.setLobby(null);
-
-    }
 
 
 }

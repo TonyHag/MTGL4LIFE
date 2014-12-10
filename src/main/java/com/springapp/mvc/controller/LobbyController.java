@@ -34,12 +34,14 @@ public class LobbyController {
         String username = sessionService.getUsername();
         model.addAttribute("user", username);
 
+        //TODO: Hvis bruker har et aktivt game, redirect til game
+
         if(sessionService.getLobby() == null) { // lobby ikke finnes
 
 
             Lobby lobby = new Lobby();
 
-            lobby.setHostId(SessionService.getLoggedInUserId(request));
+            lobby.setHostId(sessionService.getUserId());
             lobby.setHostUsername(sessionService.getUsername());
 
             MockDB.addLobby(lobby);
@@ -99,7 +101,7 @@ public class LobbyController {
         int lobbyId = sessionService.getLobby().getId();
         Lobby lobby = MockDB.getLobby(lobbyId);
 
-        if(lobby != null && SessionService.getLoggedInUserId(request) == lobby.getHostId()) {  // lobby finnes og bruker er eier
+        if(lobby != null && sessionService.getUserId() == lobby.getHostId()) {  // lobby finnes og bruker er eier
 
             // Fjerner invitert spiller hvis spiller er med
             if(lobby.getInvitedPlayerUsernames().contains(removePlayer)) {

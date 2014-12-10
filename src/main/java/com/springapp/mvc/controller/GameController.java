@@ -40,18 +40,13 @@ public class GameController {
 
 
             // Sjekk at innlogget bruker er host
-            if(SessionService.getLoggedInUserId(request) != game.getHostId()) {
+            if(sessionService.getUserId() != game.getHostId()) {
                 // returner ikke tilgang
                 return "redirect:/main";
             }
             model.addAttribute("game", game);
 
         } else {
-
-            System.out.println("GameController: Game inactive!");
-            System.out.println("GameController: Game is null!");
-
-
             return "redirect:/main";
         }
 
