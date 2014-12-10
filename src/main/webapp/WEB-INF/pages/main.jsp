@@ -20,32 +20,42 @@
     <h1>Welcome ${user}</h1>
 
     <div class="jumbotron">
-        <h1>Jumbotron heading</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+        <h1>MTG Supreme</h1>
+        <p class="lead">Vise stats her? </p>
+        <p><a class="btn btn-lg btn-success" href="#" role="button">Start a game</a></p>
     </div>
 
     <div class="row marketing">
         <div class="col-md-6">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+            <h4>Start a game</h4>
+            <p>Invite your friends and start a game.
+                Use the provided life counter and declare a winner to track your wins and losses.
+                When the game is over, all participants will be sent a game confirmation notification to
+                confirm the game. When everyone has accepted, stats will be updated.
+            </p>
 
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+            <h4>Track your and your friends stats</h4>
+            <p>Stats like wins and losses will be tracked.
+                You can see your personal stats and your friends stats in the stats page.</p>
 
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            <h4>Notifications</h4>
+            <p>Check your notifications for game confirmations and leaderboard invites.</p>
+
         </div>
 
         <div class="col-md-6">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
 
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+            <h4>Leaderboards</h4>
+            <p>Create your own leaderboard and invite your friends.
+                If all the players in a game is members of the same leaderboard,
+                both their total stats and leaderboard stats will be updated.
+            </p>
 
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            <h4>Manage your leaderboards</h4>
+            <p>When you have created a leaderboard, you can invite new players or remove existing players from your leaderboard.</p>
+
+            <h4>Logout</h4>
+            <p>Log out to log out.</p>
         </div>
     </div>
 
