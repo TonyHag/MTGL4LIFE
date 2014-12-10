@@ -14,9 +14,9 @@
 <link href='http://fonts.googleapis.com/css?family=Cinzel+Decorative' rel='stylesheet' type='text/css'>
 
 <!-- bootstrap og tony sitt crap -->
-<link rel="stylesheet" type="text/css" href="/resources/css/main.css"></link>
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css"></link>
-<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css"/>
 <script src="/resources/js/bootstrap.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
 
@@ -24,5 +24,4 @@
 
 
 <!-- jquery -->
-
 

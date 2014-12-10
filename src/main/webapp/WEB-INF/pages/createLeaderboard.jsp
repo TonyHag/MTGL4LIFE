@@ -17,18 +17,45 @@
 <jsp:include page="nav.jsp">
     <jsp:param name="user" value="${user}"></jsp:param>
 </jsp:include>
-<h1>Create Leaderboard</h1>
 
-<form action="/leaderboard/create" method="post">
-    <table>
-        <tr> <td>Name: </td> <td> <input type="text" name="name" /> </td>   </tr>
-        <tr> <td>Description: </td> <td> <textarea name="description" rows="2" ></textarea> </td>   </tr>
+<div class="container" role="main" >
+
+    <div class="row text-center pad-top ">
+        <div class="col-md-12">
+            <h2>Create Leaderboard</h2>
+        </div>
+    </div>
+
+    <div class="row pad-top">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1">
+            <div class="panel panel-default">
+
+                <div class="panel-body">
+                    <form action="/leaderboard/create" method="post">
+                        <div class="form-group input-group">
+                            <input type="text" name="name" class="form-control" placeholder="Leaderboard name"/>
+                        </div>
+
+                        <div class="form-group input-group">
+                            <textarea name="description" rows="2" class="form-control" placeholder="Description" ></textarea>
+                        </div>
+
+                        <div class="form-group input-group">
+                            <input type="submit" value="Create" class="btn  btn-lg btn-primary"/>
+                        </div>
+                    </form>
+                </div>
 
 
-        <tr>  <input type="submit" value="Create"/> </td> </tr>
+            </div>
 
-    </table>
-</form>
+        </div>
+    </div>
+
+
+
+</div>
+
 
 </body>
 </html>
