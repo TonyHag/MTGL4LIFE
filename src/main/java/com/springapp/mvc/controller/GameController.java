@@ -77,6 +77,8 @@ public class GameController {
 
             winners.add(MockDB.getUserId(winnerName)); // må endres dersom flere vinnere
             game.setWinners(winners);
+            game.setWinnerUsername(winnerName);
+            game.setHostUsername(username);
 
 
             ArrayList<Integer> losers = new ArrayList<Integer>();
@@ -90,12 +92,14 @@ public class GameController {
             game.setLosers(losers);
 
 
+
+
             GameConfirmationData confirmationData = new GameConfirmationData(game);
 
             MockDB.addGameConfirmationData(confirmationData);
 
             NotificationService notificationService = new NotificationService();
-            notificationService.sendNotifications(game);
+            notificationService.sendGameConfirmations(game);
 
 
             sessionService.getLobby().getId();

@@ -19,6 +19,8 @@ public class Game {
     private ArrayList<Integer> losers;
     private int numberOfPlayers;
 
+    private String winnerUsername;
+    private String hostUsername;
 
     private int startingHp;
 
@@ -30,8 +32,22 @@ public class Game {
         this.lobbyId = lobbyId;
         startingHp = 20;
 
+    }
 
+    public String getWinnerUsername() {
+        return winnerUsername;
+    }
 
+    public void setWinnerUsername(String winnerUsername) {
+        this.winnerUsername = winnerUsername;
+    }
+
+    public String getHostUsername() {
+        return hostUsername;
+    }
+
+    public void setHostUsername(String hostUsername) {
+        this.hostUsername = hostUsername;
     }
 
     public int getNumberOfPlayers() {

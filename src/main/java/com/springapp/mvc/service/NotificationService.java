@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class NotificationService {
 
-    public void sendNotifications(Game game) {
+    public void sendGameConfirmations(Game game) {
 
         ArrayList<Player> players = game.getPlayers();
         for (Player p : players) {
@@ -21,8 +21,10 @@ public class NotificationService {
             notification.setGameId(game.getId());
             notification.setReceiverId(p.getUserId());
             notification.setWinners(game.getWinners());
+            notification.setMessage("Host: " + game.getHostUsername() + ", winner: " + game.getWinnerUsername());
             MockDB.addNotification(notification);
             System.out.println("Notification sent to: " + p.getUsername());
+
         }
     }
 
