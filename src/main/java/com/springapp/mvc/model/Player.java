@@ -9,6 +9,15 @@ public class Player {
     private String userId;
     private int hp;
     private int poison;  //Vi trenger denne og :)
+    private String team = "1";
+
+    public String getTeam() {
+        return team;
+    }
+
+    public void setTeam(String team) {
+        this.team = team;
+    }
 
     public String getUsername() {
         return username;

@@ -46,6 +46,16 @@ public class LobbyController {
 
             lobby.setHostId(sessionService.getUserId());
             lobby.setHostUsername(username);
+
+
+            Player hostPlayer = new Player();
+            hostPlayer.setUserId(lobby.getHostId());
+            hostPlayer.setUsername(lobby.getHostUsername());
+            hostPlayer.setHp(20);
+            lobby.getPlayers().add(hostPlayer);
+            lobby.getTeam1().add(hostPlayer);
+
+
             model.addAttribute(lobby);
             sessionService.setLobby(lobby);
 
@@ -102,6 +112,71 @@ public class LobbyController {
 
     }
 
+    @RequestMapping(value = "/lobby/selectTeam", method = RequestMethod.POST)
+    public String changeTeam(ModelMap model, HttpServletRequest request, @RequestParam("userId") String userId, @RequestParam("team") String team){
+        SessionService sessionService = new SessionService(request);
+        if(!sessionService.isLoggedIn()) {
+            return "redirect:/login";
+        }
+        // -- autentisering ferdig
+        String username = sessionService.getUsername();
+        model.addAttribute("user", username);
+
+        String lobbyId = sessionService.getLobby().getId();
+        Lobby lobby = MockDB.getLobby(lobbyId);
+
+        if(lobby != null && sessionService.getUserId().equals(lobby.getHostId())) {  // lobby finnes og bruker er eier
+
+            System.out.println("Trying to change team");
+            lobby.assignTeam(userId, team);
+            sessionService.setLobby(lobby);
+            MockDB.updateLobby(lobby);
+            return "redirect:" + lobbyId;
+
+        }
+
+        return "redirect:" + lobbyId;
+
+    }
+
+    @RequestMapping(value = "/lobby/changeGameMode", method = RequestMethod.POST)
+    public String changeGameMode(ModelMap model, HttpServletRequest request, @RequestParam(value = "gameMode") String gameMode, @RequestParam(value = "lobbyId") String lobbyId) {
+
+        SessionService sessionService = new SessionService(request);
+        if(!sessionService.isLoggedIn()) {
+            return "redirect:/login";
+        }
+        // -- autentisering ferdig
+        String username = sessionService.getUsername();
+        model.addAttribute("user", username);
+
+        Lobby lobby = MockDB.getLobby(lobbyId);
+
+        if(lobby != null) {
+
+            if(sessionService.getUserId().equals(lobby.getHostId())) {  // lobby finnes og bruker er eier
+
+                // set gamemode
+                lobby.setGameMode(gameMode);
+
+                // update db
+                MockDB.updateLobby(lobby);
+
+                // redirect
+                return "redirect:" + lobbyId;
+
+
+            }
+
+        } else { // returner til ny lobby om lobby ikke finnes
+            return "redirect:/lobby";
+        }
+
+
+        return "redirect:/main";
+
+    }
+
     @RequestMapping(value = "/lobby/removePlayer")
     public String removePlayer(ModelMap model, HttpServletRequest request, @RequestParam(value="removePlayer") String removePlayer) {
 
@@ -119,9 +194,15 @@ public class LobbyController {
         if(lobby != null && sessionService.getUserId().equals(lobby.getHostId())) {  // lobby finnes og bruker er eier
 
             // Fjerner invitert spiller hvis spiller er med
-            if(lobby.getInvitedPlayerUsernames().contains(removePlayer)) {
-                lobby.getInvitedPlayerUsernames().remove(removePlayer);
+            for(Player p : lobby.getPlayers()) {
+                if(p.getUsername().equals(removePlayer)) {
+                    lobby.getPlayers().remove(p);
+                     break;
+                }
             }
+            //if(lobby.getPlayers().contains(removePlayer)) {
+             //   lobby.getPlayers().remove(removePlayer);
+            //}
 
             //model.addAttribute(lobby);
             sessionService.setLobby(lobby);
@@ -158,8 +239,8 @@ public class LobbyController {
         }
 
         // Sjekk at man ikke inviterer samme flere ganger
-        for(String name : lobby.getInvitedPlayerUsernames()) {
-            if(name.equals(invitePlayer)) {
+        for(Player player : lobby.getPlayers()) {
+            if(player.getUsername().equals(invitePlayer)) {
                 sessionService.setErrorMessage("inviteError", "Player already invited");
                 //sessionService.setLobby(lobby);
                 //MockDB.updateLobby(lobby);
@@ -170,7 +251,11 @@ public class LobbyController {
         // Sjekk at spiller eksisterer
         if(MockDB.isUser(invitePlayer)) {
             sessionService.setErrorMessage("inviteError", null);
-            lobby.getInvitedPlayerUsernames().add(invitePlayer);
+            Player newPlayer = new Player();
+            newPlayer.setUsername(invitePlayer);
+            newPlayer.setUserId(MockDB.getUserId(invitePlayer));
+            lobby.getPlayers().add(newPlayer);
+            lobby.getTeam1().add(newPlayer);
             sessionService.setLobby(lobby);
             MockDB.updateLobby(lobby);
 
@@ -205,40 +290,53 @@ public class LobbyController {
         if(sessionService.getLobby() != null) { // hvis lobby finnes
 
             Lobby lobby = MockDB.getLobby(sessionService.getLobby().getId());
-            if(lobby.getInvitedPlayerUsernames().size() > 0) {  // sjekke at man ikke starter game med 1 spiller
-                lobby.setPlayers(new ArrayList<Player>()); // hvis lobby har spillere fra før//  hindrer dobbelt opp med spillere
-                lobby.setStartError("");
 
-                // Legg til host som player
-                Player hostPlayer = new Player();
-                hostPlayer.setUserId(lobby.getHostId());
-                hostPlayer.setUsername(lobby.getHostUsername());
-                hostPlayer.setHp(20);
-                lobby.getPlayers().add(hostPlayer);
+            if(lobby.getGameMode().equals("ffa")) {
+                if(lobby.getPlayers().size() > 0) {  // sjekke at man ikke starter game med 1 spiller
+                    //lobby.setPlayers(new ArrayList<Player>()); // hvis lobby har spillere fra før//  hindrer dobbelt opp med spillere
+                    lobby.setStartError("");
 
-                // legg til resten av inviterte spillere til players
-                for(String invitedUsername : lobby.getInvitedPlayerUsernames()) {
-                    Player p = new Player();
-                    p.setUserId(MockDB.getUserId(invitedUsername));
-                    p.setUsername(invitedUsername);
-                    p.setHp(20);
-                    lobby.getPlayers().add(p);
+                    // Legg til host som player
+
+
+                    // legg til resten av inviterte spillere til players
+                    //for(Player p : lobby.getPlayers()) {
+                        //Player p = new Player();
+                        //p.setUserId(MockDB.getUserId(p.getUsername()));
+                        //p.setUsername(invitedUsername);
+                        //p.setHp(20);
+                        //lobby.getPlayers().add(p);
+                    //}
+
+
+                    // Opprett nytt game
+
+                    Game game = new Game(lobby.getHostId(), lobby.getId());
+                    game.setPlayers(lobby.getPlayers());
+                    game.setHostId(lobby.getHostId());
+                    game.setNumberOfPlayers(lobby.getPlayers().size());
+                    MockDB.addGame(game);
+                    sessionService.setActiveGame(game.getId());
+
+                    return ("redirect:/game/" + game.getId());
+                } else {
+                    sessionService.setErrorMessage("startError", "You cant start an empty game");
                 }
 
 
-                // Opprett nytt game
+            } else if(lobby.getGameMode().equals("thg")) {
+                if(lobby.isTeamsReady(4)) {
 
-                Game game = new Game(hostPlayer.getUserId(), lobby.getId());
-                game.setPlayers(lobby.getPlayers());
-                game.setHostId(lobby.getHostId());
-                game.setNumberOfPlayers(lobby.getPlayers().size());
-                MockDB.addGame(game);
-                sessionService.setActiveGame(game.getId());
 
-                return ("redirect:/game/" + game.getId());
+
+
+
+                } else {
+                    sessionService.setErrorMessage("startError", "Teams not ready");
+                }
+
             }
 
-            sessionService.setErrorMessage("startError", "You cant start an empty game");
             //MockDB.updateLobby(lobby);
             return "redirect:" + lobby.getId();
 
