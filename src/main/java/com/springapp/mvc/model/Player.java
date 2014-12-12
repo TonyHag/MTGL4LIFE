@@ -6,7 +6,7 @@ package com.springapp.mvc.model;
 public class Player {
 
     private String username;
-    private int userId;
+    private String userId;
     private int hp;
     private int poison;  //Vi trenger denne og :)
 
@@ -30,11 +30,11 @@ public class Player {
 
     public void setPoison(int poison) {this.poison = poison;}
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

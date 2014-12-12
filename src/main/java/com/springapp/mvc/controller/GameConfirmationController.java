@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class GameConfirmationController {
 
     @RequestMapping(value = "/gameConfirmation/accept/{gameId}", method = RequestMethod.GET)
-    public String accept(@PathVariable("gameId") int gameId, ModelMap model, HttpServletRequest request, @RequestParam("notificationId") int notificationId) {
+    public String accept(@PathVariable("gameId") String gameId, ModelMap model, HttpServletRequest request, @RequestParam("notificationId") String notificationId) {
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
             return "redirect:/login";
@@ -34,7 +34,7 @@ public class GameConfirmationController {
         model.addAttribute("user", username);
 
 
-        int userId = sessionService.getUserId();
+        String userId = sessionService.getUserId();
 
         if(MockDB.getConfirmationData(gameId).getAccepted().contains(userId)) {
 
@@ -52,14 +52,14 @@ public class GameConfirmationController {
 
                 ArrayList<Player> players = game.getPlayers();
                 // oppdater spillere
-                ArrayList<Integer> winners = game.getWinners();
+                ArrayList<String> winners = game.getWinners();
 
                 // Sjekke om alle tilhører samme leaderboard
-                int sameLeaderboardId = -1;
-                for(Integer i : winners) { // sjekker for vinnerens leaderboard om alle andre tilhører samme
-                    ArrayList<Integer> leaderboardIds = MockDB.getLeaderboardIdsForUser(i);
+                String sameLeaderboardId = "";
+                for(String id : winners) { // sjekker for vinnerens leaderboard om alle andre tilhører samme
+                    ArrayList<String> leaderboardIds = MockDB.getLeaderboardIdsForUser(id);
 
-                    for(Integer leaderboardId : leaderboardIds) {
+                    for(String leaderboardId : leaderboardIds) {
                         if(playersInSameLeaderboard(leaderboardId, players)) {
                             sameLeaderboardId = leaderboardId; // siste leaderboard med alle vil være gjeldene
                             // her bør det lages en liste av sammeLeaderBoardIds hvis alle er med i flere leaderboards
@@ -69,17 +69,18 @@ public class GameConfirmationController {
 
                 }
 
-                for (Integer winnerId : winners) {
-                    if(sameLeaderboardId != -1) {
+                for (String winnerId : winners) {
+                    if(!sameLeaderboardId.equals("")) {
                         System.out.println("Adding win to leaderboard");
                         MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId);
                     }
+
                     MockDB.addUserWin(winnerId);
                 }
 
-                ArrayList<Integer> losers = MockDB.getGame(gameId).getLosers();
-                for(Integer loserId : losers) {
-                    if(sameLeaderboardId != -1) {
+                ArrayList<String> losers = MockDB.getGame(gameId).getLosers();
+                for(String loserId : losers) {
+                    if(!sameLeaderboardId.equals("")) {
                         System.out.println("Adding win to leaderboard");
                         MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId);
                     }
@@ -94,6 +95,9 @@ public class GameConfirmationController {
                 System.out.println("GameConfirmationController: Enough players rejected, not updating players");
 
                 // slett game og gameconfirmation
+                MockDB.deleteGame(confirmationData.getGameId());
+                MockDB.deleteGameConfirmation(confirmationData.getGameId());
+
 
             }
 
@@ -106,7 +110,7 @@ public class GameConfirmationController {
     }
 
     @RequestMapping(value = "/gameConfirmation/reject/{gameId}", method = RequestMethod.GET)
-    public String reject(@PathVariable("gameId") int gameId, ModelMap model, HttpServletRequest request,@RequestParam("notificationId") int notificationId) {
+    public String reject(@PathVariable("gameId") String gameId, ModelMap model, HttpServletRequest request,@RequestParam("notificationId") String notificationId) {
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
             return "redirect:/login";
@@ -116,7 +120,7 @@ public class GameConfirmationController {
         model.addAttribute("user", username);
 
 
-        int userId = sessionService.getUserId();
+        String userId = sessionService.getUserId();
 
         if (MockDB.getConfirmationData(gameId).getAccepted().contains(userId)) {
 
@@ -134,13 +138,13 @@ public class GameConfirmationController {
                 Game game = MockDB.getGame(gameId);
                 ArrayList<Player> players = game.getPlayers();
                 // oppdater spillere
-                ArrayList<Integer> winners = game.getWinners();
+                ArrayList<String> winners = game.getWinners();
 
-                int sameLeaderboardId = -1;
-                for(Integer i : winners) {
-                    ArrayList<Integer> leaderboardIds = MockDB.getLeaderboardIdsForUser(i);
+                String sameLeaderboardId = "";
+                for(String id : winners) {
+                    ArrayList<String> leaderboardIds = MockDB.getLeaderboardIdsForUser(id);
 
-                    for(Integer leaderboardId : leaderboardIds) {
+                    for(String leaderboardId : leaderboardIds) {
                         if(playersInSameLeaderboard(leaderboardId, players)) {
                             sameLeaderboardId = leaderboardId;
                         }
@@ -149,18 +153,16 @@ public class GameConfirmationController {
 
                 }
 
-                for (Integer winnerId : winners) {
-                    if(sameLeaderboardId != -1) {
-                        System.out.println("Adding win to leaderboard");
+                for (String winnerId : winners) {
+                    if(!sameLeaderboardId.equals("")) {
                         MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId);
                     }
                     MockDB.addUserWin(winnerId);
                 }
 
-                ArrayList<Integer> losers = MockDB.getGame(gameId).getLosers();
-                for(Integer loserId : losers) {
-                    if(sameLeaderboardId != -1) {
-                        System.out.println("Adding win to leaderboard");
+                ArrayList<String> losers = MockDB.getGame(gameId).getLosers();
+                for(String loserId : losers) {
+                    if(!sameLeaderboardId.equals("")) {
                         MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId);
                     }
                     MockDB.addUserLoss(loserId);
@@ -170,9 +172,10 @@ public class GameConfirmationController {
 
                 // Hvis alle har svart på notification
             } else if (confirmationData.getAccepted().size() == 0 && confirmationData.getPlayersRejected() > 0) {
-                System.out.println("GameConfirmationController: Enough players rejected, not updating players");
 
                 // slett game og gameconfirmation
+                MockDB.deleteGame(confirmationData.getGameId());
+                MockDB.deleteGameConfirmation(confirmationData.getGameId());
 
             }
             return "redirect:/notifications";
@@ -182,7 +185,7 @@ public class GameConfirmationController {
     }
 
 
-    private boolean playersInSameLeaderboard(int leaderboardId, ArrayList<Player> players) {
+    private boolean playersInSameLeaderboard(String leaderboardId, ArrayList<Player> players) {
 
         for(Player p : players) {
             if(!MockDB.isPlayerInLeaderboard(p.getUserId(), leaderboardId)) {

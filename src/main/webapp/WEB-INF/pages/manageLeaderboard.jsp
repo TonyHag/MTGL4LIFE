@@ -53,7 +53,11 @@
                     <td> ${playerStat.losses}       </td>
                     <td> ${playerStat.total}        </td>
                     <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${playerStat.winPercentage}"/></td>
-                    <td><form action="/leaderboard/manage/${leaderboard.id}/removePlayer"><input type ="hidden" name="removePlayer" value="${playerStat.username}"/> <input type="submit" value="Remove" class="btn btn-sm btn-warning" ></form></td>
+                    <td>
+                        <c:if test="${playerStat.userId != leaderboard.ownerId}" >
+                            <form action="/leaderboard/manage/${leaderboard.id}/removePlayer"><input type ="hidden" name="removePlayer" value="${playerStat.username}"/> <input type="submit" value="Remove" class="btn btn-sm btn-warning" ></form>
+                        </c:if>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

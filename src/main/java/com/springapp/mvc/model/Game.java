@@ -10,13 +10,13 @@ import java.util.ArrayList;
 public class Game {
 
     private boolean active;
-    private int id;
-    private int hostId;
+    private String id;
+    private String hostId;
     private ArrayList<Player> players;
-    private int lobbyId;
+    private String lobbyId;
 
-    private ArrayList<Integer> winners;
-    private ArrayList<Integer> losers;
+    private ArrayList<String> winners;
+    private ArrayList<String> losers;
     private int numberOfPlayers;
 
     private String winnerUsername;
@@ -25,9 +25,10 @@ public class Game {
     private int startingHp;
 
 
-    public Game(int hostId, int lobbyId) {
+    public Game(String hostId, String lobbyId) {
         active = true;
-        id = IdService.getGameId();
+        IdService idService = new IdService();
+        id = idService.getGameId("game");
         this.hostId = hostId;
         this.lobbyId = lobbyId;
         startingHp = 20;
@@ -61,24 +62,25 @@ public class Game {
     // Konstruktør til å kopiere et game, men med ny id
     public Game(Game game) {
         this.active = true;
-        this.id = IdService.getGameId();
+        IdService idService = new IdService();
+        this.id = idService.getGameId("game");
         this.hostId = game.getHostId();
         this.players = game.getPlayers();
         this.lobbyId = game.getLobbyId();
 
-        winners = new ArrayList<Integer>();
-        losers = new ArrayList<Integer>();
+        winners = new ArrayList<String>();
+        losers = new ArrayList<String>();
 
         this.startingHp = game.getStartingHp();
 
     }
 
 
-    public int getHostId() {
+    public String getHostId() {
         return hostId;
     }
 
-    public void setHostId(int hostId) {
+    public void setHostId(String hostId) {
         this.hostId = hostId;
     }
 
@@ -90,11 +92,11 @@ public class Game {
         this.players = players;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -114,27 +116,27 @@ public class Game {
         this.active = active;
     }
 
-    public int getLobbyId() {
+    public String getLobbyId() {
         return lobbyId;
     }
 
-    public void setLobbyId(int lobbyId) {
+    public void setLobbyId(String lobbyId) {
         this.lobbyId = lobbyId;
     }
 
-    public ArrayList<Integer> getWinners() {
+    public ArrayList<String> getWinners() {
         return winners;
     }
 
-    public void setWinners(ArrayList<Integer> winners) {
+    public void setWinners(ArrayList<String> winners) {
         this.winners = winners;
     }
 
-    public ArrayList<Integer> getLosers() {
+    public ArrayList<String> getLosers() {
         return losers;
     }
 
-    public void setLosers(ArrayList<Integer> losers) {
+    public void setLosers(ArrayList<String> losers) {
         this.losers = losers;
     }
 }

@@ -35,7 +35,7 @@ public class LobbyController {
         model.addAttribute("user", username);
 
         // Hvis bruker har et aktivt game, redirect til game
-        if(sessionService.getActiveGame() != 0) {
+        if(sessionService.getActiveGame() != null) {
             return "redirect:/game/" + sessionService.getActiveGame();
         }
 
@@ -63,7 +63,7 @@ public class LobbyController {
     }
 
     @RequestMapping(value = "/lobby/{lobbyId}")
-    public String getExistingLobby(ModelMap model, HttpServletRequest request, @PathVariable("lobbyId") int lobbyId) {
+    public String getExistingLobby(ModelMap model, HttpServletRequest request, @PathVariable("lobbyId") String lobbyId) {
 
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
@@ -79,7 +79,7 @@ public class LobbyController {
 
 
 
-            if(sessionService.getUserId() == lobby.getHostId()) {  // lobby finnes og bruker er eier
+            if(sessionService.getUserId().equals(lobby.getHostId())) {  // lobby finnes og bruker er eier
 
 
                 model.addAttribute(lobby);
@@ -113,10 +113,10 @@ public class LobbyController {
         String username = sessionService.getUsername();
         model.addAttribute("user", username);
 
-        int lobbyId = sessionService.getLobby().getId();
+        String lobbyId = sessionService.getLobby().getId();
         Lobby lobby = MockDB.getLobby(lobbyId);
 
-        if(lobby != null && sessionService.getUserId() == lobby.getHostId()) {  // lobby finnes og bruker er eier
+        if(lobby != null && sessionService.getUserId().equals(lobby.getHostId())) {  // lobby finnes og bruker er eier
 
             // Fjerner invitert spiller hvis spiller er med
             if(lobby.getInvitedPlayerUsernames().contains(removePlayer)) {

@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * Created by eirikskogland on 07.12.14.
  */
 public class Leaderboard {
-    private int id;
-    private int ownerId;
+    private String id;
+    private String ownerId;
     private String name;
     private String description;
     private ArrayList<UserStatistics> playerStats;
@@ -34,21 +34,22 @@ public class Leaderboard {
         this.inviteErrorMessage = inviteErrorMessage;
     }
 
-    public Leaderboard(int ownerId) {
+    public Leaderboard(String ownerId) {
         this.ownerId = ownerId;
-        this.id = IdService.getLeaderboardId();
+        IdService idService = new IdService();
+        this.id = idService.getLeaderboardId("leaderboard");
         this.ownerUsername = MockDB.getUsername(ownerId);
         playerStats = new ArrayList<UserStatistics>();
     }
 
-    public void addUser(int userId) {
+    public void addUser(String userId) {
         UserStatistics newPlayerStats = new UserStatistics(userId);
         playerStats.add(newPlayerStats);
     }
 
-    public void removeUser(int userId) {
+    public void removeUser(String userId) {
         for(UserStatistics stat : playerStats) {
-            if(stat.getUserId() == userId) {
+            if(stat.getUserId().equals(userId)) {
                 playerStats.remove(stat);
                 break;
             }
@@ -62,19 +63,19 @@ public class Leaderboard {
     public void setOwnerUsername(String ownerUsername) {
         this.ownerUsername = ownerUsername;
     }
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getOwnerId() {
+    public String getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(int ownerId) {
+    public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
     }
 

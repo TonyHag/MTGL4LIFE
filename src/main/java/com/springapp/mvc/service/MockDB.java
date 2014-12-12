@@ -25,17 +25,17 @@ public class MockDB {
     // --------------- User operations -------------
     // ---------------------------------------------
 
-    public static void addLeaderboardIdToUser(int userId, int leaderboardId) {
+    public static void addLeaderboardIdToUser(String userId, String leaderboardId) {
         for(User u : users) {
-            if(u.getId() == userId) {
+            if(u.getId().equals(userId)) {
                 u.getLeaderBoardIds().add(leaderboardId);
             }
         }
     }
 
-    public static ArrayList<Integer> getLeaderboardIdsForUser(int userId) {
+    public static ArrayList<String> getLeaderboardIdsForUser(String userId) {
         for(User u : users) {
-            if(u.getId() == userId) {
+            if(u.getId().equals(userId)) {
                 return u.getLeaderBoardIds();
             }
         }
@@ -55,22 +55,22 @@ public class MockDB {
         return isUser;
     }
 
-    public static String getUsername(int id) {
+    public static String getUsername(String id) {
         for(User u : users) {
-            if(u.getId() == id) {
+            if(u.getId().equals(id)) {
                 return u.getUsername();
             }
         }
         return null;
     }
 
-    public static int getUserId(String username) {
+    public static String getUserId(String username) {
         for(User u : users) {
             if(u.getUsername().equals(username)) {
                 return u.getId();
             }
         }
-        return 0;
+        return null;
     }
 
     public static void addUser(User user) {
@@ -90,9 +90,9 @@ public class MockDB {
         return available;
     }
 
-    public static void addUserWin(int userId) {
+    public static void addUserWin(String userId) {
         for (User u : users) {
-            if(u.getId() == userId) {
+            if(u.getId().equals(userId)) {
 
                 u.addWin();
 
@@ -100,15 +100,15 @@ public class MockDB {
         }
     }
 
-    public static void addUserLoss(int userId) {
+    public static void addUserLoss(String userId) {
         for (User u : users) {
-            if(u.getId() == userId) {
+            if(u.getId().equals(userId)) {
                 u.addLoss();
             }
         }
     }
 
-    public static UserStatistics getUserStats(String username) {
+    public static UserStatistics getUserStatsByName(String username) {
 
         for(User u : users) {
             if(u.getUsername().equals(username)) {
@@ -119,10 +119,10 @@ public class MockDB {
         return null;
     }
 
-    public static UserStatistics getUserStats(int userId) {
+    public static UserStatistics getUserStatsById(String userId) {
 
         for(User u : users) {
-            if(u.getId() == userId) {
+            if(u.getId().equals(userId)) {
                 System.out.println("MockDB: Stats found for " + u.getUsername());
                 return u.getStats();
             }
@@ -177,18 +177,18 @@ public class MockDB {
         games.add(game);
     }
 
-    public static Game getGame(int id) {
+    public static Game getGame(String id) {
         for(Game g : games) {
-            if(g.getId() == id) {
+            if(g.getId().equals(id)) {
                 return g;
             }
         }
         return null;
     }
 
-    public static void deleteGame(int gameId) {
+    public static void deleteGame(String gameId) {
         for(Game game : games) {
-            if(game.getId() == gameId) {
+            if(game.getId().equals(gameId)) {
                 games.remove(game);
                 break;
             }
@@ -209,10 +209,10 @@ public class MockDB {
         lobbies.add(lobby);
     }
 
-    public static Lobby getLobby(int lobbyId) {
+    public static Lobby getLobby(String lobbyId) {
 
         for(Lobby lobby : lobbies) {
-            if(lobby.getId() == lobbyId) {
+            if(lobby.getId().equals(lobbyId)) {
                 return lobby;
             }
         }
@@ -221,11 +221,11 @@ public class MockDB {
         return null;
     }
 
-    public static void deleteLobby(int lobbyId) {
+    public static void deleteLobby(String lobbyId) {
 
         for(Lobby lobby : lobbies) {
-            if(lobby.getId() == lobbyId) {
-                lobbies.remove(lobbyId);
+            if(lobby.getId().equals(lobbyId)) {
+                lobbies.remove(lobby);
                 break;
             }
         }
@@ -233,7 +233,7 @@ public class MockDB {
 
     public static void updateLobby(Lobby lobby) {
         for(Lobby l : lobbies) {
-            if(l.getId() == lobby.getId()) {
+            if(l.getId().equals(lobby.getId())) {
                 lobbies.remove(l);
                 lobbies.add(lobby);
                 break;
@@ -258,11 +258,11 @@ public class MockDB {
     // --------------- Leaderboards ----------------
     // ---------------------------------------------
 
-    public static boolean isPlayerInLeaderboard(int userId, int leaderboardId) {
+    public static boolean isPlayerInLeaderboard(String userId, String leaderboardId) {
         for(Leaderboard leaderboard : leaderboards) {
-            if(leaderboard.getId() == leaderboardId) {
+            if(leaderboard.getId().equals(leaderboardId)) {
                 for(UserStatistics stats : leaderboard.getPlayerStats()) {
-                    if(stats.getUserId() == userId) {
+                    if(stats.getUserId().equals(userId)) {
                         return true;
                     }
                 }
@@ -271,12 +271,12 @@ public class MockDB {
          return false;
     }
 
-    public static void addUserWinToLeaderboard(int userId, int leaderboardId) {
+    public static void addUserWinToLeaderboard(String userId, String leaderboardId) {
         for(Leaderboard leaderboard : leaderboards) {
-            if(leaderboard.getId() == leaderboardId) {
+            if(leaderboard.getId().equals(leaderboardId)) {
                 ArrayList<UserStatistics> stats = leaderboard.getPlayerStats();
                 for(UserStatistics s : stats) {
-                    if(s.getUserId() == userId) {
+                    if(s.getUserId().equals(userId)) {
                         s.addWin();
                     }
                 }
@@ -287,12 +287,12 @@ public class MockDB {
         }
     }
 
-    public static void addUserLossToLeaderboard(int userId, int leaderboardId) {
+    public static void addUserLossToLeaderboard(String userId, String leaderboardId) {
         for(Leaderboard leaderboard : leaderboards) {
-            if(leaderboard.getId() == leaderboardId) {
+            if(leaderboard.getId().equals(leaderboardId)) {
                 ArrayList<UserStatistics> stats = leaderboard.getPlayerStats();
                 for(UserStatistics s : stats) {
-                    if(s.getUserId() == userId) {
+                    if(s.getUserId().equals(userId)) {
                         s.addLoss();
                     }
                 }
@@ -304,9 +304,9 @@ public class MockDB {
     }
 
 
-    public static String getLeaderboardNameById(int leaderboardId) {
+    public static String getLeaderboardNameById(String leaderboardId) {
         for(Leaderboard leaderboard : leaderboards) {
-            if(leaderboard.getId() == leaderboardId) {
+            if(leaderboard.getId().equals(leaderboardId)) {
                 return leaderboard.getName();
             }
         }
@@ -314,26 +314,26 @@ public class MockDB {
 
     }
 
-    public static int getOwnerId(int leaderboardId) {
+    public static String getOwnerId(String leaderboardId) {
 
         for(Leaderboard leaderboard : leaderboards) {
-            if(leaderboard.getId() == leaderboardId) {
+            if(leaderboard.getId().equals(leaderboardId)) {
                 return leaderboard.getOwnerId();
             }
         }
 
         System.out.println("MockDB: Leaderboard not found");
-        return 0;
+        return null;
     }
 
     public static void addLeaderboard(Leaderboard leaderboard) {
         leaderboards.add(leaderboard);
     }
 
-    public static Leaderboard getLeaderboard(int id) {
+    public static Leaderboard getLeaderboard(String id) {
 
         for(Leaderboard leaderboard : leaderboards) {
-            if(leaderboard.getId() == id) {
+            if(leaderboard.getId().equals(id)) {
                 return leaderboard;
             }
         }
@@ -342,11 +342,11 @@ public class MockDB {
         return null;
     }
 
-    public static void deleteLeaderboard(int id) {
+    public static void deleteLeaderboard(String id) {
 
         for(Leaderboard leaderboard : leaderboards) {
-            if(leaderboard.getId() == id) {
-                leaderboards.remove(id);
+            if(leaderboard.getId().equals(id)) {
+                leaderboards.remove(leaderboard);
                 break;
             }
         }
@@ -354,7 +354,7 @@ public class MockDB {
 
     public static void updateLeaderboard(Leaderboard leaderboard) {
         for(Leaderboard l : leaderboards) {
-            if(l.getId() == leaderboard.getId()) {
+            if(l.getId().equals(leaderboard.getId())) {
                 leaderboards.remove(l);
                 leaderboards.add(leaderboard);
                 break;
@@ -362,18 +362,18 @@ public class MockDB {
         }
     }
 
-    public static void addPlayerToLeaderboard(int leaderboardId, int userId) {
+    public static void addPlayerToLeaderboard(String leaderboardId, String userId) {
         for(Leaderboard l : leaderboards) {
-            if(l.getId() == leaderboardId) {
+            if(l.getId().equals(leaderboardId)) {
                 l.addUser(userId);
                 break;
             }
         }
     }
 
-    public static void removePlayerFromLeaderboard(int leaderboardId, int userId) {
+    public static void removePlayerFromLeaderboard(String leaderboardId, String userId) {
         for(Leaderboard l : leaderboards) {
-            if(l.getId() == leaderboardId) {
+            if(l.getId().equals(leaderboardId)) {
                 l.removeUser(userId);
                 break;
             }
@@ -401,12 +401,12 @@ public class MockDB {
     }
 
     // Henter alle notifikasjonene til en mottaker
-    public static ArrayList<Notification> getNotifications(int userId) {
+    public static ArrayList<Notification> getNotifications(String userId) {
 
         ArrayList<Notification> userNotifications = new ArrayList<Notification>();
 
         for(Notification n : notifications) {
-            if(n.getReceiverId() == userId) {
+            if(n.getReceiverId().equals(userId)) {
                userNotifications.add(n);
             }
         }
@@ -414,20 +414,20 @@ public class MockDB {
     }
 
     // Henter alle notifikasjonene til en mottaker
-    public static Notification getNotification(int notificationId) {
+    public static Notification getNotification(String notificationId) {
 
         for(Notification n : notifications) {
-            if(n.getId() == notificationId) {
+            if(n.getId().equals(notificationId)) {
                 return n;
             }
         }
         return null;
     }
 
-    public static void deleteNotification(int notificationId) {
+    public static void deleteNotification(String notificationId) {
 
         for(Notification n : notifications) {
-            if(n.getId() == notificationId) {
+            if(n.getId().equals(notificationId)) {
                 notifications.remove(n);
                 System.out.println("MockDB: Notification removed");
                 break;
@@ -435,13 +435,13 @@ public class MockDB {
         }
     }
 
-    public static int getNotificationOwnerId(int notificationId) {
+    public static String getNotificationOwnerId(String notificationId) {
         for(Notification n : notifications) {
-            if(n.getId() == notificationId) {
+            if(n.getId().equals(notificationId)) {
                 return n.getReceiverId();
             }
         }
-        return 0;
+        return null;
     }
 
     // ---------------------------------------------
@@ -460,10 +460,10 @@ public class MockDB {
 
 
 
-    public static GameConfirmationData getConfirmationData(int gameId) {
+    public static GameConfirmationData getConfirmationData(String gameId) {
         for (GameConfirmationData data : gameConfirmations) {
 
-            if(data.getGameId() == gameId) {
+            if(data.getGameId().equals(gameId)) {
                 return  data;
             }
 
@@ -476,9 +476,9 @@ public class MockDB {
         System.out.println("MockDB: ConfirmationData added, id: " + data.getGameId());
     }
 
-    public static void deleteGameConfirmation(int gameId)  {
+    public static void deleteGameConfirmation(String gameId)  {
         for(GameConfirmationData data : gameConfirmations) {
-            if (data.getGameId() == gameId) {
+            if (data.getGameId().equals(gameId)) {
                 System.out.println("MockDB: ConfirmationData deletede, id: " + data.getGameId());
                 gameConfirmations.remove(data);
                 break;

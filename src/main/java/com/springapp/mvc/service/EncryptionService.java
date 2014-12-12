@@ -17,10 +17,10 @@ public class EncryptionService {
             byte[] hash = digest.digest((password+salt).getBytes("UTF-8"));
 
             // Konteverterer fra byte[] til hex-streng
-            StringBuffer PasswordHexString = new StringBuffer();
-            for (int i = 0; i < hash.length; i++) {
-                String hex = Integer.toHexString(0xff & hash[i]);
-                if(hex.length() == 1) PasswordHexString.append('0');
+            StringBuilder PasswordHexString = new StringBuilder();
+            for (byte aHash : hash) {
+                String hex = Integer.toHexString(0xff & aHash);
+                if (hex.length() == 1) PasswordHexString.append('0');
                 PasswordHexString.append(hex);
             }
 

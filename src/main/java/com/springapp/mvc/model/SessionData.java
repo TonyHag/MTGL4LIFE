@@ -8,14 +8,14 @@ import java.util.ArrayList;
 public class SessionData {
 
     private String username;
-    private int userId;
+    private String userId;
     private Lobby lobby;
     private ArrayList<Notification> notifications = new ArrayList<Notification>();
     private Leaderboard createLeaderboard;
     private ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
 
     private boolean activeGame = false;
-    private int activeGameId = 0;
+    private String activeGameId = null;
 
     public boolean isActiveGame() {
         return activeGame;
@@ -25,11 +25,11 @@ public class SessionData {
         this.activeGame = activeGame;
     }
 
-    public int getActiveGameId() {
+    public String getActiveGameId() {
         return activeGameId;
     }
 
-    public void setActiveGameId(int activeGameId) {
+    public void setActiveGameId(String activeGameId) {
         this.activeGameId = activeGameId;
     }
 
@@ -65,11 +65,11 @@ public class SessionData {
         this.username = username;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

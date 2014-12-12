@@ -23,7 +23,7 @@ import java.util.Map;
 public class GameController {
 
     @RequestMapping(value = "/{gameId}", method = RequestMethod.GET)
-    public String getGame(@PathVariable("gameId") int gameId, ModelMap model, HttpServletRequest request) {
+    public String getGame(@PathVariable("gameId") String gameId, ModelMap model, HttpServletRequest request) {
 
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
@@ -40,7 +40,7 @@ public class GameController {
 
 
             // Sjekk at innlogget bruker er host
-            if(sessionService.getUserId() != game.getHostId()) {
+            if(!sessionService.getUserId().equals(game.getHostId())) {
                 // returner ikke tilgang
                 return "redirect:/main";
             }
@@ -56,7 +56,7 @@ public class GameController {
     }
 
     @RequestMapping(value = "/declareWinner", method = RequestMethod.POST)
-    public String declareWinner(@RequestParam("gameId") int gameId, ModelMap model, @RequestParam("winner") String winnerName, HttpServletRequest request) {
+    public String declareWinner(@RequestParam("gameId") String gameId, ModelMap model, @RequestParam("winner") String winnerName, HttpServletRequest request) {
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
             return "redirect:/login";
@@ -66,13 +66,13 @@ public class GameController {
         model.addAttribute("user", username);
 
         //HttpSession session = request.getSession();
-        int userId = sessionService.getUserId();
+        String userId = sessionService.getUserId();
 
         Game game = MockDB.getGame(gameId);
-        if(game.getHostId() == userId) { // Sjekker at man er host / evt senere om man er med i game
+        if(game.getHostId().equals(userId)) { // Sjekker at man er host / evt senere om man er med i game
             game.setActive(false);
 
-            ArrayList<Integer> winners = new ArrayList<Integer>();
+            ArrayList<String> winners = new ArrayList<String>();
             ArrayList<Player> players = game.getPlayers();
 
             winners.add(MockDB.getUserId(winnerName)); // må endres dersom flere vinnere
@@ -81,7 +81,7 @@ public class GameController {
             game.setHostUsername(username);
 
 
-            ArrayList<Integer> losers = new ArrayList<Integer>();
+            ArrayList<String> losers = new ArrayList<String>();
 
             for(Player p : players) {
                 if(!p.getUsername().equals(winnerName)) {

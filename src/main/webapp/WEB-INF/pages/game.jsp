@@ -82,36 +82,37 @@
                         <div class="col-xs-12 text-center">
                             <button class="btn-danger btn-sm"  id="subtractHp${loop.index}">-</button>
 
-                            <input type="text" id="changeHP${loop.index}" size="4" placeholder="1" value="1"/>
+                            <input type="text" id="changeHP${loop.index}" size="2" placeholder="1" value="1"/>
 
                             <button class="btn-success btn-sm" id="addHp${loop.index}">+</button>
+
                         </div>
+
                     </div>
 
-                    <div class="row" id="poisonCounterRow${loop.index}">
-                        <div class="col-xs-12 text-center">
+                    <div class="row">
+                        <div id="poisonCounterRow${loop.index}" class="col-xs-12 text-center">
 
-                            <table>
-                                <tr>
-                                    <td>
-                                        <button class="btn-success btn-xs"  id="subtractPoison${loop.index}">-</button>
+                             <div class="col-xs-1">
+                                 <button class="btn-success btn-xs"  id="subtractPoison${loop.index}">-</button>
+                             </div>
 
-                                    </td>
-                                    <td style="padding: 5px">
-                                        <p class="playerPoison" id="poison${loop.index}">${player.poison}</p>
+                            <div class="playerPoison col-xs-1" id="poison${loop.index}">
+                                    ${player.poison}
+                            </div>
 
-                                    </td>
-                                    <td>
-                                        <button class="btn-success btn-xs" id="addPoison${loop.index}">+</button>
+                            <div class="col-xs-1">
+                                <button class="btn-success btn-xs" id="addPoison${loop.index}">+</button>
 
-                                    </td>
-                                </tr>
-                            </table>
-
+                            </div>
 
 
                         </div>
+
                     </div>
+
+
+
 
 
                 </div>

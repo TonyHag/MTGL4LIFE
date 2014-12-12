@@ -29,7 +29,7 @@ public class StatisticsController {
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
 
-        UserStatistics stats = MockDB.getUserStats(username);
+        UserStatistics stats = MockDB.getUserStatsByName(username);
         model.addAttribute("stats", stats);
 
         return "stats";

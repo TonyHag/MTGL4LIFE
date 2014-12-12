@@ -10,8 +10,8 @@ import java.util.HashMap;
  */
 public class GameConfirmationData {
 
-    private int gameId;
-    private ArrayList<Integer> accepted;
+    private String gameId;
+    private ArrayList<String> accepted;
     private int playersRejected;
     private int numberOfPlayers = 1;
     private Game game;
@@ -21,7 +21,7 @@ public class GameConfirmationData {
         this.game = game;
 
         gameId = game.getId();
-        accepted = new ArrayList<Integer>();
+        accepted = new ArrayList<String>();
         for(Player player : game.getPlayers()) {
             accepted.add(player.getUserId());
         }
@@ -31,34 +31,34 @@ public class GameConfirmationData {
 
     }
 
-    public void playerRejected(int playerId){
+    public void playerRejected(String playerId){
         if(accepted.contains(playerId)) {
-            accepted.remove(new Integer(playerId));
+            accepted.remove(playerId);
             playersRejected++;
             System.out.println("GameConfirmation: Player rejected");
         }
     }
 
-    public void playerAccepted(int playerId) {
+    public void playerAccepted(String playerId) {
         if(accepted.contains(playerId)) {
-            accepted.remove(new Integer(playerId));
+            accepted.remove(playerId);
             System.out.println("GameConfirmation: Player accepted");
         }
     }
 
-    public ArrayList<Integer> getAccepted() {
+    public ArrayList<String> getAccepted() {
         return accepted;
     }
 
-    public void setAccepted(ArrayList<Integer> accepted) {
+    public void setAccepted(ArrayList<String> accepted) {
         this.accepted = accepted;
     }
 
-    public int getGameId() {
+    public String getGameId() {
         return gameId;
     }
 
-    public void setGameId(int gameId) {
+    public void setGameId(String gameId) {
         this.gameId = gameId;
     }
 

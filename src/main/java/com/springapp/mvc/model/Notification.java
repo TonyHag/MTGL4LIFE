@@ -11,23 +11,17 @@ import java.util.ArrayList;
 public class Notification {
 
 
-    private int id, receiverId, gameId, leaderboardId;
-    private ArrayList<Integer> winners;
+    private String id, receiverId, gameId, leaderboardId;
+    private ArrayList<String> winners;
     private String message;
 
     private String type;
 
     public Notification() {
-        this.id = IdService.getNotificationId();
+        IdService idService = new IdService();
+        this.id = idService.getNotificationId("notification");
     }
 
-    public int getLeaderboardId() {
-        return leaderboardId;
-    }
-
-    public void setLeaderboardId(int leaderboardId) {
-        this.leaderboardId = leaderboardId;
-    }
 
     public String getMessage() {
         return message;
@@ -45,35 +39,45 @@ public class Notification {
         this.type = type;
     }
 
-    public ArrayList<Integer> getWinners() {
+    public ArrayList<String> getWinners() {
         return winners;
     }
 
-    public void setWinners(ArrayList<Integer> winners) {
+    public void setWinners(ArrayList<String> winners) {
         this.winners = winners;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getReceiverId() {
+    public String getReceiverId() {
         return receiverId;
     }
 
-    public void setReceiverId(int recieverId) {
-        this.receiverId = recieverId;
+    public void setReceiverId(String receiverId) {
+        this.receiverId = receiverId;
     }
 
-    public int getGameId() {
+    public String getGameId() {
         return gameId;
     }
 
-    public void setGameId(int gameId) {
+    public void setGameId(String gameId) {
         this.gameId = gameId;
     }
+
+    public String getLeaderboardId() {
+        return leaderboardId;
+    }
+
+    public void setLeaderboardId(String leaderboardId) {
+        this.leaderboardId = leaderboardId;
+    }
+
+
 }

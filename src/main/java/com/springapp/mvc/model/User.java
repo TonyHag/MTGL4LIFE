@@ -10,28 +10,29 @@ import java.util.ArrayList;
 public class User {
 
     private String username, password, email;
-    private int id;
+    private String id;
 
     private UserStatistics stats;
-    private ArrayList<Integer> leaderBoardIds;
+    private ArrayList<String> leaderBoardIds;
 
     public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
 
-        this.id = IdService.getUserId();
+        IdService idService = new IdService();
+        this.id = idService.getUserId(username);
         stats = new UserStatistics(this.id);
         stats.setUsername(username);
-        leaderBoardIds = new ArrayList<Integer>();
+        leaderBoardIds = new ArrayList<String>();
 
     }
 
-    public ArrayList<Integer> getLeaderBoardIds() {
+    public ArrayList<String> getLeaderBoardIds() {
         return leaderBoardIds;
     }
 
-    public void setLeaderBoardIds(ArrayList<Integer> leaderBoardIds) {
+    public void setLeaderBoardIds(ArrayList<String> leaderBoardIds) {
         this.leaderBoardIds = leaderBoardIds;
     }
 
@@ -75,11 +76,11 @@ public class User {
         this.email = email;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

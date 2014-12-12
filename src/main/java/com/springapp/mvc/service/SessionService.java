@@ -139,7 +139,7 @@ public class SessionService {
      * Henter brukerid fra sessiondata
      * @return
      */
-    public int getUserId() {
+    public String getUserId() {
         SessionData sessionData = (SessionData) request.getSession().getAttribute("sessionData");
         return sessionData.getUserId();
     }
@@ -177,15 +177,15 @@ public class SessionService {
         return (SessionData) session.getAttribute("sessionData");
     }
 
-    public void setActiveGame(int gameId) {
+    public void setActiveGame(String gameId) {
         getSessionData().setActiveGameId(gameId);
     }
 
     public void inActivateGame() {
-        getSessionData().setActiveGameId(0);
+        getSessionData().setActiveGameId(null);
     }
 
-    public int getActiveGame() {
+    public String getActiveGame() {
         return getSessionData().getActiveGameId();
     }
 

@@ -8,11 +8,11 @@ import com.springapp.mvc.service.MockDB;
 public class UserStatistics {
 
     private String username;
-    private int userId;
+    private String userId;
     private int wins, losses, total;
     private double winPercentage;
 
-    public UserStatistics(int userId) {
+    public UserStatistics(String userId) {
         this.userId = userId;
         username = MockDB.getUsername(userId);
         wins = 0;
@@ -21,11 +21,11 @@ public class UserStatistics {
         winPercentage = 0.0;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

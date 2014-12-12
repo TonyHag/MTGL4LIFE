@@ -35,14 +35,14 @@ public class LeaderboardController {
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
 
-            ArrayList<Integer> leaderboardIds = MockDB.getLeaderboardIdsForUser(sessionService.getUserId());
+            ArrayList<String> leaderboardIds = MockDB.getLeaderboardIdsForUser(sessionService.getUserId());
             if(leaderboardIds != null) {
                 ArrayList<LeaderboardInfo> leaderboardInfos = new ArrayList<LeaderboardInfo>();
 
-                for(Integer i : leaderboardIds) {
+                for(String id : leaderboardIds) {
                     // Hvis bruker er eier av leaderboard, vil det være en manage-knapp ved siden av navnet
-                    LeaderboardInfo info = new LeaderboardInfo(i, MockDB.getLeaderboardNameById(i));
-                    if(MockDB.getOwnerId(i) == sessionService.getUserId()) {
+                    LeaderboardInfo info = new LeaderboardInfo(id, MockDB.getLeaderboardNameById(id));
+                    if(MockDB.getOwnerId(id).equals(sessionService.getUserId())) {
                         info.setOwner(true);
                     }
                     leaderboardInfos.add(info);
@@ -60,7 +60,7 @@ public class LeaderboardController {
     }
 
     @RequestMapping(value ="/leaderboard/{leaderboardId}", method = RequestMethod.GET)
-    public String getLeaderboardPage(ModelMap model, HttpServletRequest request, @PathVariable("leaderboardId") int leaderboardId) {
+    public String getLeaderboardPage(ModelMap model, HttpServletRequest request, @PathVariable("leaderboardId") String leaderboardId) {
 
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
@@ -119,7 +119,7 @@ public class LeaderboardController {
 
         if(valid) {
 
-            int userId = sessionService.getUserId();
+            String userId = sessionService.getUserId();
 
             Leaderboard leaderboard = new Leaderboard(userId);
             leaderboard.setName(name);
@@ -128,7 +128,7 @@ public class LeaderboardController {
             MockDB.addLeaderboard(leaderboard);
             MockDB.addLeaderboardIdToUser(userId, leaderboard.getId());
 
-            int leaderBoardId = leaderboard.getId();
+            String leaderBoardId = leaderboard.getId();
             return "redirect:/leaderboard/manage/" + leaderBoardId;
 
         }
@@ -138,7 +138,7 @@ public class LeaderboardController {
     }
 
     @RequestMapping(value = "/leaderboard/manage/{leaderboardId}")
-    public String getManageLeaderboardPage(ModelMap model, HttpServletRequest request, @PathVariable("leaderboardId") int leaderboardId) {
+    public String getManageLeaderboardPage(ModelMap model, HttpServletRequest request, @PathVariable("leaderboardId") String leaderboardId) {
 
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
@@ -148,9 +148,11 @@ public class LeaderboardController {
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
 
+
         // hvis eier
-        if(sessionService.getUserId() == MockDB.getOwnerId(leaderboardId))  {
+        if(sessionService.getUserId().equals(MockDB.getOwnerId(leaderboardId)))  {
             Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
+            model.addAttribute("leaderboardRemoveError", sessionService.getErrorMessage("leaderboardRemoveError"));
             model.addAttribute("leaderboard", leaderboard);
             return "manageLeaderboard";
         }
@@ -161,7 +163,7 @@ public class LeaderboardController {
 
 
     @RequestMapping(value = "/leaderboard/manage/{leaderboardId}/removePlayer")
-    public String removePlayer(ModelMap model, HttpServletRequest request, @PathVariable("leaderboardId") int leaderboardId, @RequestParam(value="removePlayer") String removePlayer) {
+    public String removePlayer(ModelMap model, HttpServletRequest request, @PathVariable("leaderboardId") String leaderboardId, @RequestParam(value="removePlayer") String removePlayer) {
 
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
@@ -171,12 +173,22 @@ public class LeaderboardController {
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
 
+        String ownerId =  MockDB.getOwnerId(leaderboardId);
         // hvis eier
-        if(sessionService.getUserId() == MockDB.getOwnerId(leaderboardId)) {
+        if(sessionService.getUserId().equals(ownerId)) {
 
-            int userId = MockDB.getUserId(removePlayer);
-            MockDB.removePlayerFromLeaderboard(leaderboardId, userId);
+            // Sjekk at man ikke sletter seg selv
+            String removeId = MockDB.getUserId(removePlayer);
+            if(!removeId.equals(ownerId)) {
+                MockDB.removePlayerFromLeaderboard(leaderboardId, removeId);
+                sessionService.setErrorMessage("leaderboardRemoveError", "");
+
+            } else {
+                sessionService.setErrorMessage("leaderboardRemoveError", "You cannot remove yourself");
+            }
             return "redirect:/leaderboard/manage/" + leaderboardId ;
+
+
 
         }
 
@@ -192,7 +204,7 @@ public class LeaderboardController {
     }
 
     @RequestMapping(value = "/leaderboard/manage/{leaderboardId}/invite", method = RequestMethod.POST)
-    public String invitePlayer(ModelMap model, HttpServletRequest request,@PathVariable("leaderboardId") int leaderboardId , @RequestParam(value="invitePlayer") String invitePlayer) {
+    public String invitePlayer(ModelMap model, HttpServletRequest request,@PathVariable("leaderboardId") String leaderboardId , @RequestParam(value="invitePlayer") String invitePlayer) {
 
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
@@ -203,7 +215,7 @@ public class LeaderboardController {
         model.addAttribute("user", user);
 
         // Hvis eier
-        if(sessionService.getUserId() == MockDB.getOwnerId(leaderboardId)) {
+        if(sessionService.getUserId().equals(MockDB.getOwnerId(leaderboardId))) {
             Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
 
             // Sjekk at man ikke inviterer seg selv
@@ -252,7 +264,7 @@ public class LeaderboardController {
 
 
     @RequestMapping(value = "/leaderboard/accept/{leaderboardId}", method = RequestMethod.POST)
-    public String acceptInvitation(@PathVariable("leaderboardId") int leaderboardId, @RequestParam("notificationId") int notificationId, HttpServletRequest request, ModelMap model) {
+    public String acceptInvitation(@PathVariable("leaderboardId") String leaderboardId, @RequestParam("notificationId") String notificationId, HttpServletRequest request, ModelMap model) {
 
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
@@ -268,7 +280,7 @@ public class LeaderboardController {
             MockDB.deleteNotification(notificationId);
             leaderboard.getInvitedPlayerUsernames().remove(user);
 
-            int userId = sessionService.getUserId();
+            String userId = sessionService.getUserId();
             leaderboard.getPlayerStats().add(new UserStatistics(userId));
 
             MockDB.updateLeaderboard(leaderboard);
@@ -281,7 +293,7 @@ public class LeaderboardController {
     }
 
     @RequestMapping(value = "/leaderboard/reject/{leaderboardId}", method = RequestMethod.POST)
-    public String rejectInvitation(@PathVariable("leaderboardId") int leaderboardId, @RequestParam("notificationId") int notificationId, HttpServletRequest request, ModelMap model) {
+    public String rejectInvitation(@PathVariable("leaderboardId") String leaderboardId, @RequestParam("notificationId") String notificationId, HttpServletRequest request, ModelMap model) {
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
             return "redirect:/login";

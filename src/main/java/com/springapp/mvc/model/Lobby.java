@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public class Lobby {
 
-    private int id;
-    private int hostId;
+    private String id;
+    private String hostId;
     private String hostUsername;
     private ArrayList<String> invitedPlayerUsernames = new ArrayList<String>();
     private ArrayList<Player> players = new ArrayList<Player>();
@@ -36,7 +36,9 @@ public class Lobby {
     }
 
     public Lobby() {
-        id = IdService.getLobbyId();
+
+        IdService idService = new IdService();
+        id = idService.getLobbyId("lobby");
     }
 
     public ArrayList<String> getInvitedPlayerUsernames() {
@@ -63,19 +65,19 @@ public class Lobby {
         this.inviteError = inviteError;
     }
 
-    public int getHostId() {
+    public String getHostId() {
         return hostId;
     }
 
-    public void setHostId(int hostId) {
+    public void setHostId(String hostId) {
         this.hostId = hostId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

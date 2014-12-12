@@ -28,7 +28,7 @@ public class NotificationService {
         }
     }
 
-    public void sendLeaderboardInvitation(int userId, int senderId, int leaderboardId) {
+    public void sendLeaderboardInvitation(String userId, String senderId, String leaderboardId) {
 
         Notification notification = new Notification();
         notification.setType("leaderboardInvitation");
@@ -40,16 +40,16 @@ public class NotificationService {
 
     }
 
-    public void deleteNotification(int userId, int notificationId) {
+    public void deleteNotification(String userId, String notificationId) {
 
-        if(MockDB.getNotificationOwnerId(notificationId) == userId) {
+        if(MockDB.getNotificationOwnerId(notificationId).equals(userId)) {
             MockDB.deleteNotification(notificationId);
 
         }
 
     }
 
-    public ArrayList<Notification> getNotifications(int userId) {
+    public ArrayList<Notification> getNotifications(String userId) {
 
         return MockDB.getNotifications(userId);
 
