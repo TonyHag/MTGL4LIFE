@@ -20,7 +20,7 @@
     <h1>Welcome ${user}</h1>
 
     <div class="jumbotron">
-        <h1>MTG Supreme</h1>
+        <h1>MTG Supreme</h1> <img src="http://i59.tinypic.com/32zi2pw.png" alt="Ingame photo" id="jumbotronpic">
         <p class="lead">Vise stats her? </p>
         <p><a class="btn btn-lg btn-success" href="#" role="button">Start a game</a></p>
     </div>
@@ -34,7 +34,7 @@
                 confirm the game. When everyone has accepted, stats will be updated.
             </p>
 
-            <h4>Track your and your friends stats</h4>
+            <h4>Track your own and your friends stats</h4>
             <p>Stats like wins and losses will be tracked.
                 You can see your personal stats and your friends stats in the stats page.</p>
 
