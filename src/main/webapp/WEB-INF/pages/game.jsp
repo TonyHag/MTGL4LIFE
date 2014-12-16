@@ -35,7 +35,7 @@
 
 
 
-<div class="container" role="main">
+<div class="container text-left" role="main">
 
 <c:choose>
     <c:when test="${game.gameMode == 'ffa'}">

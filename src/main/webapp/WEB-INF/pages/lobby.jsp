@@ -20,7 +20,7 @@
     <jsp:param name="user" value="${user}"></jsp:param>
 </jsp:include>
 
-<div class="container">
+<div class="container text-left">
      <div>
          <h1>Lobby</h1>
      </div>

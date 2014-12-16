@@ -20,7 +20,7 @@
     <jsp:param name="user" value="${user}"></jsp:param>
 </jsp:include>
 
-<div class="container">
+<div class="container text-left">
     <h1>Your notifications</h1>
     <p>Here you will find game confirmation requests and leaderboard invitations.</p>
 

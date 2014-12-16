@@ -19,7 +19,7 @@
     <jsp:param name="user" value="${user}"></jsp:param>
 </jsp:include>
 
-<div class="container" role="main">
+<div class="container text-left" role="main">
 
     <c:choose>
         <c:when test="${stats != null}" >
