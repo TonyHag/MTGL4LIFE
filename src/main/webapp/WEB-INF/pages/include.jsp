@@ -19,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/main.css"/>
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.css"/>
 <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/resources/css/cover.css"/>
 <script src="/resources/js/bootstrap.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
 
@@ -26,3 +27,4 @@
 
 <!-- jquery -->
 
+<script src="/resources/js/jQuery2-1-1.js"></script>
