@@ -66,7 +66,7 @@
 
 			<div class="inner cover">
 				<h1 class="cover-heading">MTGSupreme life counter</h1>
-				<p class="lead">MTGSupreme is a life counter for Magic the Gathering TCG. It also allows you to have your own private leaderboards with your friends, so you can finally decide who is the superior player.</p>
+				<p class="lead">MTGSupreme is a life counter for Magic the Gathering TCG. It also allows you to have your own private casual leaderboards with your friends, so you can finally decide who is the superior player.</p>
 				<p class="lead">
 					<a href="#" class="btn btn-lg btn-default">Learn more</a>
 				</p>
