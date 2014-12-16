@@ -34,8 +34,11 @@
 </jsp:include>
 
 
-    <div class="container" role="main">
 
+<div class="container" role="main">
+
+<c:choose>
+    <c:when test="${game.gameMode == 'ffa'}">
         <div class="row">
             <div class="col-xs-4">
                 <form action="/game/declareWinner" method="post">
@@ -46,13 +49,78 @@
                     <input type="submit" value="Declare Winner" class="btn-sm btn-primary">
                 </form>
             </div>
-
-
             <div class="col-xs-4">
                 <input type="text" id="startingHp" size="4" placeholder="20"/>
                 <button class="btn btn-sm btn-primary" id="btn_reset">Reset Counters</button>
             </div>
+            <div class="col-xs-4">
+                <button class="btn btn-sm btn-primary" id="btn_toggle_poison">Poison Counters</button>
+            </div>
+        </div>
+        <c:forEach items="${game.players}" var="player" varStatus="loop">
+            <c:if test="${(loop.index-1)%2 == 0}"> <div class="row"> </c:if>
+            <div class="col-xs-4 playerInfo">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="playerName"> ${player.username} </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" >
+                        <p class="playerHp" id="hp${loop.index}">${player.hp}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <button class="btn-danger btn-sm"  id="subtractHp${loop.index}">-</button>
+                        <input type="text" id="changeHP${loop.index}" size="2" placeholder="1" value="1"/>
+                        <button class="btn-success btn-sm" id="addHp${loop.index}">+</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="poisonCounterRow${loop.index}" class="col-xs-12 text-center">
+                        <div class="col-xs-1">
+                            <button class="btn-success btn-xs"  id="subtractPoison${loop.index}">-</button>
+                        </div>
+                        <div class="playerPoison col-xs-1" id="poison${loop.index}">
+                                ${player.poison}
+                        </div>
+                        <div class="col-xs-1">
+                            <button class="btn-success btn-xs" id="addPoison${loop.index}">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <c:if test="${(loop.index-1)%2 == 0}"> </div> </c:if>
 
+        </c:forEach>
+
+    </c:when>
+
+    <c:when test="${game.gameMode == 'thg'}">
+                <div class="row">
+            <div class="col-xs-4">
+                <form action="/game/declareWinner" method="post">
+                    <input type="hidden" name="gameId" value="${game.id}" />
+                    <select name="winner">
+                      <option value="team1">
+                          <c:forEach items="${game.team1}" var="player" varStatus="loop">
+                          ${player.username}<c:if test="${!loop.last}">,</c:if>
+                          </c:forEach>
+                      </option>
+                      <option value="team2">
+                          <c:forEach items="${game.team2}" var="player" varStatus="loop">
+                              ${player.username}<c:if test="${!loop.last}">,</c:if>
+                          </c:forEach>
+                      </option>
+                    </select>
+                    <input type="submit" value="Declare Winner" class="btn-sm btn-primary">
+                </form>
+            </div>
+            <div class="col-xs-4">
+                <input type="text" id="startingHp" size="4" placeholder="20"/>
+                <button class="btn btn-sm btn-primary" id="btn_reset">Reset Counters</button>
+            </div>
             <div class="col-xs-4">
                 <button class="btn btn-sm btn-primary" id="btn_toggle_poison">Poison Counters</button>
             </div>
@@ -60,73 +128,21 @@
 
 
 
-            <c:forEach items="${game.players}" var="player" varStatus="loop">
-
-                <c:if test="${(loop.index-1)%2 == 0}"> <div class="row"> </c:if>
-
-
-                <div class="col-xs-4 playerInfo">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <p class="playerName"> ${player.username} </p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12" >
-                            <p class="playerHp" id="hp${loop.index}">${player.hp}</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xs-12 text-center">
-                            <button class="btn-danger btn-sm"  id="subtractHp${loop.index}">-</button>
-
-                            <input type="text" id="changeHP${loop.index}" size="2" placeholder="1" value="1"/>
-
-                            <button class="btn-success btn-sm" id="addHp${loop.index}">+</button>
-
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-                        <div id="poisonCounterRow${loop.index}" class="col-xs-12 text-center">
-
-                             <div class="col-xs-1">
-                                 <button class="btn-success btn-xs"  id="subtractPoison${loop.index}">-</button>
-                             </div>
-
-                            <div class="playerPoison col-xs-1" id="poison${loop.index}">
-                                    ${player.poison}
-                            </div>
-
-                            <div class="col-xs-1">
-                                <button class="btn-success btn-xs" id="addPoison${loop.index}">+</button>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
 
 
 
 
+    </c:when>
 
-                </div>
-                <c:if test="${(loop.index-1)%2 == 0}"> </div> </c:if>
+    <c:otherwise>
+        <h1>Something went wrong with the gametypes</h1>
+    </c:otherwise>
 
-                </c:forEach>
+</c:choose>
 
-    </div>
-
-<table>
-
+</div>
 
 
-</table>
 
 
 <script type="text/javascript">

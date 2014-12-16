@@ -22,7 +22,7 @@ public class HelloController {
         MockDB.users = new ArrayList<User>();
         MockDB.addUser(new User("Tony", encryptionService.encryptPassword("asdf"), "asdf"));
         MockDB.addUser(new User("Jonas", encryptionService.encryptPassword("asdf"), "asdf"));
-        MockDB.addUser(new User("Håkon", encryptionService.encryptPassword("asdf"), "asdf"));
+        MockDB.addUser(new User("Hakon", encryptionService.encryptPassword("asdf"), "asdf"));
         MockDB.addUser(new User("Eirik", encryptionService.encryptPassword("asdf"), "asdf"));
 
 

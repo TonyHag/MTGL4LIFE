@@ -24,6 +24,36 @@ public class Game {
 
     private int startingHp;
 
+    private ArrayList<Player> team1;
+    private ArrayList<Player> team2;
+    private String gameMode;
+
+    public String getGameMode() {
+        return gameMode;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
+    }
+
+    public ArrayList<Player> getTeam2() {
+        return team2;
+    }
+
+    public void setTeam2(ArrayList<Player> team2) {
+        this.team2 = team2;
+    }
+
+    public ArrayList<Player> getTeam1() {
+        return team1;
+    }
+
+    public void setTeam1(ArrayList<Player> team1) {
+        this.team1 = team1;
+    }
+
+
+
 
     public Game(String hostId, String lobbyId) {
         active = true;
@@ -32,6 +62,7 @@ public class Game {
         this.hostId = hostId;
         this.lobbyId = lobbyId;
         startingHp = 20;
+        gameMode = "ffa";
 
     }
 

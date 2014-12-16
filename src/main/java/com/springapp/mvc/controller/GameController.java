@@ -92,8 +92,6 @@ public class GameController {
             game.setLosers(losers);
 
 
-
-
             GameConfirmationData confirmationData = new GameConfirmationData(game);
 
             MockDB.addGameConfirmationData(confirmationData);

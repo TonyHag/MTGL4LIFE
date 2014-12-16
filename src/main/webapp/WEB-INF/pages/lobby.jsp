@@ -21,19 +21,22 @@
 </jsp:include>
 
 <div class="container">
+     <div>
+         <h1>Lobby</h1>
+     </div>
 
-    <h1>Lobby</h1>
+    <br>
+    <div> <h4>Game mode:</h4>
+        <c:choose>
+            <c:when test="${lobby.gameMode == 'ffa'}">
+                <h2>Free For All </h2>
+            </c:when>
+            <c:when test="${lobby.gameMode == 'thg'}">
+                <h2>Two Headed Giant </h2>
+            </c:when>
 
-    <h3>Game mode:</h3>
-    <c:choose>
-        <c:when test="${lobby.gameMode == 'ffa'}">
-               <h2>Free For All</h2>
-        </c:when>
-        <c:when test="${lobby.gameMode == 'thg'}">
-               <h2>Two Headed Giant</h2>
-        </c:when>
+        </c:choose></div>
 
-    </c:choose>
     <form action="/lobby/changeGameMode" method="post">
         <input type="hidden" name="lobbyId" value="${lobby.id}" />
         <select name="gameMode">

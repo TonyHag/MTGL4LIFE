@@ -22,37 +22,47 @@
 
 <div class="container">
     <h1>Your notifications</h1>
+    <p>Here you will find game confirmation requests and leaderboard invitations.</p>
 
     <h3>Game Confirmations</h3>
-    <table>
+    <div class="table-responsive">
+        <table class="table">
 
-        <c:forEach items="${notifications}" var="notification">
-            <c:if test="${notification.type == 'gameConfirmation'}">
-                <tr>
-                    <td>${notification.message}</td>
-                    <td><form action="/gameConfirmation/accept/${notification.gameId}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept"></form></td>
-                    <td><form action="/gameConfirmation/reject/${notification.gameId}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Reject"></form></td>
-                </tr>
-            </c:if>
-        </c:forEach>
+            <c:forEach items="${notifications}" var="notification">
+                <c:if test="${notification.type == 'gameConfirmation'}">
+                    <tr>
+                        <td>${notification.message}</td>
+                        <td><form action="/gameConfirmation/accept/${notification.gameId}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept" class="btn btn-sm btn-primary"></form></td>
+                        <td><form action="/gameConfirmation/reject/${notification.gameId}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Reject" class="btn btn-sm btn-danger"></form></td>
+                    </tr>
+                </c:if>
+            </c:forEach>
 
-    </table>
+        </table>
+
+
+    </div>
+    <br>
 
 
     <h3>Leaderboard invitations </h3>
-    <table>
 
-        <c:forEach items="${notifications}" var="notification">
-            <c:if test="${notification.type == 'leaderboardInvitation'}">
-                <tr>
-                    <td>${notification.message}</td>
-                    <td><form action="/leaderboard/accept/${notification.leaderboardId}" method="post"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept"></form></td>
-                    <td><form action="/leaderboard/reject/${notification.leaderboardId}" method="post"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Reject"></form></td>
-                </tr>
-            </c:if>
-        </c:forEach>
+    <div class="table-responsive">
+        <table class="table">
 
-    </table>
+            <c:forEach items="${notifications}" var="notification">
+                <c:if test="${notification.type == 'leaderboardInvitation'}">
+                    <tr>
+                        <td>${notification.message}</td>
+                        <td><form action="/leaderboard/accept/${notification.leaderboardId}" method="post"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept" class="btn btn-sm btn-primary"></form></td>
+                        <td><form action="/leaderboard/reject/${notification.leaderboardId}" method="post"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Reject" class="btn btn-sm btn-danger"></form></td>
+                    </tr>
+                </c:if>
+            </c:forEach>
+
+        </table>
+    </div>
+
 </div>
 
 

@@ -254,6 +254,7 @@ public class LobbyController {
             Player newPlayer = new Player();
             newPlayer.setUsername(invitePlayer);
             newPlayer.setUserId(MockDB.getUserId(invitePlayer));
+            newPlayer.setHp(20);
             lobby.getPlayers().add(newPlayer);
             lobby.getTeam1().add(newPlayer);
             sessionService.setLobby(lobby);
@@ -314,6 +315,7 @@ public class LobbyController {
                     Game game = new Game(lobby.getHostId(), lobby.getId());
                     game.setPlayers(lobby.getPlayers());
                     game.setHostId(lobby.getHostId());
+                    game.setGameMode(lobby.getGameMode());
                     game.setNumberOfPlayers(lobby.getPlayers().size());
                     MockDB.addGame(game);
                     sessionService.setActiveGame(game.getId());
@@ -327,6 +329,21 @@ public class LobbyController {
             } else if(lobby.getGameMode().equals("thg")) {
                 if(lobby.isTeamsReady(4)) {
 
+                    sessionService.setErrorMessage("startError", "");
+                    // Opprett nytt game
+
+                    Game game = new Game(lobby.getHostId(), lobby.getId());
+                    game.setHostId(lobby.getHostId());
+                    game.setGameMode(lobby.getGameMode());
+                    game.setTeam1(lobby.getTeam1());
+                    game.setTeam2(lobby.getTeam2());
+                    game.setNumberOfPlayers(lobby.getPlayers().size());
+                    MockDB.addGame(game);
+
+                    sessionService.setActiveGame(game.getId());
+
+
+                    return ("redirect:/game/" + game.getId());
 
 
 
