@@ -3,6 +3,7 @@ package com.springapp.mvc.controller;
 import com.springapp.mvc.model.Game;
 import com.springapp.mvc.model.Lobby;
 import com.springapp.mvc.model.Player;
+import com.springapp.mvc.model.Team;
 import com.springapp.mvc.service.MockDB;
 import com.springapp.mvc.service.SessionService;
 import org.springframework.stereotype.Controller;
@@ -156,8 +157,25 @@ public class LobbyController {
 
             if(sessionService.getUserId().equals(lobby.getHostId())) {  // lobby finnes og bruker er eier
 
+
                 // set gamemode
                 lobby.setGameMode(gameMode);
+
+                /*
+                if(gameMode.equals("thg")) {
+                    if(lobby.getTeams().size() == 0) {
+                        for (int i = 0; i < 2; i++) {
+
+                            Team team = new Team();
+
+                            // hvis det er spillere i lobby fra før, legg de til team 1
+                            if(i == 0 && lobby.getPlayers().size() != 0) {
+                                team.setPlayers(lobby.getPlayers());
+                            }
+                            lobby.getTeams().add(team);
+                        }
+                    }
+                }   */
 
                 // update db
                 MockDB.updateLobby(lobby);

@@ -16,9 +16,12 @@ public class Lobby {
     private String inviteError = null;
     private String startError = null;
 
+    private ArrayList<Team> teams = new ArrayList<Team>();
+
     private ArrayList<Player> team1 = new ArrayList<Player>();
     private ArrayList<Player> team2 = new ArrayList<Player>();
     private boolean ready = false;
+
 
     public ArrayList<Player> getTeam1() {
         return team1;
@@ -44,9 +47,19 @@ public class Lobby {
         this.ready = ready;
     }
 
+    public ArrayList<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(ArrayList<Team> teams) {
+        this.teams = teams;
+    }
+
     public void assignTeam(String userId, String team) {
         System.out.println("Assigning team");
         boolean onTeam = false;
+
+
 
         if(team.equals("1")) {
             onTeam = false;
@@ -85,6 +98,7 @@ public class Lobby {
         }
     }
 
+
     public void changeTeam(String userId) {
         System.out.println("changing team");
         boolean teamChanged = false;
@@ -113,7 +127,26 @@ public class Lobby {
             }
         }
         System.out.println("teamChanged: " + teamChanged);
+
+
     }
+
+/*
+    public void changeTeam(String userId) {
+        // hvis spiller er i team 1
+        Team team1 = teams.get(0);
+        if(team1.hasPlayer(userId)) {
+
+            Team team2 = teams.get(1);
+            team2.addPlayer(team);
+        }
+            // flytt til team 2
+
+        // flytt til team 1
+
+
+
+    } */
 
     public boolean isTeamsReady(int maxPlayers) {
         if(team1.size() == maxPlayers/2 && team2.size() == maxPlayers/2) {

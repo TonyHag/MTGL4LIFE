@@ -16,7 +16,7 @@ public class NotificationService {
         ArrayList<Player> players = game.getPlayers();
         for (Player p : players) {
 
-            Notification notification = new Notification();
+            Notification notification = new Notification(p.getUserId());
             notification.setType("gameConfirmation");
             notification.setGameId(game.getId());
             notification.setReceiverId(p.getUserId());
@@ -30,7 +30,7 @@ public class NotificationService {
 
     public void sendLeaderboardInvitation(String userId, String senderId, String leaderboardId) {
 
-        Notification notification = new Notification();
+        Notification notification = new Notification(userId);
         notification.setType("leaderboardInvitation");
         notification.setLeaderboardId(leaderboardId);
         notification.setReceiverId(userId);

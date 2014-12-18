@@ -18,7 +18,7 @@
     <jsp:param name="user" value="${user}"></jsp:param>
 </jsp:include>
 
-<div class="container text-left" role="main" >
+<div class="container" role="main" >
 
     <div class="row text-center pad-top ">
         <div class="col-md-12">

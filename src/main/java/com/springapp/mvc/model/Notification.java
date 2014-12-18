@@ -17,9 +17,10 @@ public class Notification {
 
     private String type;
 
-    public Notification() {
+    public Notification(String salt) {
         IdService idService = new IdService();
-        this.id = idService.getNotificationId("notification");
+        this.id = idService.getNotificationId(salt);
+        System.out.println("Notification created with id: " + id);
     }
 
 

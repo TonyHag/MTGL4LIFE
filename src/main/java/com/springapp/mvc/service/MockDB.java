@@ -428,8 +428,8 @@ public class MockDB {
 
         for(Notification n : notifications) {
             if(n.getId().equals(notificationId)) {
+                System.out.println("MockDB: Notification removed for user " + getUsername(n.getReceiverId()));
                 notifications.remove(n);
-                System.out.println("MockDB: Notification removed");
                 break;
             }
         }
