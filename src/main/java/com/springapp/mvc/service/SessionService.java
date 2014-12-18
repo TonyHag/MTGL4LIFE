@@ -28,18 +28,23 @@ public class SessionService {
      * @return
      */
     public Cookie logIn(String username) {
+
+        int loginPeriod = 60*60*24;//*7;
+
         HttpSession session = request.getSession(); // henter session
         session.invalidate(); // invaliderer session om den fantes fra før
         session = request.getSession(true); // generer ny session
-
+        session.setMaxInactiveInterval(loginPeriod);
+        System.out.println("Session inactive in hours : " + session.getMaxInactiveInterval()/60/60);
         SessionData sessionData = new SessionData();
         sessionData.setUsername(username);
+
         sessionData.setUserId(MockDB.getUserId(username));
         session.setAttribute("sessionData", sessionData); // Setter sessionData med brukernavn og id
 
         String sid = session.getId();
         Cookie sidCookie = new Cookie("mtgsid", sid);
-        sidCookie.setMaxAge(60*60*24*7); // sek*min*timer*dager, gyldig i en uke
+        sidCookie.setMaxAge(loginPeriod); // sek*min*timer*dager, gyldig i en uke
         return sidCookie;
 
     }
