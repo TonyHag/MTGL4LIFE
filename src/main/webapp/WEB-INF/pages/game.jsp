@@ -127,8 +127,84 @@
         </div>
 
 
+        <!-- Team 1 -->
+        <div class="col-xs-4 playerInfo">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="playerName">
+                        <c:forEach items="${game.team1}" var="player" varStatus="loop">
+                            ${player.username}  <c:if test="${!loop.last}">,</c:if>
+                        </c:forEach>
+                    </p>
+                </div>
+            </div>
+
+                         <div class="row">
+                <div class="col-xs-12" >
+                    <p class="playerHp" id="hp1">20</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <button class="btn-danger btn-sm"  id="subtractHp1">-</button>
+                    <input type="text" id="changeHP1" size="2" placeholder="1" value="1"/>
+                    <button class="btn-success btn-sm" id="addHp1">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <div id="poisonCounterRow1" class="col-xs-12 text-center">
+                    <div class="col-xs-1">
+                        <button class="btn-success btn-xs"  id="subtractPoison1">-</button>
+                    </div>
+                    <div class="playerPoison col-xs-1" id="poison1">
+                            0
+                    </div>
+                    <div class="col-xs-1">
+                        <button class="btn-success btn-xs" id="addPoison1">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
+        <!-- Team 2 -->
+        <div class="col-xs-4 playerInfo">
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="playerName">
+                        <c:forEach items="${game.team2}" var="player" varStatus="loop">
+                            ${player.username}  <c:if test="${!loop.last}">,</c:if>
+                        </c:forEach>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12" >
+                    <p class="playerHp" id="hp2">20</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <button class="btn-danger btn-sm"  id="subtractHp2">-</button>
+                    <input type="text" id="changeHP2" size="2" placeholder="1" value="1"/>
+                    <button class="btn-success btn-sm" id="addHp2">+</button>
+                </div>
+            </div>
+            <div class="row">
+                <div id="poisonCounterRow2" class="col-xs-12 text-center">
+                    <div class="col-xs-1">
+                        <button class="btn-success btn-xs"  id="subtractPoison2">-</button>
+                    </div>
+                    <div class="playerPoison col-xs-1" id="poison2">
+                        0
+                    </div>
+                    <div class="col-xs-1">
+                        <button class="btn-success btn-xs" id="addPoison2">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 

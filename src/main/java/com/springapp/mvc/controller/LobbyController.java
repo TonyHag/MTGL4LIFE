@@ -161,21 +161,7 @@ public class LobbyController {
                 // set gamemode
                 lobby.setGameMode(gameMode);
 
-                /*
-                if(gameMode.equals("thg")) {
-                    if(lobby.getTeams().size() == 0) {
-                        for (int i = 0; i < 2; i++) {
 
-                            Team team = new Team();
-
-                            // hvis det er spillere i lobby fra før, legg de til team 1
-                            if(i == 0 && lobby.getPlayers().size() != 0) {
-                                team.setPlayers(lobby.getPlayers());
-                            }
-                            lobby.getTeams().add(team);
-                        }
-                    }
-                }   */
 
                 // update db
                 MockDB.updateLobby(lobby);
@@ -356,6 +342,8 @@ public class LobbyController {
                     game.setTeam1(lobby.getTeam1());
                     game.setTeam2(lobby.getTeam2());
                     game.setNumberOfPlayers(lobby.getPlayers().size());
+                    game.setPlayers(lobby.getPlayers());
+
                     MockDB.addGame(game);
 
                     sessionService.setActiveGame(game.getId());

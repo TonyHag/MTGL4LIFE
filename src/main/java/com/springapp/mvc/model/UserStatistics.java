@@ -9,6 +9,7 @@ public class UserStatistics {
 
     private String username;
     private String userId;
+    private String gameMode;
     private int wins, losses, total;
     private double winPercentage;
 
@@ -19,6 +20,14 @@ public class UserStatistics {
         losses = 0;
         total = 0;
         winPercentage = 0.0;
+    }
+
+    public String getGameMode() {
+        return gameMode;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
     }
 
     public String getUserId() {
