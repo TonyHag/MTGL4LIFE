@@ -1,8 +1,9 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.*;
+import com.springapp.mvc.model.notifications.LeaderboardInvitation;
+import com.springapp.mvc.model.notifications.Notification;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -15,6 +16,8 @@ public class MockDB {
     public static ArrayList<User> users = new ArrayList<User>();
     public static ArrayList<Game> games = new ArrayList<Game>();
     public static ArrayList<Notification> notifications = new ArrayList<Notification>();
+    public static ArrayList<LeaderboardInvitation> leaderboardInvitations = new ArrayList<LeaderboardInvitation>();
+
     public static ArrayList<GameConfirmationData> gameConfirmations = new ArrayList<GameConfirmationData>();
     public static ArrayList<Lobby> lobbies = new ArrayList<Lobby>();
     public static ArrayList<Leaderboard> leaderboards = new ArrayList<Leaderboard>();
@@ -326,6 +329,18 @@ public class MockDB {
         return null;
     }
 
+    public static String getOwnerName(String leaderboardId) {
+
+        for(Leaderboard leaderboard : leaderboards) {
+            if(leaderboard.getId().equals(leaderboardId)) {
+                return leaderboard.getOwnerUsername();
+            }
+        }
+
+        System.out.println("MockDB: Leaderboard not found");
+        return null;
+    }
+
     public static void addLeaderboard(Leaderboard leaderboard) {
         leaderboards.add(leaderboard);
     }
@@ -447,6 +462,56 @@ public class MockDB {
     // ---------------------------------------------
     // ---------------------------------------------
 
+
+
+    public static void addLeaderboardInvitation(LeaderboardInvitation invitation) {
+        leaderboardInvitations.add(invitation);
+    }
+
+    // Henter alle notifikasjonene til en mottaker
+    public static ArrayList<LeaderboardInvitation> getLeaderboardInvitations(String userId) {
+
+        ArrayList<LeaderboardInvitation> usersLeaderboardInvitations = new ArrayList<LeaderboardInvitation>();
+
+        for(LeaderboardInvitation n : leaderboardInvitations) {
+            if(n.getReceiverId().equals(userId)) {
+                usersLeaderboardInvitations.add(n);
+                System.out.println("found invitation");
+            }
+        }
+        return usersLeaderboardInvitations;
+    }
+
+    // Henter alle notifikasjonene til en mottaker
+    public static LeaderboardInvitation getLeaderboardInvitation(String invitationId) {
+
+        for(LeaderboardInvitation n : leaderboardInvitations) {
+            if(n.getId().equals(invitationId)) {
+                return n;
+            }
+        }
+        return null;
+    }
+
+    public static void deleteLeaderboardInvitation(String invitationId) {
+
+        for(LeaderboardInvitation n : leaderboardInvitations) {
+            if(n.getId().equals(invitationId)) {
+                System.out.println("MockDB: LeaderboardInvitation removed for user " + getUsername(n.getReceiverId()));
+                leaderboardInvitations.remove(n);
+                break;
+            }
+        }
+    }
+
+    public static String getLeaderboardInvitationOwnerId(String invitationId) {
+        for(LeaderboardInvitation n : leaderboardInvitations) {
+            if(n.getId().equals(invitationId)) {
+                return n.getReceiverId();
+            }
+        }
+        return null;
+    }
 
 
 

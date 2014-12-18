@@ -277,7 +277,7 @@ public class LeaderboardController {
         Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
         if(leaderboard.getInvitedPlayerUsernames().contains(user)) { // Hvis spiller er invitert
 
-            MockDB.deleteNotification(notificationId);
+            MockDB.deleteLeaderboardInvitation(notificationId);
             leaderboard.getInvitedPlayerUsernames().remove(user);
 
             String userId = sessionService.getUserId();

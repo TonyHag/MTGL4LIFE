@@ -40,7 +40,7 @@ public class GameConfirmationController {
 
             MockDB.getConfirmationData(gameId).playerAccepted(userId);
 
-            System.out.println("GameConfirmationController: Removing notification for user " + MockDB.getUsername(userId));
+            System.out.println("GameConfirmationController: Removing notifications for user " + MockDB.getUsername(userId));
             MockDB.deleteNotification(notificationId);
 
             System.out.println("GameConfirmationController: Player accepted");
@@ -92,7 +92,7 @@ public class GameConfirmationController {
                 // slett game og gameconfirmation
 
 
-                // Hvis alle har svart på notification
+                // Hvis alle har svart på notifications
             } else if(confirmationData.getAccepted().size() == 0 && confirmationData.getPlayersRejected() > 0) {
                 System.out.println("GameConfirmationController: Enough players rejected, not updating players");
 
@@ -172,7 +172,7 @@ public class GameConfirmationController {
                 // slett game og gameconfirmation
 
 
-                // Hvis alle har svart på notification
+                // Hvis alle har svart på notifications
             } else if (confirmationData.getAccepted().size() == 0 && confirmationData.getPlayersRejected() > 0) {
 
                 // slett game og gameconfirmation

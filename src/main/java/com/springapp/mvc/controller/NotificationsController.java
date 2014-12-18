@@ -1,18 +1,16 @@
 package com.springapp.mvc.controller;
 
-import com.springapp.mvc.model.Notification;
-import com.springapp.mvc.model.SessionData;
+import com.springapp.mvc.model.notifications.LeaderboardInvitation;
+import com.springapp.mvc.model.notifications.Notification;
 import com.springapp.mvc.service.MockDB;
 import com.springapp.mvc.service.NotificationService;
 import com.springapp.mvc.service.SessionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 /**
@@ -38,6 +36,9 @@ public class NotificationsController {
 
         NotificationService notificationService = new NotificationService();
         // Henter notifications
+        ArrayList<LeaderboardInvitation> invitations = MockDB.getLeaderboardInvitations(sessionService.getUserId());
+        model.addAttribute("leaderboardInvitations", invitations);
+
         ArrayList<Notification> notifications = notificationService.getNotifications(sessionService.getUserId());
         model.addAttribute("notifications", notifications);
 

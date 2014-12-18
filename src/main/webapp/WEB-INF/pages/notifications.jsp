@@ -50,14 +50,12 @@
     <div class="table-responsive">
         <table class="table">
 
-            <c:forEach items="${notifications}" var="notification">
-                <c:if test="${notification.type == 'leaderboardInvitation'}">
+            <c:forEach items="${leaderboardInvitations}" var="invitation">
                     <tr>
-                        <td>${notification.message}</td>
-                        <td><form action="/leaderboard/accept/${notification.leaderboardId}" method="post"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept" class="btn btn-sm btn-primary"></form></td>
-                        <td><form action="/leaderboard/reject/${notification.leaderboardId}" method="post"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Reject" class="btn btn-sm btn-danger"></form></td>
+                        <td>${invitation.message}</td>
+                        <td><form action="/leaderboard/accept/${invitation.leaderboardID}" method="post"><input type="hidden" name="notificationId" value="${invitation.id}"/> <input type="submit" value="Accept" class="btn btn-sm btn-primary"></form></td>
+                        <td><form action="/leaderboard/reject/${invitation.leaderboardID}" method="post"><input type="hidden" name="notificationId" value="${invitation.id}"/> <input type="submit" value="Reject" class="btn btn-sm btn-danger"></form></td>
                     </tr>
-                </c:if>
             </c:forEach>
 
         </table>

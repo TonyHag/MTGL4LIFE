@@ -1,7 +1,8 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.Game;
-import com.springapp.mvc.model.Notification;
+import com.springapp.mvc.model.notifications.LeaderboardInvitation;
+import com.springapp.mvc.model.notifications.Notification;
 import com.springapp.mvc.model.Player;
 
 import java.util.ArrayList;
@@ -30,12 +31,20 @@ public class NotificationService {
 
     public void sendLeaderboardInvitation(String userId, String senderId, String leaderboardId) {
 
-        Notification notification = new Notification(userId);
-        notification.setType("leaderboardInvitation");
-        notification.setLeaderboardId(leaderboardId);
-        notification.setReceiverId(userId);
-        notification.setMessage(MockDB.getUsername(senderId) + " invited you to the leaderboard " + MockDB.getLeaderboardNameById(leaderboardId));
-        MockDB.addNotification(notification);
+        LeaderboardInvitation invitation = new LeaderboardInvitation(userId);
+        invitation.setLeaderboardID(leaderboardId);
+        invitation.setLeaderboardOwner(MockDB.getOwnerName(leaderboardId));
+        invitation.setLeaderboardName(MockDB.getLeaderboardNameById(leaderboardId));
+        invitation.setReceiverId(userId);
+        invitation.setMessage(invitation.getLeaderboardOwner() + " invited you to the leaderboard " + invitation.getLeaderboardName());
+
+
+        //Notification notification = new Notification(userId);
+        //notification.setType("leaderboardInvitation");
+        //notification.setLeaderboardId(leaderboardId);
+        //notification.setReceiverId(userId);
+        //notification.setMessage(MockDB.getUsername(senderId) + " invited you to the leaderboard " + MockDB.getLeaderboardNameById(leaderboardId));
+        MockDB.addLeaderboardInvitation(invitation);
         System.out.println("Notification sent to: " + MockDB.getUsername(userId));
 
     }

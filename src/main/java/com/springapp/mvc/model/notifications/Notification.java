@@ -1,7 +1,6 @@
-package com.springapp.mvc.model;
+package com.springapp.mvc.model.notifications;
 
 import com.springapp.mvc.service.IdService;
-import com.springapp.mvc.service.MockDB;
 
 import java.util.ArrayList;
 
@@ -11,11 +10,14 @@ import java.util.ArrayList;
 public class Notification {
 
 
-    private String id, receiverId, gameId, leaderboardId;
+    private String id, receiverId, gameId;
     private ArrayList<String> winners;
     private String message;
 
     private String type;
+
+    public Notification() {
+    }
 
     public Notification(String salt) {
         IdService idService = new IdService();
@@ -70,14 +72,6 @@ public class Notification {
 
     public void setGameId(String gameId) {
         this.gameId = gameId;
-    }
-
-    public String getLeaderboardId() {
-        return leaderboardId;
-    }
-
-    public void setLeaderboardId(String leaderboardId) {
-        this.leaderboardId = leaderboardId;
     }
 
 
