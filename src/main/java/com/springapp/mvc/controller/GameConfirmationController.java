@@ -41,7 +41,8 @@ public class GameConfirmationController {
             MockDB.getConfirmationData(gameId).playerAccepted(userId);
 
             System.out.println("GameConfirmationController: Removing notifications for user " + MockDB.getUsername(userId));
-            MockDB.deleteNotification(notificationId);
+            NotificationService notificationService = new NotificationService();
+            notificationService.deleteNotification(userId, notificationId);
 
             System.out.println("GameConfirmationController: Player accepted");
             GameConfirmationData confirmationData = MockDB.getConfirmationData(gameId);
@@ -127,7 +128,8 @@ public class GameConfirmationController {
         if (MockDB.getConfirmationData(gameId).getAccepted().contains(userId)) {
 
             MockDB.getConfirmationData(gameId).playerRejected(userId);
-            MockDB.deleteNotification(notificationId);
+            NotificationService notificationService = new NotificationService();
+            notificationService.deleteNotification(userId, notificationId);
 
             System.out.println("GameConfirmationController: Player rejected");
             GameConfirmationData confirmationData = MockDB.getConfirmationData(gameId);

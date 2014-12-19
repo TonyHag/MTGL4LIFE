@@ -26,12 +26,10 @@ public class GameConfirmation extends Notification {
         this.gameID = gameID;
     }
 
-    @Override
     public ArrayList<String> getWinners() {
         return winners;
     }
 
-    @Override
     public void setWinners(ArrayList<String> winners) {
         this.winners = winners;
     }

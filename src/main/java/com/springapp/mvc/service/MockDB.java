@@ -1,6 +1,7 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.*;
+import com.springapp.mvc.model.notifications.GameConfirmation;
 import com.springapp.mvc.model.notifications.LeaderboardInvitation;
 import com.springapp.mvc.model.notifications.Notification;
 
@@ -15,10 +16,10 @@ public class MockDB {
 
     public static ArrayList<User> users = new ArrayList<User>();
     public static ArrayList<Game> games = new ArrayList<Game>();
-    public static ArrayList<Notification> notifications = new ArrayList<Notification>();
+    public static ArrayList<GameConfirmation> gameConfirmations = new ArrayList<GameConfirmation>();
     public static ArrayList<LeaderboardInvitation> leaderboardInvitations = new ArrayList<LeaderboardInvitation>();
 
-    public static ArrayList<GameConfirmationData> gameConfirmations = new ArrayList<GameConfirmationData>();
+    public static ArrayList<GameConfirmationData> gameConfirmationDatas = new ArrayList<GameConfirmationData>();
     public static ArrayList<Lobby> lobbies = new ArrayList<Lobby>();
     public static ArrayList<Leaderboard> leaderboards = new ArrayList<Leaderboard>();
 
@@ -411,27 +412,27 @@ public class MockDB {
     // ---------------------------------------------
 
 
-    public static void addNotification(Notification notification) {
-        notifications.add(notification);
+    public static void addNotification(GameConfirmation notification) {
+        gameConfirmations.add(notification);
     }
 
     // Henter alle notifikasjonene til en mottaker
-    public static ArrayList<Notification> getNotifications(String userId) {
+    public static ArrayList<GameConfirmation> getGameConfirmations(String userId) {
 
-        ArrayList<Notification> userNotifications = new ArrayList<Notification>();
+        ArrayList<GameConfirmation> userGameConfirmations = new ArrayList<GameConfirmation>();
 
-        for(Notification n : notifications) {
+        for(GameConfirmation n : gameConfirmations) {
             if(n.getReceiverId().equals(userId)) {
-               userNotifications.add(n);
+               userGameConfirmations.add(n);
             }
         }
-        return userNotifications;
+        return userGameConfirmations;
     }
 
     // Henter alle notifikasjonene til en mottaker
-    public static Notification getNotification(String notificationId) {
+    public static GameConfirmation getGameConfirmation(String notificationId) {
 
-        for(Notification n : notifications) {
+        for(GameConfirmation n : gameConfirmations) {
             if(n.getId().equals(notificationId)) {
                 return n;
             }
@@ -439,19 +440,19 @@ public class MockDB {
         return null;
     }
 
-    public static void deleteNotification(String notificationId) {
+    public static void deleteGameConfirmation(String notificationId) {
 
-        for(Notification n : notifications) {
+        for(GameConfirmation n : gameConfirmations) {
             if(n.getId().equals(notificationId)) {
-                System.out.println("MockDB: Notification removed for user " + getUsername(n.getReceiverId()));
-                notifications.remove(n);
+                System.out.println("MockDB: GameConfirmation removed for user " + getUsername(n.getReceiverId()));
+                gameConfirmations.remove(n);
                 break;
             }
         }
     }
 
-    public static String getNotificationOwnerId(String notificationId) {
-        for(Notification n : notifications) {
+    public static String getGameConfirmationOwnerId(String notificationId) {
+        for(GameConfirmation n : gameConfirmations) {
             if(n.getId().equals(notificationId)) {
                 return n.getReceiverId();
             }
@@ -526,7 +527,7 @@ public class MockDB {
 
 
     public static GameConfirmationData getConfirmationData(String gameId) {
-        for (GameConfirmationData data : gameConfirmations) {
+        for (GameConfirmationData data : gameConfirmationDatas) {
 
             if(data.getGameId().equals(gameId)) {
                 return  data;
@@ -537,15 +538,15 @@ public class MockDB {
     }
 
     public static void addGameConfirmationData(GameConfirmationData data) {
-        gameConfirmations.add(data);
+        gameConfirmationDatas.add(data);
         System.out.println("MockDB: ConfirmationData added, id: " + data.getGameId());
     }
 
-    public static void deleteGameConfirmation(String gameId)  {
-        for(GameConfirmationData data : gameConfirmations) {
+    public static void deleteGameConfirmationData(String gameId)  {
+        for(GameConfirmationData data : gameConfirmationDatas) {
             if (data.getGameId().equals(gameId)) {
                 System.out.println("MockDB: ConfirmationData deletede, id: " + data.getGameId());
-                gameConfirmations.remove(data);
+                gameConfirmationDatas.remove(data);
                 break;
             }
 

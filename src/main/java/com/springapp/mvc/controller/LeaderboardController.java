@@ -302,11 +302,14 @@ public class LeaderboardController {
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
 
+        String userId = sessionService.getUserId();
+
 
         Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
         if(leaderboard.getInvitedPlayerUsernames().contains(user)) { // Hvis spiller er invitert
 
-            MockDB.deleteNotification(notificationId);
+            NotificationService notificationService = new NotificationService();
+            notificationService.deleteNotification(userId, notificationId);
             leaderboard.getInvitedPlayerUsernames().remove(user);
             MockDB.updateLeaderboard(leaderboard);
 

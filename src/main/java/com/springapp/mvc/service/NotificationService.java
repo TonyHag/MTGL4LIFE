@@ -1,6 +1,7 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.Game;
+import com.springapp.mvc.model.notifications.GameConfirmation;
 import com.springapp.mvc.model.notifications.LeaderboardInvitation;
 import com.springapp.mvc.model.notifications.Notification;
 import com.springapp.mvc.model.Player;
@@ -17,6 +18,14 @@ public class NotificationService {
         ArrayList<Player> players = game.getPlayers();
         for (Player p : players) {
 
+            GameConfirmation gameConfirmation = new GameConfirmation(p.getUserId());
+            gameConfirmation.setGameID(game.getId());
+            gameConfirmation.setReceiverId(p.getUserId());
+            gameConfirmation.setWinners(game.getWinners());
+            gameConfirmation.setMessage("Host: " + game.getHostUsername() + ", winner: " + game.getWinnerUsername());
+            MockDB.addNotification(gameConfirmation);
+
+            /*
             Notification notification = new Notification(p.getUserId());
             notification.setType("gameConfirmation");
             notification.setGameId(game.getId());
@@ -24,7 +33,7 @@ public class NotificationService {
             notification.setWinners(game.getWinners());
             notification.setMessage("Host: " + game.getHostUsername() + ", winner: " + game.getWinnerUsername());
             MockDB.addNotification(notification);
-            System.out.println("Notification sent to: " + p.getUsername());
+            */System.out.println("Notification sent to: " + p.getUsername());
 
         }
     }
@@ -51,18 +60,19 @@ public class NotificationService {
 
     public void deleteNotification(String userId, String notificationId) {
 
-        if(MockDB.getNotificationOwnerId(notificationId).equals(userId)) {
-            MockDB.deleteNotification(notificationId);
-
+        if(MockDB.getGameConfirmationOwnerId(notificationId).equals(userId)) {
+            MockDB.deleteGameConfirmation(notificationId);
+        } else if(MockDB.getLeaderboardNameById(notificationId).equals(userId)) {
+            MockDB.deleteLeaderboardInvitation(notificationId);
         }
-
     }
 
+    /*
     public ArrayList<Notification> getNotifications(String userId) {
 
         return MockDB.getNotifications(userId);
 
-    }
+    } */
 
 
 }

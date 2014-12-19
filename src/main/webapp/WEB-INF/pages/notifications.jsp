@@ -28,14 +28,17 @@
     <div class="table-responsive">
         <table class="table">
 
-            <c:forEach items="${notifications}" var="notification">
-                <c:if test="${notification.type == 'gameConfirmation'}">
+            <c:if test="${empty gameConfirmations}">
+                <p>Nothing here. </p>
+            </c:if>
+            <c:forEach items="${gameConfirmations}" var="notification" varStatus="loop">
                     <tr>
                         <td>${notification.message}</td>
-                        <td><form action="/gameConfirmation/accept/${notification.gameId}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept" class="btn btn-sm btn-primary"></form></td>
-                        <td><form action="/gameConfirmation/reject/${notification.gameId}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Reject" class="btn btn-sm btn-danger"></form></td>
+                        <td><form action="/gameConfirmation/accept/${notification.gameID}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept" class="btn btn-sm btn-primary"></form></td>
+                        <td><form action="/gameConfirmation/reject/${notification.gameID}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Reject" class="btn btn-sm btn-danger"></form></td>
                     </tr>
-                </c:if>
+
+
             </c:forEach>
 
         </table>
@@ -49,6 +52,10 @@
 
     <div class="table-responsive">
         <table class="table">
+
+            <c:if test="${empty leaderboardInvitations}">
+                <p>You have no current leaderboard invitations. </p>
+            </c:if>
 
             <c:forEach items="${leaderboardInvitations}" var="invitation">
                     <tr>

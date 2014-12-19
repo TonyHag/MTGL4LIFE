@@ -1,5 +1,6 @@
 package com.springapp.mvc.controller;
 
+import com.springapp.mvc.model.notifications.GameConfirmation;
 import com.springapp.mvc.model.notifications.LeaderboardInvitation;
 import com.springapp.mvc.model.notifications.Notification;
 import com.springapp.mvc.service.MockDB;
@@ -39,8 +40,8 @@ public class NotificationsController {
         ArrayList<LeaderboardInvitation> invitations = MockDB.getLeaderboardInvitations(sessionService.getUserId());
         model.addAttribute("leaderboardInvitations", invitations);
 
-        ArrayList<Notification> notifications = notificationService.getNotifications(sessionService.getUserId());
-        model.addAttribute("notifications", notifications);
+        ArrayList<GameConfirmation> gameConfirmations = MockDB.getGameConfirmations(sessionService.getUserId());
+        model.addAttribute("gameConfirmations", gameConfirmations);
 
         return "notifications";
 
