@@ -1,41 +1,26 @@
-package com.springapp.mvc.model;
+package com.springapp.mvc.model.statistics;
 
 import com.springapp.mvc.service.MockDB;
 
 /**
- * Created by eirikskogland on 05.12.14.
+ * Created by eirikskogland on 19.12.14.
  */
-public class UserStatistics {
-
+public class Statistics {
     private String username;
-    private String userId;
-    private String gameMode;
+    private String userID;
     private int wins, losses, total;
     private double winPercentage;
 
-    public UserStatistics(String userId) {
-        this.userId = userId;
-        username = MockDB.getUsername(userId);
+    public Statistics() {
+    }
+
+    public Statistics(String userID) {
+        this.userID = userID;
+        username = MockDB.getUsername(userID);
         wins = 0;
         losses = 0;
         total = 0;
         winPercentage = 0.0;
-    }
-
-    public String getGameMode() {
-        return gameMode;
-    }
-
-    public void setGameMode(String gameMode) {
-        this.gameMode = gameMode;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public void addWin() {
@@ -51,20 +36,20 @@ public class UserStatistics {
 
     }
 
-    public double getWinPercentage() {
-        return winPercentage;
-    }
-
-    public void setWinPercentage(double winPercentage) {
-        this.winPercentage = winPercentage;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public int getWins() {
@@ -89,5 +74,13 @@ public class UserStatistics {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public double getWinPercentage() {
+        return winPercentage;
+    }
+
+    public void setWinPercentage(double winPercentage) {
+        this.winPercentage = winPercentage;
     }
 }

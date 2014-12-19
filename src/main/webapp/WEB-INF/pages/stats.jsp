@@ -25,6 +25,20 @@
         <c:when test="${stats != null}" >
             <h1>Statistics for ${stats.username}</h1>
 
+            <ul class="nav nav-tabs">
+                <li role="presentation" id="totalNavTab" class="active">
+                    <a href="/stats/${stats.username}?statsType=total">Total</a>
+                </li>
+
+                <li role="presentation" id="ffaNavTab">
+                    <a href="/stats/${stats.username}?statsType=ffa">Free For All</a>
+                </li>
+
+                <li role="presentation" id="thgNavTab">
+                    <a href="/stats/${stats.username}?statsType=thg">Two Headed Giant</a>
+                </li>
+            </ul>
+
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -58,6 +72,36 @@
 
 </div>
 
+<script type="text/javascript">
+    $(function() {
+
+
+        var statsType = "${statsType}";
+        console.log(statsType);
+
+
+        if(statsType == "total") {
+            $("#totalNavTab").addClass("active");
+            $("#thgNavTab").removeClass("active");
+            $("#ffaNavTab").removeClass("active");
+        }
+
+        if(statsType == "ffa") {
+            $("#totalNavTab").removeClass("active");
+            $("#thgNavTab").removeClass("active");
+            $("#ffaNavTab").addClass("active");
+        }
+
+        if(statsType == "thg") {
+            $("#totalNavTab").removeClass("active");
+            $("#thgNavTab").addClass("active");
+            $("#ffaNavTab").removeClass("active");
+        }
+
+
+
+    });
+</script>
 
 </body>
 </html>

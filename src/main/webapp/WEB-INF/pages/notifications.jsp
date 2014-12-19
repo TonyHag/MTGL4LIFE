@@ -37,13 +37,8 @@
                         <td><form action="/gameConfirmation/accept/${notification.gameID}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Accept" class="btn btn-sm btn-primary"></form></td>
                         <td><form action="/gameConfirmation/reject/${notification.gameID}"><input type="hidden" name="notificationId" value="${notification.id}"/> <input type="submit" value="Reject" class="btn btn-sm btn-danger"></form></td>
                     </tr>
-
-
             </c:forEach>
-
         </table>
-
-
     </div>
     <br>
 
@@ -52,11 +47,9 @@
 
     <div class="table-responsive">
         <table class="table">
-
             <c:if test="${empty leaderboardInvitations}">
                 <p>You have no current leaderboard invitations. </p>
             </c:if>
-
             <c:forEach items="${leaderboardInvitations}" var="invitation">
                     <tr>
                         <td>${invitation.message}</td>

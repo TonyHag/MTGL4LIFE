@@ -78,7 +78,7 @@ public class GameConfirmationController {
                         MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId);
                     }
 
-                    MockDB.addUserWin(winnerId);
+                    MockDB.addUserWin(winnerId, game.getGameMode());
                 }
 
                 ArrayList<String> losers = MockDB.getGame(gameId).getLosers();
@@ -87,7 +87,7 @@ public class GameConfirmationController {
                         System.out.println("Adding win to leaderboard");
                         MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId);
                     }
-                    MockDB.addUserLoss(loserId);
+                    MockDB.addUserLoss(loserId, game.getGameMode());
                 }
 
                 // slett game og gameconfirmation
@@ -161,7 +161,7 @@ public class GameConfirmationController {
                     if(!sameLeaderboardId.equals("")) {
                         MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId);
                     }
-                    MockDB.addUserWin(winnerId);
+                    MockDB.addUserWin(winnerId, game.getGameMode());
                 }
 
                 ArrayList<String> losers = MockDB.getGame(gameId).getLosers();
@@ -169,7 +169,7 @@ public class GameConfirmationController {
                     if(!sameLeaderboardId.equals("")) {
                         MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId);
                     }
-                    MockDB.addUserLoss(loserId);
+                    MockDB.addUserLoss(loserId, game.getGameMode());
                 }
                 // slett game og gameconfirmation
 

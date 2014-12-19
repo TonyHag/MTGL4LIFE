@@ -2,12 +2,12 @@ package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.*;
 import com.springapp.mvc.model.Leaderboard;
+import com.springapp.mvc.model.statistics.TotalStats;
 import com.springapp.mvc.service.MockDB;
 import com.springapp.mvc.service.NotificationService;
 import com.springapp.mvc.service.SessionService;
 import com.springapp.mvc.service.ValidationService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -124,7 +124,7 @@ public class LeaderboardController {
             Leaderboard leaderboard = new Leaderboard(userId);
             leaderboard.setName(name);
             leaderboard.setDescription(description);
-            leaderboard.getPlayerStats().add(new UserStatistics(userId));
+            leaderboard.getPlayerStats().add(new TotalStats(userId));
             MockDB.addLeaderboard(leaderboard);
             MockDB.addLeaderboardIdToUser(userId, leaderboard.getId());
 
@@ -281,7 +281,7 @@ public class LeaderboardController {
             leaderboard.getInvitedPlayerUsernames().remove(user);
 
             String userId = sessionService.getUserId();
-            leaderboard.getPlayerStats().add(new UserStatistics(userId));
+            leaderboard.getPlayerStats().add(new TotalStats(userId));
 
             MockDB.updateLeaderboard(leaderboard);
             MockDB.addLeaderboardIdToUser(userId, leaderboardId);

@@ -1,5 +1,6 @@
 package com.springapp.mvc.model;
 
+import com.springapp.mvc.model.statistics.TotalStats;
 import com.springapp.mvc.service.IdService;
 import com.springapp.mvc.service.MockDB;
 
@@ -13,7 +14,7 @@ public class Leaderboard {
     private String ownerId;
     private String name;
     private String description;
-    private ArrayList<UserStatistics> playerStats;
+    private ArrayList<TotalStats> playerStats;
     private String inviteErrorMessage;
     private String ownerUsername;
     private ArrayList<String> invitedPlayerUsernames = new ArrayList<String>();
@@ -39,17 +40,17 @@ public class Leaderboard {
         IdService idService = new IdService();
         this.id = idService.getLeaderboardId("leaderboard");
         this.ownerUsername = MockDB.getUsername(ownerId);
-        playerStats = new ArrayList<UserStatistics>();
+        playerStats = new ArrayList<TotalStats>();
     }
 
     public void addUser(String userId) {
-        UserStatistics newPlayerStats = new UserStatistics(userId);
+        TotalStats newPlayerStats = new TotalStats(userId);
         playerStats.add(newPlayerStats);
     }
 
     public void removeUser(String userId) {
-        for(UserStatistics stat : playerStats) {
-            if(stat.getUserId().equals(userId)) {
+        for(TotalStats stat : playerStats) {
+            if(stat.getUserID().equals(userId)) {
                 playerStats.remove(stat);
                 break;
             }
@@ -95,11 +96,11 @@ public class Leaderboard {
         this.description = description;
     }
 
-    public ArrayList<UserStatistics> getPlayerStats() {
+    public ArrayList<TotalStats> getPlayerStats() {
         return playerStats;
     }
 
-    public void setPlayerStats(ArrayList<UserStatistics> playerStats) {
+    public void setPlayerStats(ArrayList<TotalStats> playerStats) {
         this.playerStats = playerStats;
     }
 }

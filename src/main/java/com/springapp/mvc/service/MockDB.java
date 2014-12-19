@@ -3,7 +3,8 @@ package com.springapp.mvc.service;
 import com.springapp.mvc.model.*;
 import com.springapp.mvc.model.notifications.GameConfirmation;
 import com.springapp.mvc.model.notifications.LeaderboardInvitation;
-import com.springapp.mvc.model.notifications.Notification;
+import com.springapp.mvc.model.statistics.Statistics;
+import com.springapp.mvc.model.statistics.TotalStats;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,8 @@ public class MockDB {
     public static ArrayList<GameConfirmationData> gameConfirmationDatas = new ArrayList<GameConfirmationData>();
     public static ArrayList<Lobby> lobbies = new ArrayList<Lobby>();
     public static ArrayList<Leaderboard> leaderboards = new ArrayList<Leaderboard>();
+
+
 
 
 
@@ -94,41 +97,51 @@ public class MockDB {
         return available;
     }
 
-    public static void addUserWin(String userId) {
+    public static void addUserWin(String userId, String gameMode) {
         for (User u : users) {
             if(u.getId().equals(userId)) {
-
-                u.addWin();
-
+                u.addWin(gameMode);
             }
         }
     }
 
-    public static void addUserLoss(String userId) {
+    public static void addUserLoss(String userId, String gameMode) {
         for (User u : users) {
             if(u.getId().equals(userId)) {
-                u.addLoss();
+                u.addLoss(gameMode);
             }
         }
     }
 
-    public static UserStatistics getUserStatsByName(String username) {
+    public static Statistics getUserStatsByName(String username, String gameMode) {
 
         for(User u : users) {
             if(u.getUsername().equals(username)) {
-                System.out.println("MockDB: Stats found for " + u.getStats().getUsername());
-                return u.getStats();
+                System.out.println("MockDB: Stats found for " + u.getTotalStats().getUsername());
+                if(gameMode.equals("ffa")) {
+                    return u.getFfaStats();
+                } else if(gameMode.equals("thg")) {
+                    return u.getThgStats();
+                } else {
+                    return u.getTotalStats();
+                }
             }
         }
         return null;
     }
 
-    public static UserStatistics getUserStatsById(String userId) {
+    public static Statistics getUserStatsById(String userId, String gameMode) {
 
         for(User u : users) {
             if(u.getId().equals(userId)) {
                 System.out.println("MockDB: Stats found for " + u.getUsername());
-                return u.getStats();
+                if(gameMode.equals("ffa")) {
+                    return u.getFfaStats();
+                } else if(gameMode.equals("thg")) {
+                    return u.getThgStats();
+                } else {
+                    return u.getTotalStats();
+                }
             }
         }
         return null;
@@ -265,8 +278,8 @@ public class MockDB {
     public static boolean isPlayerInLeaderboard(String userId, String leaderboardId) {
         for(Leaderboard leaderboard : leaderboards) {
             if(leaderboard.getId().equals(leaderboardId)) {
-                for(UserStatistics stats : leaderboard.getPlayerStats()) {
-                    if(stats.getUserId().equals(userId)) {
+                for(TotalStats stats : leaderboard.getPlayerStats()) {
+                    if(stats.getUserID().equals(userId)) {
                         return true;
                     }
                 }
@@ -278,9 +291,9 @@ public class MockDB {
     public static void addUserWinToLeaderboard(String userId, String leaderboardId) {
         for(Leaderboard leaderboard : leaderboards) {
             if(leaderboard.getId().equals(leaderboardId)) {
-                ArrayList<UserStatistics> stats = leaderboard.getPlayerStats();
-                for(UserStatistics s : stats) {
-                    if(s.getUserId().equals(userId)) {
+                ArrayList<TotalStats> stats = leaderboard.getPlayerStats();
+                for(TotalStats s : stats) {
+                    if(s.getUserID().equals(userId)) {
                         s.addWin();
                     }
                 }
@@ -294,9 +307,9 @@ public class MockDB {
     public static void addUserLossToLeaderboard(String userId, String leaderboardId) {
         for(Leaderboard leaderboard : leaderboards) {
             if(leaderboard.getId().equals(leaderboardId)) {
-                ArrayList<UserStatistics> stats = leaderboard.getPlayerStats();
-                for(UserStatistics s : stats) {
-                    if(s.getUserId().equals(userId)) {
+                ArrayList<TotalStats> stats = leaderboard.getPlayerStats();
+                for(TotalStats s : stats) {
+                    if(s.getUserID().equals(userId)) {
                         s.addLoss();
                     }
                 }
@@ -513,12 +526,6 @@ public class MockDB {
         }
         return null;
     }
-
-
-
-
-
-
 
     // ------------- Game confirmation -------------
     // ---------------------------------------------
