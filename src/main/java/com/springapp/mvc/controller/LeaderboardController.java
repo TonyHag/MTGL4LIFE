@@ -2,6 +2,8 @@ package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.*;
 import com.springapp.mvc.model.Leaderboard;
+import com.springapp.mvc.model.statistics.FFAStats;
+import com.springapp.mvc.model.statistics.THGStats;
 import com.springapp.mvc.model.statistics.TotalStats;
 import com.springapp.mvc.service.MockDB;
 import com.springapp.mvc.service.NotificationService;
@@ -60,7 +62,7 @@ public class LeaderboardController {
     }
 
     @RequestMapping(value ="/leaderboard/{leaderboardId}", method = RequestMethod.GET)
-    public String getLeaderboardPage(ModelMap model, HttpServletRequest request, @PathVariable("leaderboardId") String leaderboardId) {
+    public String getLeaderboardPage(ModelMap model, HttpServletRequest request, @PathVariable("leaderboardId") String leaderboardId, @RequestParam(value = "statsType", required = false)String statsType) {
 
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
@@ -72,6 +74,17 @@ public class LeaderboardController {
 
         Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
         model.addAttribute("leaderboard", leaderboard);
+
+        if(statsType == null || statsType.equals("total")) {
+            model.addAttribute("statsList",leaderboard.getTotalStats());
+        } else if(statsType.equals("ffa")) {
+            model.addAttribute("statsList",leaderboard.getFfaStats());
+        } else if(statsType.equals("thg")) {
+            model.addAttribute("statsList",leaderboard.getThgStats());
+        }
+        model.addAttribute("statsType", statsType);
+
+
 
         return "leaderboard";
     }
@@ -124,7 +137,9 @@ public class LeaderboardController {
             Leaderboard leaderboard = new Leaderboard(userId);
             leaderboard.setName(name);
             leaderboard.setDescription(description);
-            leaderboard.getPlayerStats().add(new TotalStats(userId));
+            leaderboard.getTotalStats().add(new TotalStats(userId));
+            leaderboard.getFfaStats().add(new FFAStats(userId));
+            leaderboard.getThgStats().add(new THGStats(userId));
             MockDB.addLeaderboard(leaderboard);
             MockDB.addLeaderboardIdToUser(userId, leaderboard.getId());
 
@@ -138,7 +153,7 @@ public class LeaderboardController {
     }
 
     @RequestMapping(value = "/leaderboard/manage/{leaderboardId}")
-    public String getManageLeaderboardPage(ModelMap model, HttpServletRequest request, @PathVariable("leaderboardId") String leaderboardId) {
+    public String getManageLeaderboardPage(ModelMap model, HttpServletRequest request, @PathVariable("leaderboardId") String leaderboardId, @RequestParam(value = "statsType", required = false)String statsType) {
 
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
@@ -154,6 +169,19 @@ public class LeaderboardController {
             Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
             model.addAttribute("leaderboardRemoveError", sessionService.getErrorMessage("leaderboardRemoveError"));
             model.addAttribute("leaderboard", leaderboard);
+
+
+            if(statsType == null || statsType.equals("total")) {
+                model.addAttribute("statsList",leaderboard.getTotalStats());
+            } else if(statsType.equals("ffa")) {
+                model.addAttribute("statsList",leaderboard.getFfaStats());
+            } else if(statsType.equals("thg")) {
+                model.addAttribute("statsList",leaderboard.getThgStats());
+            }
+
+            model.addAttribute("statsType", statsType);
+
+
             return "manageLeaderboard";
         }
 
@@ -281,7 +309,10 @@ public class LeaderboardController {
             leaderboard.getInvitedPlayerUsernames().remove(user);
 
             String userId = sessionService.getUserId();
-            leaderboard.getPlayerStats().add(new TotalStats(userId));
+
+            leaderboard.getTotalStats().add(new TotalStats(userId));
+            leaderboard.getFfaStats().add(new FFAStats(userId));
+            leaderboard.getThgStats().add(new THGStats(userId));
 
             MockDB.updateLeaderboard(leaderboard);
             MockDB.addLeaderboardIdToUser(userId, leaderboardId);
@@ -318,6 +349,5 @@ public class LeaderboardController {
         return "redirect:/notifications";
 
     }
-
 
 }

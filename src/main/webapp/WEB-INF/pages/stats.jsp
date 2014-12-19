@@ -75,10 +75,8 @@
 <script type="text/javascript">
     $(function() {
 
-
         var statsType = "${statsType}";
         console.log(statsType);
-
 
         if(statsType == "total") {
             $("#totalNavTab").addClass("active");

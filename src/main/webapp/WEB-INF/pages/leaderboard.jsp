@@ -26,6 +26,19 @@
     <p>${leaderboard.description}</p>
 
     <h3>Players</h3>
+    <ul class="nav nav-tabs">
+        <li role="presentation" id="totalNavTab" class="active">
+            <a href="/leaderboard/${leaderboard.id}?statsType=total">Total</a>
+        </li>
+
+        <li role="presentation" id="ffaNavTab">
+            <a href="/leaderboard/${leaderboard.id}?statsType=ffa">Free For All</a>
+        </li>
+
+        <li role="presentation" id="thgNavTab">
+            <a href="/leaderboard/${leaderboard.id}?statsType=thg">Two Headed Giant</a>
+        </li>
+    </ul>
 
     <div class="table-responsive">
         <table class="table ">
@@ -40,13 +53,13 @@
             </thead>
 
             <tbody>
-            <c:forEach items="${leaderboard.playerStats}" var="playerStat">
+            <c:forEach items="${statsList}" var="stats">
                 <tr>
-                    <td> ${playerStat.username}     </td>
-                    <td> ${playerStat.wins}         </td>
-                    <td> ${playerStat.losses}       </td>
-                    <td> ${playerStat.total}        </td>
-                    <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${playerStat.winPercentage}"/></td>
+                    <td> ${stats.username}     </td>
+                    <td> ${stats.wins}         </td>
+                    <td> ${stats.losses}       </td>
+                    <td> ${stats.total}        </td>
+                    <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${stats.winPercentage}"/></td>
                 </tr>
             </c:forEach>
 
@@ -60,5 +73,33 @@
 </div>
 
 
+<script type="text/javascript">
+    $(function() {
+
+        var statsType = "${statsType}";
+        console.log(statsType);
+
+        if(statsType == "total") {
+            $("#totalNavTab").addClass("active");
+            $("#thgNavTab").removeClass("active");
+            $("#ffaNavTab").removeClass("active");
+        }
+
+        if(statsType == "ffa") {
+            $("#totalNavTab").removeClass("active");
+            $("#thgNavTab").removeClass("active");
+            $("#ffaNavTab").addClass("active");
+        }
+
+        if(statsType == "thg") {
+            $("#totalNavTab").removeClass("active");
+            $("#thgNavTab").addClass("active");
+            $("#ffaNavTab").removeClass("active");
+        }
+
+
+
+    });
+</script>
 </body>
 </html>

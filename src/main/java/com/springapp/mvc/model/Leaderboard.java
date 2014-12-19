@@ -1,5 +1,7 @@
 package com.springapp.mvc.model;
 
+import com.springapp.mvc.model.statistics.FFAStats;
+import com.springapp.mvc.model.statistics.THGStats;
 import com.springapp.mvc.model.statistics.TotalStats;
 import com.springapp.mvc.service.IdService;
 import com.springapp.mvc.service.MockDB;
@@ -14,7 +16,11 @@ public class Leaderboard {
     private String ownerId;
     private String name;
     private String description;
-    private ArrayList<TotalStats> playerStats;
+    private ArrayList<TotalStats> totalStats;
+    private ArrayList<FFAStats> ffaStats;
+    private ArrayList<THGStats> thgStats;
+
+
     private String inviteErrorMessage;
     private String ownerUsername;
     private ArrayList<String> invitedPlayerUsernames = new ArrayList<String>();
@@ -40,21 +46,42 @@ public class Leaderboard {
         IdService idService = new IdService();
         this.id = idService.getLeaderboardId("leaderboard");
         this.ownerUsername = MockDB.getUsername(ownerId);
-        playerStats = new ArrayList<TotalStats>();
+        totalStats = new ArrayList<TotalStats>();
+        ffaStats = new ArrayList<FFAStats>();
+        thgStats = new ArrayList<THGStats>();
     }
 
     public void addUser(String userId) {
-        TotalStats newPlayerStats = new TotalStats(userId);
-        playerStats.add(newPlayerStats);
+        totalStats.add(new TotalStats(userId));
+        ffaStats.add(new FFAStats(userId));
+        thgStats.add(new THGStats(userId));
+
     }
 
     public void removeUser(String userId) {
-        for(TotalStats stat : playerStats) {
+
+        for(TotalStats stat : totalStats) {
             if(stat.getUserID().equals(userId)) {
-                playerStats.remove(stat);
+                totalStats.remove(stat);
                 break;
             }
         }
+
+        for(FFAStats stat : ffaStats) {
+            if(stat.getUserID().equals(userId)) {
+                ffaStats.remove(stat);
+                break;
+            }
+        }
+
+        for(THGStats stat : thgStats) {
+            if(stat.getUserID().equals(userId)) {
+                thgStats.remove(stat);
+                break;
+            }
+        }
+
+
     }
 
     public String getOwnerUsername() {
@@ -96,11 +123,27 @@ public class Leaderboard {
         this.description = description;
     }
 
-    public ArrayList<TotalStats> getPlayerStats() {
-        return playerStats;
+    public ArrayList<TotalStats> getTotalStats() {
+        return totalStats;
     }
 
-    public void setPlayerStats(ArrayList<TotalStats> playerStats) {
-        this.playerStats = playerStats;
+    public void setTotalStats(ArrayList<TotalStats> playerStats) {
+        this.totalStats = playerStats;
+    }
+
+    public ArrayList<FFAStats> getFfaStats() {
+        return ffaStats;
+    }
+
+    public void setFfaStats(ArrayList<FFAStats> ffaStats) {
+        this.ffaStats = ffaStats;
+    }
+
+    public ArrayList<THGStats> getThgStats() {
+        return thgStats;
+    }
+
+    public void setThgStats(ArrayList<THGStats> thgStats) {
+        this.thgStats = thgStats;
     }
 }

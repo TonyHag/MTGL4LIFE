@@ -3,7 +3,9 @@ package com.springapp.mvc.service;
 import com.springapp.mvc.model.*;
 import com.springapp.mvc.model.notifications.GameConfirmation;
 import com.springapp.mvc.model.notifications.LeaderboardInvitation;
+import com.springapp.mvc.model.statistics.FFAStats;
 import com.springapp.mvc.model.statistics.Statistics;
+import com.springapp.mvc.model.statistics.THGStats;
 import com.springapp.mvc.model.statistics.TotalStats;
 
 import java.util.ArrayList;
@@ -278,7 +280,7 @@ public class MockDB {
     public static boolean isPlayerInLeaderboard(String userId, String leaderboardId) {
         for(Leaderboard leaderboard : leaderboards) {
             if(leaderboard.getId().equals(leaderboardId)) {
-                for(TotalStats stats : leaderboard.getPlayerStats()) {
+                for(TotalStats stats : leaderboard.getTotalStats()) {
                     if(stats.getUserID().equals(userId)) {
                         return true;
                     }
@@ -288,32 +290,72 @@ public class MockDB {
          return false;
     }
 
-    public static void addUserWinToLeaderboard(String userId, String leaderboardId) {
+    public static void addUserWinToLeaderboard(String userId, String leaderboardId, String gameMode) {
+
         for(Leaderboard leaderboard : leaderboards) {
             if(leaderboard.getId().equals(leaderboardId)) {
-                ArrayList<TotalStats> stats = leaderboard.getPlayerStats();
-                for(TotalStats s : stats) {
+                ArrayList<TotalStats> totalStats = leaderboard.getTotalStats();
+                for(TotalStats s : totalStats) {
                     if(s.getUserID().equals(userId)) {
                         s.addWin();
                     }
                 }
-                leaderboard.setPlayerStats(stats);
+                leaderboard.setTotalStats(totalStats);
+
+                if(gameMode.equals("ffa")) {
+                    ArrayList<FFAStats> ffaStat = leaderboard.getFfaStats();
+                    for(FFAStats s : ffaStat) {
+                        if(s.getUserID().equals(userId)) {
+                            s.addWin();
+                        }
+                    }
+                    leaderboard.setFfaStats(ffaStat);
+                } else if(gameMode.equals("thg")) {
+                    ArrayList<THGStats> thgStats = leaderboard.getThgStats();
+                    for(THGStats s : thgStats) {
+                        if(s.getUserID().equals(userId)) {
+                            s.addWin();
+                        }
+                    }
+                    leaderboard.setThgStats(thgStats);
+                }
+
+
                 break;
             }
 
         }
     }
 
-    public static void addUserLossToLeaderboard(String userId, String leaderboardId) {
+    public static void addUserLossToLeaderboard(String userId, String leaderboardId, String gameMode) {
         for(Leaderboard leaderboard : leaderboards) {
             if(leaderboard.getId().equals(leaderboardId)) {
-                ArrayList<TotalStats> stats = leaderboard.getPlayerStats();
-                for(TotalStats s : stats) {
+                ArrayList<TotalStats> totalStats = leaderboard.getTotalStats();
+                for(TotalStats s : totalStats) {
                     if(s.getUserID().equals(userId)) {
                         s.addLoss();
                     }
                 }
-                leaderboard.setPlayerStats(stats);
+                leaderboard.setTotalStats(totalStats);
+
+                if(gameMode.equals("ffa")) {
+                    ArrayList<FFAStats> ffaStat = leaderboard.getFfaStats();
+                    for(FFAStats s : ffaStat) {
+                        if(s.getUserID().equals(userId)) {
+                            s.addLoss();
+                        }
+                    }
+                    leaderboard.setFfaStats(ffaStat);
+                } else if(gameMode.equals("thg")) {
+                    ArrayList<THGStats> thgStats = leaderboard.getThgStats();
+                    for(THGStats s : thgStats) {
+                        if(s.getUserID().equals(userId)) {
+                            s.addLoss();
+                        }
+                    }
+                    leaderboard.setThgStats(thgStats);
+                }
+
                 break;
             }
 

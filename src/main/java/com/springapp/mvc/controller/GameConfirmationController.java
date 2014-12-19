@@ -75,7 +75,7 @@ public class GameConfirmationController {
                 for (String winnerId : winners) {
                     if(!sameLeaderboardId.equals("")) {
                         System.out.println("Adding win to leaderboard");
-                        MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId);
+                        MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId, game.getGameMode());
                     }
 
                     MockDB.addUserWin(winnerId, game.getGameMode());
@@ -85,7 +85,7 @@ public class GameConfirmationController {
                 for(String loserId : losers) {
                     if(!sameLeaderboardId.equals("")) {
                         System.out.println("Adding win to leaderboard");
-                        MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId);
+                        MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId, game.getGameMode());
                     }
                     MockDB.addUserLoss(loserId, game.getGameMode());
                 }
@@ -159,7 +159,7 @@ public class GameConfirmationController {
 
                 for (String winnerId : winners) {
                     if(!sameLeaderboardId.equals("")) {
-                        MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId);
+                        MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId, game.getGameMode());
                     }
                     MockDB.addUserWin(winnerId, game.getGameMode());
                 }
@@ -167,7 +167,7 @@ public class GameConfirmationController {
                 ArrayList<String> losers = MockDB.getGame(gameId).getLosers();
                 for(String loserId : losers) {
                     if(!sameLeaderboardId.equals("")) {
-                        MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId);
+                        MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId, game.getGameMode());
                     }
                     MockDB.addUserLoss(loserId, game.getGameMode());
                 }
