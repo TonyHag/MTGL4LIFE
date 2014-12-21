@@ -1,10 +1,9 @@
 package com.springapp.mvc.service;
 
-import com.springapp.mvc.model.Game;
+import com.springapp.mvc.model.game.Game;
 import com.springapp.mvc.model.notifications.GameConfirmation;
 import com.springapp.mvc.model.notifications.LeaderboardInvitation;
-import com.springapp.mvc.model.notifications.Notification;
-import com.springapp.mvc.model.Player;
+import com.springapp.mvc.model.game.Player;
 
 import java.util.ArrayList;
 

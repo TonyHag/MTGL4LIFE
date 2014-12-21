@@ -1,9 +1,8 @@
 package com.springapp.mvc.controller;
 
-import com.springapp.mvc.model.Game;
-import com.springapp.mvc.model.Lobby;
-import com.springapp.mvc.model.Player;
-import com.springapp.mvc.model.Team;
+import com.springapp.mvc.model.game.Game;
+import com.springapp.mvc.model.game.Lobby;
+import com.springapp.mvc.model.game.Player;
 import com.springapp.mvc.service.MockDB;
 import com.springapp.mvc.service.SessionService;
 import org.springframework.stereotype.Controller;
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.jms.Session;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 
 /**
  * Created by eirikskogland on 03.12.14.

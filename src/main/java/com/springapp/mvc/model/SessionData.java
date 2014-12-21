@@ -1,5 +1,6 @@
 package com.springapp.mvc.model;
 
+import com.springapp.mvc.model.game.Lobby;
 import com.springapp.mvc.model.leaderboard.Leaderboard;
 import com.springapp.mvc.model.notifications.Notification;
 

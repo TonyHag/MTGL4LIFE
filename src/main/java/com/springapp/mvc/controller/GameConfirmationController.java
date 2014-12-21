@@ -1,6 +1,8 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.*;
+import com.springapp.mvc.model.game.Game;
+import com.springapp.mvc.model.game.Player;
 import com.springapp.mvc.service.MockDB;
 import com.springapp.mvc.service.NotificationService;
 import com.springapp.mvc.service.SessionService;
@@ -12,9 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.ws.rs.PathParam;
-import javax.xml.bind.SchemaOutputResolver;
 import java.util.ArrayList;
 
 /**

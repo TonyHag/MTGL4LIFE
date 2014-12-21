@@ -1,6 +1,8 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.*;
+import com.springapp.mvc.model.game.Game;
+import com.springapp.mvc.model.game.Player;
 import com.springapp.mvc.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,11 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.ws.rs.PathParam;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by eirikskogland on 03.12.14.
@@ -78,6 +77,7 @@ public class GameController {
         Game game = MockDB.getGame(gameId);
         if(game.getHostId().equals(userId)) { // Sjekker at man er host / evt senere om man er med i game
             game.setActive(false);
+            sessionService.inActivateGame();
 
             if(game.getGameMode().equals("ffa")) {
                 ArrayList<String> winners = new ArrayList<String>();
@@ -183,6 +183,7 @@ public class GameController {
         Game game = MockDB.getGame(gameId);
         if(game.getHostId().equals(userId)) { // Sjekker at man er host / evt senere om man er med i game
             game.setActive(false);
+            sessionService.inActivateGame();
 
             return "redirect:/lobby/" + sessionService.getLobby().getId();
 

@@ -1,4 +1,6 @@
-package com.springapp.mvc.model;
+package com.springapp.mvc.model.game;
+
+import com.springapp.mvc.model.game.Player;
 
 import java.util.ArrayList;
 

@@ -1,6 +1,8 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.*;
+import com.springapp.mvc.model.game.Game;
+import com.springapp.mvc.model.game.Lobby;
 import com.springapp.mvc.model.leaderboard.Leaderboard;
 import com.springapp.mvc.model.notifications.GameConfirmation;
 import com.springapp.mvc.model.notifications.LeaderboardInvitation;

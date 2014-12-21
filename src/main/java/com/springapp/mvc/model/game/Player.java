@@ -1,4 +1,4 @@
-package com.springapp.mvc.model;
+package com.springapp.mvc.model.game;
 
 /**
  * Created by eirikskogland on 03.12.14.

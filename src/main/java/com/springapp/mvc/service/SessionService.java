@@ -1,11 +1,9 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.ErrorMessage;
-import com.springapp.mvc.model.Lobby;
+import com.springapp.mvc.model.game.Lobby;
 import com.springapp.mvc.model.SessionData;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
-import javax.jms.Session;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

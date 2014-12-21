@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="back to lobby knapp i game">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Leaderboard.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/leaderboard/Leaderboard.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/LeaderboardInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/leaderboard/LeaderboardInfo.java" />
+    <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Game.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/game/Game.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Lobby.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/game/Lobby.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Player.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/game/Player.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Team.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/game/Team.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameConfirmationController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameConfirmationController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/GameConfirmationData.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/GameConfirmationData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LeaderboardController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LeaderboardController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/MockDB.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/MockDB.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/NotificationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/NotificationService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/SessionData.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/SessionData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/resources/css/cover.css" afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/cover.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/SessionService.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/SessionService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MTGL4LIFE.iws" />
@@ -36,11 +39,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="game.jsp" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="game.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8558559" vertical-offset="1395" max-vertical-offset="5340">
+            <state vertical-scroll-proportion="-23.75" vertical-offset="1395" max-vertical-offset="5340">
               <caret line="131" column="26" selection-start-line="131" selection-start-column="26" selection-end-line="131" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IdService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/IdService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1095">
+              <caret line="15" column="24" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -61,16 +74,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="32414" max-vertical-offset="95070">
               <caret line="2172" column="27" selection-start-line="2172" selection-start-column="20" selection-end-line="2172" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stats.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/stats.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="1665">
-              <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="101" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -110,17 +113,17 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/MockDB.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9000">
-              <caret line="352" column="40" selection-start-line="352" selection-start-column="40" selection-end-line="352" selection-end-column="40" />
+              <caret line="354" column="40" selection-start-line="354" selection-start-column="40" selection-end-line="354" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameController.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="GameController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2145" max-vertical-offset="2835">
-              <caret line="172" column="38" selection-start-line="172" selection-start-column="38" selection-end-line="172" selection-end-column="38" />
+            <state vertical-scroll-proportion="-0.9782609" vertical-offset="1665" max-vertical-offset="2865">
+              <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -129,8 +132,8 @@
       <file leaf-file-name="LobbyController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="5475">
-              <caret line="337" column="87" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5475">
+              <caret line="35" column="30" selection-start-line="35" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -182,8 +185,8 @@
         <option value="$PROJECT_DIR$/src/main/webapp/resources/css/cover.css" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/leaderboard/LeaderboardInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java" />
       </list>
     </option>
   </component>
@@ -648,6 +651,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="game" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MTGL4LIFE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MTGL4LIFE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mvc" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -994,7 +1031,7 @@
       <workItem from="1418738563930" duration="30657000" />
       <workItem from="1419009278579" duration="989000" />
       <workItem from="1419075932808" duration="469000" />
-      <workItem from="1419158750156" duration="2758000" />
+      <workItem from="1419158750156" duration="4322000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -1132,11 +1169,15 @@
       <created>1419001791244</created>
       <updated>1419001791244</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="back to lobby knapp i game">
+      <created>1419164083494</created>
+      <updated>1419164083494</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148141000" />
+    <option name="totallyTimeSpent" value="149705000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1160,7 +1201,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23861386" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1175,12 +1216,13 @@
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2284345" sideWeight="0.49926144" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2284345" sideWeight="0.49926144" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2891089" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24920128" sideWeight="0.50073856" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1192,7 +1234,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1245,7 +1286,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Endret en del" />
     <MESSAGE value="&#10;kj" />
     <MESSAGE value="game js logicc" />
     <MESSAGE value="game js logicc fixed" />
@@ -1270,7 +1310,8 @@
     <MESSAGE value="GameConfirmations er nå et eget objekt som arver fra Notification" />
     <MESSAGE value="Forskjellige stats for ffa og thg på individuell statistikk" />
     <MESSAGE value="fikset FFA og THG for leaderboards" />
-    <option name="LAST_COMMIT_MESSAGE" value="fikset FFA og THG for leaderboards" />
+    <MESSAGE value="back to lobby knapp i game" />
+    <option name="LAST_COMMIT_MESSAGE" value="back to lobby knapp i game" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1294,13 +1335,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="70" max-vertical-offset="615">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/IdService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1392,15 +1426,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Team.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/game/Team.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
           <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
           <folding>
-            <element signature="e#751#752#0" expanded="false" />
-            <element signature="e#786#787#0" expanded="false" />
-            <element signature="e#1091#1092#0" expanded="false" />
-            <element signature="e#1121#1122#0" expanded="false" />
+            <element signature="e#801#802#0" expanded="false" />
+            <element signature="e#836#837#0" expanded="false" />
+            <element signature="e#1141#1142#0" expanded="false" />
+            <element signature="e#1171#1172#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1412,62 +1446,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Lobby.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/game/Lobby.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="765" max-vertical-offset="3600">
           <caret line="133" column="2" selection-start-line="133" selection-start-column="2" selection-end-line="133" selection-end-column="2" />
           <folding>
-            <element signature="e#454#460#0" expanded="false" />
-            <element signature="e#516#524#0" expanded="false" />
-            <element signature="e#579#587#0" expanded="false" />
-            <element signature="e#668#669#0" expanded="false" />
-            <element signature="e#696#697#0" expanded="false" />
-            <element signature="e#749#750#0" expanded="false" />
-            <element signature="e#783#784#0" expanded="false" />
-            <element signature="e#826#827#0" expanded="false" />
-            <element signature="e#854#855#0" expanded="false" />
-            <element signature="e#907#908#0" expanded="false" />
-            <element signature="e#941#942#0" expanded="false" />
-            <element signature="e#973#974#0" expanded="false" />
-            <element signature="e#1001#1002#0" expanded="false" />
-            <element signature="e#1044#1045#0" expanded="false" />
-            <element signature="e#1078#1079#0" expanded="false" />
-            <element signature="e#1119#1120#0" expanded="false" />
-            <element signature="e#1147#1148#0" expanded="false" />
-            <element signature="e#1198#1199#0" expanded="false" />
-            <element signature="e#1232#1233#0" expanded="false" />
-            <element signature="e#3979#3980#0" expanded="false" />
-            <element signature="e#4012#4013#0" expanded="false" />
-            <element signature="e#4064#4065#0" expanded="false" />
-            <element signature="e#4108#4109#0" expanded="false" />
-            <element signature="e#4170#4171#0" expanded="false" />
-            <element signature="e#4199#4200#0" expanded="false" />
-            <element signature="e#4244#4245#0" expanded="false" />
-            <element signature="e#4280#4281#0" expanded="false" />
-            <element signature="e#4315#4316#0" expanded="false" />
-            <element signature="e#4346#4347#0" expanded="false" />
-            <element signature="e#4394#4395#0" expanded="false" />
-            <element signature="e#4434#4435#0" expanded="false" />
-            <element signature="e#4629#4630#0" expanded="false" />
-            <element signature="e#4659#4660#0" expanded="false" />
-            <element signature="e#4716#4717#0" expanded="false" />
-            <element signature="e#4754#4755#0" expanded="false" />
-            <element signature="e#4792#4793#0" expanded="false" />
-            <element signature="e#4826#4827#0" expanded="false" />
-            <element signature="e#4880#4881#0" expanded="false" />
-            <element signature="e#4926#4927#0" expanded="false" />
-            <element signature="e#4959#4960#0" expanded="false" />
-            <element signature="e#4988#4989#0" expanded="false" />
-            <element signature="e#5032#5033#0" expanded="false" />
-            <element signature="e#5068#5069#0" expanded="false" />
-            <element signature="e#5097#5098#0" expanded="false" />
-            <element signature="e#5122#5123#0" expanded="false" />
-            <element signature="e#5158#5159#0" expanded="false" />
-            <element signature="e#5186#5187#0" expanded="false" />
-            <element signature="e#5225#5226#0" expanded="false" />
-            <element signature="e#5260#5261#0" expanded="false" />
-            <element signature="e#5316#5317#0" expanded="false" />
-            <element signature="e#5364#5365#0" expanded="false" />
+            <element signature="e#459#465#0" expanded="false" />
+            <element signature="e#521#529#0" expanded="false" />
+            <element signature="e#584#592#0" expanded="false" />
+            <element signature="e#673#674#0" expanded="false" />
+            <element signature="e#701#702#0" expanded="false" />
+            <element signature="e#754#755#0" expanded="false" />
+            <element signature="e#788#789#0" expanded="false" />
+            <element signature="e#831#832#0" expanded="false" />
+            <element signature="e#859#860#0" expanded="false" />
+            <element signature="e#912#913#0" expanded="false" />
+            <element signature="e#946#947#0" expanded="false" />
+            <element signature="e#978#979#0" expanded="false" />
+            <element signature="e#1006#1007#0" expanded="false" />
+            <element signature="e#1049#1050#0" expanded="false" />
+            <element signature="e#1083#1084#0" expanded="false" />
+            <element signature="e#1124#1125#0" expanded="false" />
+            <element signature="e#1152#1153#0" expanded="false" />
+            <element signature="e#1203#1204#0" expanded="false" />
+            <element signature="e#1237#1238#0" expanded="false" />
+            <element signature="e#3984#3985#0" expanded="false" />
+            <element signature="e#4017#4018#0" expanded="false" />
+            <element signature="e#4069#4070#0" expanded="false" />
+            <element signature="e#4113#4114#0" expanded="false" />
+            <element signature="e#4175#4176#0" expanded="false" />
+            <element signature="e#4204#4205#0" expanded="false" />
+            <element signature="e#4249#4250#0" expanded="false" />
+            <element signature="e#4285#4286#0" expanded="false" />
+            <element signature="e#4320#4321#0" expanded="false" />
+            <element signature="e#4351#4352#0" expanded="false" />
+            <element signature="e#4399#4400#0" expanded="false" />
+            <element signature="e#4439#4440#0" expanded="false" />
+            <element signature="e#4634#4635#0" expanded="false" />
+            <element signature="e#4664#4665#0" expanded="false" />
+            <element signature="e#4721#4722#0" expanded="false" />
+            <element signature="e#4759#4760#0" expanded="false" />
+            <element signature="e#4797#4798#0" expanded="false" />
+            <element signature="e#4831#4832#0" expanded="false" />
+            <element signature="e#4885#4886#0" expanded="false" />
+            <element signature="e#4931#4932#0" expanded="false" />
+            <element signature="e#4964#4965#0" expanded="false" />
+            <element signature="e#4993#4994#0" expanded="false" />
+            <element signature="e#5037#5038#0" expanded="false" />
+            <element signature="e#5073#5074#0" expanded="false" />
+            <element signature="e#5102#5103#0" expanded="false" />
+            <element signature="e#5127#5128#0" expanded="false" />
+            <element signature="e#5163#5164#0" expanded="false" />
+            <element signature="e#5191#5192#0" expanded="false" />
+            <element signature="e#5230#5231#0" expanded="false" />
+            <element signature="e#5265#5266#0" expanded="false" />
+            <element signature="e#5321#5322#0" expanded="false" />
+            <element signature="e#5369#5370#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1477,8 +1511,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="2266" max-vertical-offset="2940">
           <caret line="31" column="111" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
           <folding>
-            <element signature="e#5804#5805#0" expanded="false" />
-            <element signature="e#5858#5859#0" expanded="false" />
+            <element signature="e#5718#5719#0" expanded="false" />
+            <element signature="e#5772#5773#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1755,32 +1789,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/MockDB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4668" max-vertical-offset="9120">
-          <caret line="352" column="40" selection-start-line="352" selection-start-column="40" selection-end-line="352" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1410" max-vertical-offset="5475">
-          <caret line="337" column="87" selection-start-line="337" selection-start-column="0" selection-end-line="337" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2145" max-vertical-offset="2835">
-          <caret line="172" column="38" selection-start-line="172" selection-start-column="38" selection-end-line="172" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9000">
+          <caret line="354" column="40" selection-start-line="354" selection-start-column="40" selection-end-line="354" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8558559" vertical-offset="1395" max-vertical-offset="5340">
+        <state vertical-scroll-proportion="-23.75" vertical-offset="1395" max-vertical-offset="5340">
           <caret line="131" column="26" selection-start-line="131" selection-start-column="26" selection-end-line="131" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/IdService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="390" max-vertical-offset="1095">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5475">
+          <caret line="35" column="30" selection-start-line="35" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9782609" vertical-offset="1665" max-vertical-offset="2865">
+          <caret line="79" column="44" selection-start-line="79" selection-start-column="44" selection-end-line="79" selection-end-column="44" />
           <folding />
         </state>
       </provider>

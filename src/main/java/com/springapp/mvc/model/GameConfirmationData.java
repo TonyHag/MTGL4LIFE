@@ -1,9 +1,9 @@
 package com.springapp.mvc.model;
 
-import com.springapp.mvc.service.MockDB;
+import com.springapp.mvc.model.game.Game;
+import com.springapp.mvc.model.game.Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by eirikskogland on 05.12.14.
