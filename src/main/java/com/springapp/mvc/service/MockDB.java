@@ -1,6 +1,7 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.*;
+import com.springapp.mvc.model.leaderboard.Leaderboard;
 import com.springapp.mvc.model.notifications.GameConfirmation;
 import com.springapp.mvc.model.notifications.LeaderboardInvitation;
 import com.springapp.mvc.model.statistics.FFAStats;

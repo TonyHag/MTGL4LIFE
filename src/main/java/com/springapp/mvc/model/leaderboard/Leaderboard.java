@@ -1,4 +1,4 @@
-package com.springapp.mvc.model;
+package com.springapp.mvc.model.leaderboard;
 
 import com.springapp.mvc.model.statistics.FFAStats;
 import com.springapp.mvc.model.statistics.THGStats;

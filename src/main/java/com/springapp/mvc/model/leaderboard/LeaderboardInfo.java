@@ -1,4 +1,4 @@
-package com.springapp.mvc.model;
+package com.springapp.mvc.model.leaderboard;
 
 /**
  * Created by eirikskogland on 08.12.14.

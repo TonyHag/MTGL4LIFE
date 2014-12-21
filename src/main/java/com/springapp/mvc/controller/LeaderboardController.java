@@ -1,7 +1,7 @@
 package com.springapp.mvc.controller;
 
-import com.springapp.mvc.model.*;
-import com.springapp.mvc.model.Leaderboard;
+import com.springapp.mvc.model.leaderboard.Leaderboard;
+import com.springapp.mvc.model.leaderboard.LeaderboardInfo;
 import com.springapp.mvc.model.statistics.FFAStats;
 import com.springapp.mvc.model.statistics.THGStats;
 import com.springapp.mvc.model.statistics.TotalStats;

@@ -56,6 +56,9 @@
             <div class="col-xs-4">
                 <button class="btn btn-sm btn-primary" id="btn_toggle_poison">Poison Counters</button>
             </div>
+            <div class="col-xs-4">
+                <a href="/game/quitGame?gameId=${game.id}"><button class="btn btn-sm btn-primary">Back to lobby</button></a>
+            </div>
         </div>
         <c:forEach items="${game.players}" var="player" varStatus="loop">
             <c:if test="${(loop.index-1)%2 == 0}"> <div class="row"> </c:if>
@@ -80,7 +83,7 @@
                 <div class="row">
                     <div id="poisonCounterRow${loop.index}" class="col-xs-12 text-center">
                         <div class="col-xs-1">
-                            <button class="btn-success btn-xs"  id="subtractPoison${loop.index}">-</button>
+                            <button class="btn-success btn-xs poisonbutton" id="subtractPoison${loop.index}">-</button>
                         </div>
                         <div class="playerPoison col-xs-1" id="poison${loop.index}">
                                 ${player.poison}
@@ -124,6 +127,10 @@
             <div class="col-xs-4">
                 <button class="btn btn-sm btn-primary" id="btn_toggle_poison">Poison Counters</button>
             </div>
+                    <div class="col-xs-4">
+                        <a href="/game/quitGame?gameId=${game.id}"><button class="btn btn-sm btn-primary">Back to lobby</button></a>
+                    </div>
+
         </div>
 
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.PathParam;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -165,6 +166,32 @@ public class GameController {
 
         return "redirect:/main";
 
+    }
+
+
+    @RequestMapping("/quitGame")
+    public String quitGame(@PathParam("gameId") String gameId, ModelMap model, HttpServletRequest request) {
+        SessionService sessionService = new SessionService(request);
+        if(!sessionService.isLoggedIn()) {
+            return "redirect:/login";
+        }
+        // -- autentisering ferdig
+        String username = sessionService.getUsername();
+        model.addAttribute("user", username);
+        String userId = sessionService.getUserId();
+
+        Game game = MockDB.getGame(gameId);
+        if(game.getHostId().equals(userId)) { // Sjekker at man er host / evt senere om man er med i game
+            game.setActive(false);
+
+            return "redirect:/lobby/" + sessionService.getLobby().getId();
+
+        }
+
+
+
+
+        return "redirect:/main";
     }
 
 }

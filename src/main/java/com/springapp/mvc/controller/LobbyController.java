@@ -337,6 +337,7 @@ public class LobbyController {
                     // Opprett nytt game
 
                     Game game = new Game(lobby.getHostId(), lobby.getId());
+                    game.setStartingHp(30);
                     game.setHostId(lobby.getHostId());
                     game.setGameMode(lobby.getGameMode());
                     game.setTeam1(lobby.getTeam1());
