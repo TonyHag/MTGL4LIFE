@@ -334,14 +334,7 @@ public class LobbyController {
                     sessionService.setErrorMessage("startError", "");
                     // Opprett nytt game
 
-                    Game game = new Game(lobby.getHostId(), lobby.getId());
-                    game.setStartingHp(30);
-                    game.setHostId(lobby.getHostId());
-                    game.setGameMode(lobby.getGameMode());
-                    game.setTeam1(lobby.getTeam1());
-                    game.setTeam2(lobby.getTeam2());
-                    game.setNumberOfPlayers(lobby.getPlayers().size());
-                    game.setPlayers(lobby.getPlayers());
+                    Game game = createGame(lobby);
 
                     MockDB.addGame(game);
 
@@ -367,6 +360,19 @@ public class LobbyController {
         }
 
 
+    }
+
+    private Game createGame(Lobby lobby) {
+        Game game = new Game(lobby.getHostId(), lobby.getId());
+        game.setStartingHp(30);
+        game.setHostId(lobby.getHostId());
+        game.setGameMode(lobby.getGameMode());
+        game.setTeam1(lobby.getTeam1());
+        game.setTeam2(lobby.getTeam2());
+        game.setNumberOfPlayers(lobby.getPlayers().size());
+        game.setPlayers(lobby.getPlayers());
+
+        return game;
     }
 
 }
