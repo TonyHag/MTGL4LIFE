@@ -46,6 +46,7 @@ public class LobbyController {
             model.addAttribute(lobby);
             MockDB.addLobby(lobby);
 
+
             return "redirect:lobby/" + lobby.getId();
 
         } else {
