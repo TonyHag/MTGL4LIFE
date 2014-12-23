@@ -98,7 +98,7 @@
                 <li><a href="/lobby">Start match</a></li>
                 <li><a href="/stats/${user}">Stats</a></li>
                 <li><a href="/leaderboard">Leaderboards</a></li>
-                <li><a href="/notifications">Notifications</a></li>
+                <li><a href="/notifications">Notifications<span class="badge">4</span></a></li>
 
             </ul>
 

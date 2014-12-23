@@ -35,31 +35,18 @@
 
 
 
+
+
 <div class="container text-left" role="main">
 
 <c:choose>
     <c:when test="${game.gameMode == 'ffa'}">
-        <div class="row">
-            <div class="col-xs-4">
-                <form action="/game/declareWinner" method="post">
-                    <input type="hidden" name="gameId" value="${game.id}" />
-                    <select name="winner">
-                        <c:forEach items="${game.players}" var="player"> <option value="${player.username}">${player.username}</option></c:forEach>
-                    </select>
-                    <input type="submit" value="Declare Winner" class="btn-sm btn-primary">
-                </form>
-            </div>
-            <div class="col-xs-4">
-                <input type="text" id="startingHp" size="4" placeholder="20"/>
-                <button class="btn btn-sm btn-primary" id="btn_reset">Reset Counters</button>
-            </div>
-            <div class="col-xs-4">
-                <button class="btn btn-sm btn-primary" id="btn_toggle_poison">Poison Counters</button>
-            </div>
-            <div class="col-xs-4">
-                <a href="/game/quitGame?gameId=${game.id}"><button class="btn btn-sm btn-primary">Back to lobby</button></a>
-            </div>
-        </div>
+
+        <!-- Game menu -->
+        <jsp:include page="gamenav.jsp">
+            <jsp:param name="game" value="${game}"/>
+        </jsp:include>
+
         <c:forEach items="${game.players}" var="player" varStatus="loop">
             <c:if test="${(loop.index-1)%2 == 0}"> <div class="row"> </c:if>
             <div class="col-xs-4 playerInfo">

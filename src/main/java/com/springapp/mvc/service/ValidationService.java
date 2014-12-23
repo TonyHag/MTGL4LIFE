@@ -5,9 +5,6 @@ package com.springapp.mvc.service;
  */
 public class ValidationService {
 
-
-
-
     public boolean validateLoginCredentials(String username, String password) {
         boolean valid = false;
 
@@ -21,11 +18,16 @@ public class ValidationService {
     public boolean validateUsername(String username) {
         boolean valid = true;
 
+        //String regex = "/^[A-Za-z0-9_-]{3,16}$/";
         if(username == null){
             valid = false;
         } else if(username.length() < 3 || username.length() > 30) {
             valid = false;
-        }
+        }/* else if(!username.matches(regex)) {
+            System.out.println("username does not match regex");
+            valid = false;
+        }  */
+
 
 
         // Sjekk med regex

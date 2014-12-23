@@ -30,6 +30,7 @@ public class LobbyController {
         }
         // -- autentisering ferdig
         String username = sessionService.getUsername();
+        String userID = sessionService.getUserId();
         model.addAttribute("user", username);
 
         // Hvis bruker har et aktivt game, redirect til game
@@ -37,38 +38,39 @@ public class LobbyController {
             return "redirect:/game/" + sessionService.getActiveGame();
         }
 
+        // Sjekk om lobby finnes
         if(sessionService.getLobby() == null) { // lobby ikke finnes
 
-
-            Lobby lobby = new Lobby();
-
-            lobby.setHostId(sessionService.getUserId());
-            lobby.setHostUsername(username);
-
-
-            Player hostPlayer = new Player();
-            hostPlayer.setUserId(lobby.getHostId());
-            hostPlayer.setUsername(lobby.getHostUsername());
-            hostPlayer.setHp(20);
-            lobby.getPlayers().add(hostPlayer);
-            lobby.getTeam1().add(hostPlayer);
-
-
-            model.addAttribute(lobby);
+            Lobby lobby = createLobby(userID, username);
             sessionService.setLobby(lobby);
-
+            model.addAttribute(lobby);
             MockDB.addLobby(lobby);
 
-
-
-
             return "redirect:lobby/" + lobby.getId();
+
         } else {
             return "redirect:lobby/" + sessionService.getLobby().getId();
 
         }
 
     }
+
+    private Lobby createLobby(String userId, String username) {
+        Lobby lobby = new Lobby();
+
+        lobby.setHostId(userId);
+        lobby.setHostUsername(username);
+
+        Player hostPlayer = new Player();
+        hostPlayer.setUserId(lobby.getHostId());
+        hostPlayer.setUsername(lobby.getHostUsername());
+        hostPlayer.setHp(20);
+        lobby.getPlayers().add(hostPlayer);
+        lobby.getTeam1().add(hostPlayer);
+
+        return lobby;
+    }
+
 
     @RequestMapping(value = "/lobby/{lobbyId}")
     public String getExistingLobby(ModelMap model, HttpServletRequest request, @PathVariable("lobbyId") String lobbyId) {
@@ -84,8 +86,6 @@ public class LobbyController {
         Lobby lobby = MockDB.getLobby(lobbyId);
 
         if(lobby != null) {
-
-
 
             if(sessionService.getUserId().equals(lobby.getHostId())) {  // lobby finnes og bruker er eier
 
@@ -294,7 +294,7 @@ public class LobbyController {
             Lobby lobby = MockDB.getLobby(sessionService.getLobby().getId());
 
             if(lobby.getGameMode().equals("ffa")) {
-                if(lobby.getPlayers().size() > 0) {  // sjekke at man ikke starter game med 1 spiller
+                if(lobby.getPlayers().size() > 1) {  // sjekke at man ikke starter game med 1 spiller
                     //lobby.setPlayers(new ArrayList<Player>()); // hvis lobby har spillere fra før//  hindrer dobbelt opp med spillere
                     lobby.setStartError("");
 
