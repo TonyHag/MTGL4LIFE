@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
+    <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="flyttet noe kode inn i metode i lobbycontroller,">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MTGL4LIFE.iws" />
@@ -834,7 +834,7 @@
       <workItem from="1418738563930" duration="30657000" />
       <workItem from="1419009278579" duration="989000" />
       <workItem from="1419075932808" duration="469000" />
-      <workItem from="1419158750156" duration="18863000" />
+      <workItem from="1419158750156" duration="19169000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -1000,11 +1000,15 @@
       <created>1419330396653</created>
       <updated>1419330396653</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="flyttet noe kode inn i metode i lobbycontroller,">
+      <created>1419330410534</created>
+      <updated>1419330410534</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164246000" />
+    <option name="totallyTimeSpent" value="164552000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
