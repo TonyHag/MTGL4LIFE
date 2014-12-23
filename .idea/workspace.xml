@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/gamenav.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/ValidationService.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/ValidationService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/nav.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/nav.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MTGL4LIFE.iws" />
@@ -834,7 +829,7 @@
       <workItem from="1418738563930" duration="30657000" />
       <workItem from="1419009278579" duration="989000" />
       <workItem from="1419075932808" duration="469000" />
-      <workItem from="1419158750156" duration="18094000" />
+      <workItem from="1419158750156" duration="18143000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -984,11 +979,15 @@
       <created>1419168575614</created>
       <updated>1419168575614</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="flyttet noe kode inn i metode i lobbycontroller,">
+      <created>1419329682132</created>
+      <updated>1419329682132</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163477000" />
+    <option name="totallyTimeSpent" value="163526000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1097,7 +1096,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="game js logicc fixed" />
     <MESSAGE value="bootstrap på stats-jsp" />
     <MESSAGE value="fjernet img tag i nav" />
     <MESSAGE value="tatt vekk overskrivt og lagt til errormessage i login" />
@@ -1122,7 +1120,8 @@
     <MESSAGE value="back to lobby knapp i game" />
     <MESSAGE value="blir ikke lenger redirectet til main når man skal inn i lobby igjen etter back to lobby" />
     <MESSAGE value="importert bootstrap.js i nav, så nav funker i mobile" />
-    <option name="LAST_COMMIT_MESSAGE" value="importert bootstrap.js i nav, så nav funker i mobile" />
+    <MESSAGE value="flyttet noe kode inn i metode i lobbycontroller," />
+    <option name="LAST_COMMIT_MESSAGE" value="flyttet noe kode inn i metode i lobbycontroller," />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
