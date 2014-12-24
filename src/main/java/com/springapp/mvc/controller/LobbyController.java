@@ -135,7 +135,7 @@ public class LobbyController {
             }
 
             sessionService.setLobby(lobby);
-            return "redirect:" + lobbyId;
+            return "redirect:/lobby";
 
 
     }
@@ -210,7 +210,7 @@ public class LobbyController {
             Lobby lobby = sessionService.getLobby();
 
             if(lobby.getGameMode().equals("ffa")) {
-                if(lobby.getPlayers().size() > 1) {  // sjekke at man ikke starter game med 1 spiller
+                if(lobby.getPlayers().size() > 2) {  // sjekke at man ikke starter game med 1 spiller
                     //lobby.setPlayers(new ArrayList<Player>()); // hvis lobby har spillere fra før//  hindrer dobbelt opp med spillere
                     lobby.setStartError("");
 
@@ -223,7 +223,7 @@ public class LobbyController {
 
                     return "redirect:/game";
                 } else {
-                    sessionService.setErrorMessage("startError", "You cant start an empty game");
+                    sessionService.setErrorMessage("startError", "FFA requires 3 or more players");
                 }
 
 
@@ -239,7 +239,7 @@ public class LobbyController {
                     return "redirect:/game";
 
                 } else {
-                    sessionService.setErrorMessage("startError", "Teams not ready");
+                    sessionService.setErrorMessage("startError", "Teams not ready, there must be two players on each team");
                 }
 
             } else if(lobby.getGameMode().equals("1v1")) {
@@ -254,7 +254,12 @@ public class LobbyController {
                     return "redirect:/game";
 
                 }  else {
-                    sessionService.setErrorMessage("startError", "A maximum of two players allowed in a 1v1");
+                    if(lobby.getPlayers().size() > 2){
+                        sessionService.setErrorMessage("startError", "Choose FFA for more than two players");
+                    } else {
+                        sessionService.setErrorMessage("startError", "You need to be two to start a 1v1");
+
+                    }
 
                 }
             }
@@ -272,7 +277,7 @@ public class LobbyController {
 
         lobby.setHostId(userId);
         lobby.setHostUsername(username);
-        lobby.setGameMode("ffa");
+        lobby.setGameMode("1v1");
 
         Player hostPlayer = new Player();
         hostPlayer.setUserId(lobby.getHostId());
