@@ -35,7 +35,6 @@ public class StatisticsController {
         int numberOfNotifications = sessionService.getNumberOfNotifications();
         model.addAttribute("numberOfNotifications", numberOfNotifications);
 
-
         if(statsType == null || statsType.equals("total")) {
             TotalStats totalStats = (TotalStats) MockDB.getUserStatsByName(username, "total");
             model.addAttribute("stats", totalStats);

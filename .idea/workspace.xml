@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/statistics/OneVsOneStats.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/GameController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/leaderboard/Leaderboard.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/leaderboard/Leaderboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LeaderboardController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LeaderboardController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/MainController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/MainController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/MockDB.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/MockDB.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/NotificationsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/NotificationsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/SessionData.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/SessionData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/SessionService.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/service/SessionService.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StatisticsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StatisticsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/createLeaderboard.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/createLeaderboard.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/game.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/leaderboard.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/leaderboard.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/leaderboards.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/leaderboards.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lobby.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lobby.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/main.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/main.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/manageLeaderboard.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/manageLeaderboard.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/nav.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/nav.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/notifications.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/notifications.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/stats.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/stats.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MTGL4LIFE.iws" />
@@ -145,7 +124,7 @@
       <file leaf-file-name="StatisticsController.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StatisticsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5924596" vertical-offset="0" max-vertical-offset="1125">
+            <state vertical-scroll-proportion="-0.56598985" vertical-offset="553" max-vertical-offset="1110">
               <caret line="35" column="75" selection-start-line="35" selection-start-column="75" selection-end-line="35" selection-end-column="75" />
               <folding />
             </state>
@@ -234,8 +213,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="y" value="22" />
+    <option name="width" value="897" />
+    <option name="height" value="874" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -672,7 +652,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="FullScreen" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="OverrideImplement.combined" value="true" />
@@ -997,7 +977,7 @@
       <workItem from="1418738563930" duration="30657000" />
       <workItem from="1419009278579" duration="989000" />
       <workItem from="1419075932808" duration="469000" />
-      <workItem from="1419158750156" duration="35215000" />
+      <workItem from="1419158750156" duration="35877000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -1175,11 +1155,15 @@
       <created>1419330740510</created>
       <updated>1419330740510</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Forenklet lobby og game. &#10;Lobby lagres bare i session og game blir ikke lagret i db før game er ferdig(for å lagre info om game til alle har confirmet).&#10;Lagt til antall notifications i navbar.">
+      <created>1419433815163</created>
+      <updated>1419433815163</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180598000" />
+    <option name="totallyTimeSpent" value="181260000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1202,7 +1186,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="0" y="22" width="897" height="874" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1218,8 +1202,8 @@
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2453505" sideWeight="0.49926144" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25180724" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4011696" sideWeight="0.49926144" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2672634" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970297" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1288,7 +1272,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="bootstrap på stats-jsp" />
     <MESSAGE value="fjernet img tag i nav" />
     <MESSAGE value="tatt vekk overskrivt og lagt til errormessage i login" />
     <MESSAGE value="lagt til errormessage i register" />
@@ -1313,7 +1296,8 @@
     <MESSAGE value="blir ikke lenger redirectet til main når man skal inn i lobby igjen etter back to lobby" />
     <MESSAGE value="importert bootstrap.js i nav, så nav funker i mobile" />
     <MESSAGE value="flyttet noe kode inn i metode i lobbycontroller," />
-    <option name="LAST_COMMIT_MESSAGE" value="flyttet noe kode inn i metode i lobbycontroller," />
+    <MESSAGE value="Forenklet lobby og game. &#10;Lobby lagres bare i session og game blir ikke lagret i db før game er ferdig(for å lagre info om game til alle har confirmet).&#10;Lagt til antall notifications i navbar." />
+    <option name="LAST_COMMIT_MESSAGE" value="Forenklet lobby og game. &#10;Lobby lagres bare i session og game blir ikke lagret i db før game er ferdig(for å lagre info om game til alle har confirmet).&#10;Lagt til antall notifications i navbar." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1755,7 +1739,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/StatisticsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5924596" vertical-offset="0" max-vertical-offset="1125">
+        <state vertical-scroll-proportion="-0.56598985" vertical-offset="553" max-vertical-offset="1110">
           <caret line="35" column="75" selection-start-line="35" selection-start-column="75" selection-end-line="35" selection-end-column="75" />
           <folding />
         </state>
