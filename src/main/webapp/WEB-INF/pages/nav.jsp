@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: eirikskogland
@@ -98,7 +98,7 @@
                 <li><a href="/lobby">Start match</a></li>
                 <li><a href="/stats/${user}">Stats</a></li>
                 <li><a href="/leaderboard">Leaderboards</a></li>
-                <li><a href="/notifications">Notifications<span class="badge">4</span></a></li>
+                <li><a href="/notifications">Notifications<c:if test="${numberOfNotifications > 0}"> <span class="badge">${numberOfNotifications}</span> </c:if></a></li>
 
             </ul>
 

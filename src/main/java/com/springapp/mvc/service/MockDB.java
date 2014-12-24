@@ -6,10 +6,7 @@ import com.springapp.mvc.model.game.Lobby;
 import com.springapp.mvc.model.leaderboard.Leaderboard;
 import com.springapp.mvc.model.notifications.GameConfirmation;
 import com.springapp.mvc.model.notifications.LeaderboardInvitation;
-import com.springapp.mvc.model.statistics.FFAStats;
-import com.springapp.mvc.model.statistics.Statistics;
-import com.springapp.mvc.model.statistics.THGStats;
-import com.springapp.mvc.model.statistics.TotalStats;
+import com.springapp.mvc.model.statistics.*;
 
 import java.util.ArrayList;
 
@@ -127,7 +124,9 @@ public class MockDB {
                     return u.getFfaStats();
                 } else if(gameMode.equals("thg")) {
                     return u.getThgStats();
-                } else {
+                } else if(gameMode.equals("1v1")) {
+                    return u.getOneVsOneStats();
+                }else {
                     return u.getTotalStats();
                 }
             }
@@ -321,6 +320,14 @@ public class MockDB {
                         }
                     }
                     leaderboard.setThgStats(thgStats);
+                } else if(gameMode.equals("1v1")) {
+                    ArrayList<OneVsOneStats> oneVsOneStats = leaderboard.getOneVsOneStats();
+                    for(OneVsOneStats s : oneVsOneStats) {
+                        if(s.getUserID().equals(userId)) {
+                            s.addWin();
+                        }
+                    }
+                    leaderboard.setOneVsOneStats(oneVsOneStats);
                 }
 
 
@@ -357,6 +364,14 @@ public class MockDB {
                         }
                     }
                     leaderboard.setThgStats(thgStats);
+                } else if(gameMode.equals("1v1")) {
+                    ArrayList<OneVsOneStats> oneVsOneStats = leaderboard.getOneVsOneStats();
+                    for(OneVsOneStats s : oneVsOneStats) {
+                        if(s.getUserID().equals(userId)) {
+                            s.addLoss();
+                        }
+                    }
+                    leaderboard.setOneVsOneStats(oneVsOneStats);
                 }
 
                 break;
@@ -472,6 +487,21 @@ public class MockDB {
 
     public static void addNotification(GameConfirmation notification) {
         gameConfirmations.add(notification);
+    }
+
+    public static int getNumberOfNotifications(String userId) {
+        int notifications = 0;
+        for(GameConfirmation n : gameConfirmations) {
+            if(n.getReceiverId().equals(userId)) {
+                notifications++;
+            }
+        }
+        for(LeaderboardInvitation n : leaderboardInvitations) {
+            if(n.getReceiverId().equals(userId)) {
+                notifications++;
+            }
+        }
+        return notifications;
     }
 
     // Henter alle notifikasjonene til en mottaker

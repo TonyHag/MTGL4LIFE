@@ -17,6 +17,7 @@
 <body>
 <jsp:include page="nav.jsp">
     <jsp:param name="user" value="${user}"></jsp:param>
+    <jsp:param name="numberOfNotifications" value="${numberOfNotifications}"></jsp:param>
 </jsp:include>
 
 <div class="container text-left" role="main">
@@ -38,6 +39,10 @@
     <ul class="nav nav-tabs">
         <li role="presentation" id="totalNavTab" class="active">
             <a href="/leaderboard/manage/${leaderboard.id}?statsType=total">Total</a>
+        </li>
+
+        <li role="presentation" id="1v1NavTab">
+            <a href="/leaderboard/${leaderboard.id}?statsType=1v1">1v1</a>
         </li>
 
         <li role="presentation" id="ffaNavTab">
@@ -92,18 +97,32 @@
             $("#totalNavTab").addClass("active");
             $("#thgNavTab").removeClass("active");
             $("#ffaNavTab").removeClass("active");
+            $("#1v1NavTab").removeClass("active");
+
         }
 
         if(statsType == "ffa") {
             $("#totalNavTab").removeClass("active");
             $("#thgNavTab").removeClass("active");
             $("#ffaNavTab").addClass("active");
+            $("#1v1NavTab").removeClass("active");
+
         }
 
         if(statsType == "thg") {
             $("#totalNavTab").removeClass("active");
             $("#thgNavTab").addClass("active");
             $("#ffaNavTab").removeClass("active");
+            $("#1v1NavTab").removeClass("active");
+
+        }
+
+        if(statsType == "1v1") {
+            $("#totalNavTab").removeClass("active");
+            $("#thgNavTab").removeClass("active");
+            $("#ffaNavTab").removeClass("active");
+            $("#1v1NavTab").addClass("active");
+
         }
 
     });

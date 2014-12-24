@@ -31,6 +31,8 @@
 <body>
 <jsp:include page="nav.jsp">
     <jsp:param name="user" value="${user}"></jsp:param>
+    <jsp:param name="numberOfNotifications" value="${numberOfNotifications}"></jsp:param>
+
 </jsp:include>
 
 
@@ -40,7 +42,7 @@
 <div class="container text-left" role="main">
 
 <c:choose>
-    <c:when test="${game.gameMode == 'ffa'}">
+    <c:when test="${game.gameMode == 'ffa' || game.gameMode == '1v1'}">
 
         <!-- Game menu -->
         <jsp:include page="gamenav.jsp">

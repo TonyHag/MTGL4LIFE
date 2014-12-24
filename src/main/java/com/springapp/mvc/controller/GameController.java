@@ -19,11 +19,10 @@ import java.util.ArrayList;
  * Created by eirikskogland on 03.12.14.
  */
 @Controller
-@RequestMapping("/game")
 public class GameController {
 
-    @RequestMapping(value = "/{gameId}", method = RequestMethod.GET)
-    public String getGame(@PathVariable("gameId") String gameId, ModelMap model, HttpServletRequest request) {
+    @RequestMapping(value = "/game", method = RequestMethod.GET)
+    public String getGame(ModelMap model, HttpServletRequest request) {
 
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
@@ -33,17 +32,15 @@ public class GameController {
         String username = sessionService.getUsername();
         model.addAttribute("user", username);
 
+        int numberOfNotifications = sessionService.getNumberOfNotifications();
+        model.addAttribute("numberOfNotifications", numberOfNotifications);
+
+
         // hent game info fra db
-        Game game = MockDB.getGame(gameId);
+        Game game = sessionService.getGame();
 
         if(game != null && game.isActive()) {
 
-
-            // Sjekk at innlogget bruker er host
-            if(!sessionService.getUserId().equals(game.getHostId())) {
-                // returner ikke tilgang
-                return "redirect:/main";
-            }
             model.addAttribute("game", game);
 
             if(game.getGameMode().equals("thg")) {
@@ -51,18 +48,14 @@ public class GameController {
                 model.addAttribute("team2", game.getTeam2());
             }
 
-
         } else {
             return "redirect:/main";
         }
-
-
         return "game";
-
     }
 
-    @RequestMapping(value = "/declareWinner", method = RequestMethod.POST)
-    public String declareWinner(@RequestParam("gameId") String gameId, ModelMap model, @RequestParam("winner") String winnerName, HttpServletRequest request) {
+    @RequestMapping(value = "/game/declareWinner", method = RequestMethod.POST)
+    public String declareWinner(ModelMap model, @RequestParam("winner") String winnerName, HttpServletRequest request) {
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
             return "redirect:/login";
@@ -71,15 +64,18 @@ public class GameController {
         String username = sessionService.getUsername();
         model.addAttribute("user", username);
 
+        int numberOfNotifications = sessionService.getNumberOfNotifications();
+        model.addAttribute("numberOfNotifications", numberOfNotifications);
+
         //HttpSession session = request.getSession();
         String userId = sessionService.getUserId();
 
-        Game game = MockDB.getGame(gameId);
+        Game game = sessionService.getGame();
         if(game.getHostId().equals(userId)) { // Sjekker at man er host / evt senere om man er med i game
             game.setActive(false);
             sessionService.inActivateGame();
 
-            if(game.getGameMode().equals("ffa")) {
+            if(game.getGameMode().equals("ffa") || game.getGameMode().equals("1v1")) {
                 ArrayList<String> winners = new ArrayList<String>();
                 ArrayList<Player> players = game.getPlayers();
 
@@ -88,9 +84,7 @@ public class GameController {
                 game.setWinnerUsername(winnerName);
                 game.setHostUsername(username);
 
-
                 ArrayList<String> losers = new ArrayList<String>();
-
 
                 for(Player p : players) {
                     if(!p.getUsername().equals(winnerName)) {
@@ -100,7 +94,6 @@ public class GameController {
                 }
                 game.setLosers(losers);
 
-
                 GameConfirmationData confirmationData = new GameConfirmationData(game);
 
                 MockDB.addGameConfirmationData(confirmationData);
@@ -108,11 +101,13 @@ public class GameController {
                 NotificationService notificationService = new NotificationService();
                 notificationService.sendGameConfirmations(game);
 
-
                 sessionService.getLobby().getId();
                 sessionService.inActivateGame();
+                sessionService.setGame(null);
 
-                return "redirect:/lobby/" + sessionService.getLobby().getId();
+                MockDB.addGame(game);
+
+                return "redirect:/lobby";
 
             } else if(game.getGameMode().equals("thg")) {
 
@@ -142,7 +137,6 @@ public class GameController {
                 game.setHostUsername(username);
                 game.setLosers(losers);
 
-
                 GameConfirmationData confirmationData = new GameConfirmationData(game);
 
                 MockDB.addGameConfirmationData(confirmationData);
@@ -150,24 +144,19 @@ public class GameController {
                 NotificationService notificationService = new NotificationService();
                 notificationService.sendGameConfirmations(game);
 
-
                 sessionService.getLobby().getId();
                 sessionService.inActivateGame();
+                sessionService.setGame(null);
 
-                return "redirect:/lobby/" + sessionService.getLobby().getId();
+                MockDB.addGame(game);
 
-
+                return "redirect:/lobby";
             }
-
-
-
 
         }
 
         return "redirect:/main";
-
     }
-
 
     @RequestMapping("/quitGame")
     public String quitGame(@PathParam("gameId") String gameId, ModelMap model, HttpServletRequest request) {
@@ -180,17 +169,16 @@ public class GameController {
         model.addAttribute("user", username);
         String userId = sessionService.getUserId();
 
-        Game game = MockDB.getGame(gameId);
+        Game game = sessionService.getGame();
+
         if(game.getHostId().equals(userId)) { // Sjekker at man er host / evt senere om man er med i game
             game.setActive(false);
             sessionService.inActivateGame();
+            sessionService.setGame(null);
 
-            return "redirect:/lobby/" + sessionService.getLobby().getId();
+            return "redirect:/lobby";
 
         }
-
-
-
 
         return "redirect:/main";
     }

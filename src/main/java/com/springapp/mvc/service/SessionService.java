@@ -1,6 +1,7 @@
 package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.ErrorMessage;
+import com.springapp.mvc.model.game.Game;
 import com.springapp.mvc.model.game.Lobby;
 import com.springapp.mvc.model.SessionData;
 
@@ -190,6 +191,18 @@ public class SessionService {
 
     public String getActiveGame() {
         return getSessionData().getActiveGameId();
+    }
+
+    public Game getGame() {
+        return getSessionData().getGame();
+    }
+
+    public void setGame(Game game) {
+        getSessionData().setGame(game);
+    }
+
+    public int getNumberOfNotifications() {
+        return MockDB.getNumberOfNotifications(getUserId());
     }
 
     // -------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.statistics.FFAStats;
+import com.springapp.mvc.model.statistics.OneVsOneStats;
 import com.springapp.mvc.model.statistics.THGStats;
 import com.springapp.mvc.model.statistics.TotalStats;
 import com.springapp.mvc.service.MockDB;
@@ -31,6 +32,9 @@ public class StatisticsController {
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
 
+        int numberOfNotifications = sessionService.getNumberOfNotifications();
+        model.addAttribute("numberOfNotifications", numberOfNotifications);
+
 
         if(statsType == null || statsType.equals("total")) {
             TotalStats totalStats = (TotalStats) MockDB.getUserStatsByName(username, "total");
@@ -43,6 +47,10 @@ public class StatisticsController {
         } else if(statsType.equals("thg")) {
             THGStats thgStats = (THGStats) MockDB.getUserStatsByName(username, "thg");
             model.addAttribute("stats", thgStats);
+
+        }  else if(statsType.equals("1v1")) {
+            OneVsOneStats oneVsOneStats = (OneVsOneStats) MockDB.getUserStatsByName(username, "1v1");
+            model.addAttribute("stats", oneVsOneStats);
         }
 
         model.addAttribute("statsType", statsType);

@@ -1,5 +1,6 @@
 package com.springapp.mvc.model;
 
+import com.springapp.mvc.model.game.Game;
 import com.springapp.mvc.model.game.Lobby;
 import com.springapp.mvc.model.leaderboard.Leaderboard;
 import com.springapp.mvc.model.notifications.Notification;
@@ -14,12 +15,21 @@ public class SessionData {
     private String username;
     private String userId;
     private Lobby lobby;
+    private Game game;
     private ArrayList<Notification> notifications = new ArrayList<Notification>();
     private Leaderboard createLeaderboard;
     private ArrayList<ErrorMessage> errorMessages = new ArrayList<ErrorMessage>();
 
     private boolean activeGame = false;
     private String activeGameId = null;
+
+    public Game getGame() {
+        return game;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
+    }
 
     public boolean isActiveGame() {
         return activeGame;

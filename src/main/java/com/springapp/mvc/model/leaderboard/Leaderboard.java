@@ -1,6 +1,7 @@
 package com.springapp.mvc.model.leaderboard;
 
 import com.springapp.mvc.model.statistics.FFAStats;
+import com.springapp.mvc.model.statistics.OneVsOneStats;
 import com.springapp.mvc.model.statistics.THGStats;
 import com.springapp.mvc.model.statistics.TotalStats;
 import com.springapp.mvc.service.IdService;
@@ -19,6 +20,8 @@ public class Leaderboard {
     private ArrayList<TotalStats> totalStats;
     private ArrayList<FFAStats> ffaStats;
     private ArrayList<THGStats> thgStats;
+    private ArrayList<OneVsOneStats> oneVsOneStats;
+
 
 
     private String inviteErrorMessage;
@@ -49,12 +52,15 @@ public class Leaderboard {
         totalStats = new ArrayList<TotalStats>();
         ffaStats = new ArrayList<FFAStats>();
         thgStats = new ArrayList<THGStats>();
+        oneVsOneStats = new ArrayList<OneVsOneStats>();
     }
 
     public void addUser(String userId) {
         totalStats.add(new TotalStats(userId));
         ffaStats.add(new FFAStats(userId));
         thgStats.add(new THGStats(userId));
+        oneVsOneStats.add(new OneVsOneStats(userId));
+
 
     }
 
@@ -77,6 +83,13 @@ public class Leaderboard {
         for(THGStats stat : thgStats) {
             if(stat.getUserID().equals(userId)) {
                 thgStats.remove(stat);
+                break;
+            }
+        }
+
+        for(OneVsOneStats stat : oneVsOneStats) {
+            if(stat.getUserID().equals(userId)) {
+                oneVsOneStats.remove(stat);
                 break;
             }
         }
@@ -133,6 +146,14 @@ public class Leaderboard {
 
     public ArrayList<FFAStats> getFfaStats() {
         return ffaStats;
+    }
+
+    public ArrayList<OneVsOneStats> getOneVsOneStats() {
+        return oneVsOneStats;
+    }
+
+    public void setOneVsOneStats(ArrayList<OneVsOneStats> oneVsOneStats) {
+        this.oneVsOneStats = oneVsOneStats;
     }
 
     public void setFfaStats(ArrayList<FFAStats> ffaStats) {

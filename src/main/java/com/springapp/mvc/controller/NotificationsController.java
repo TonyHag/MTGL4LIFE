@@ -32,6 +32,9 @@ public class NotificationsController {
         String username = sessionService.getUsername();
         model.addAttribute("user", username);
 
+
+        int numberOfNotifications = sessionService.getNumberOfNotifications();
+        model.addAttribute("numberOfNotifications", numberOfNotifications);
         // -- autentisering ferdig
 
 

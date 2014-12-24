@@ -16,6 +16,8 @@
 <body>
 <jsp:include page="nav.jsp">
     <jsp:param name="user" value="${user}"></jsp:param>
+    <jsp:param name="numberOfNotifications" value="${numberOfNotifications}"></jsp:param>
+
 </jsp:include>
 
 <div class="container" role="main" >

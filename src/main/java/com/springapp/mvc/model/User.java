@@ -1,6 +1,7 @@
 package com.springapp.mvc.model;
 
 import com.springapp.mvc.model.statistics.FFAStats;
+import com.springapp.mvc.model.statistics.OneVsOneStats;
 import com.springapp.mvc.model.statistics.THGStats;
 import com.springapp.mvc.model.statistics.TotalStats;
 import com.springapp.mvc.service.IdService;
@@ -18,6 +19,7 @@ public class User {
     private TotalStats totalStats;
     private FFAStats ffaStats;
     private THGStats thgStats;
+    private OneVsOneStats oneVsOneStats;
 
     private ArrayList<String> leaderBoardIds;
 
@@ -38,6 +40,9 @@ public class User {
         thgStats = new THGStats(this.id);
         thgStats.setUsername(username);
 
+        oneVsOneStats = new OneVsOneStats(this.id);
+        oneVsOneStats.setUsername(username);
+
 
         leaderBoardIds = new ArrayList<String>();
 
@@ -56,6 +61,8 @@ public class User {
             ffaStats.addWin();
         } else if(gameMode.equals("thg")) {
             thgStats.addWin();
+        } else if(gameMode.equals("1v1")) {
+            oneVsOneStats.addWin();
         }
         totalStats.addWin();
     }
@@ -65,12 +72,22 @@ public class User {
             ffaStats.addLoss();
         } else if (gameMode.equals("thg")) {
             thgStats.addLoss();
+        } else if(gameMode.equals("1v1")) {
+            oneVsOneStats.addLoss();
         }
         totalStats.addLoss();
     }
 
     public FFAStats getFfaStats() {
         return ffaStats;
+    }
+
+    public OneVsOneStats getOneVsOneStats() {
+        return oneVsOneStats;
+    }
+
+    public void setOneVsOneStats(OneVsOneStats oneVsOneStats) {
+        this.oneVsOneStats = oneVsOneStats;
     }
 
     public void setFfaStats(FFAStats ffaStats) {

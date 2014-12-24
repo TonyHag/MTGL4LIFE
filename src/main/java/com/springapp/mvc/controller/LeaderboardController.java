@@ -3,6 +3,7 @@ package com.springapp.mvc.controller;
 import com.springapp.mvc.model.leaderboard.Leaderboard;
 import com.springapp.mvc.model.leaderboard.LeaderboardInfo;
 import com.springapp.mvc.model.statistics.FFAStats;
+import com.springapp.mvc.model.statistics.OneVsOneStats;
 import com.springapp.mvc.model.statistics.THGStats;
 import com.springapp.mvc.model.statistics.TotalStats;
 import com.springapp.mvc.service.MockDB;
@@ -37,6 +38,9 @@ public class LeaderboardController {
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
 
+        int numberOfNotifications = sessionService.getNumberOfNotifications();
+        model.addAttribute("numberOfNotifications", numberOfNotifications);
+
             ArrayList<String> leaderboardIds = MockDB.getLeaderboardIdsForUser(sessionService.getUserId());
             if(leaderboardIds != null) {
                 ArrayList<LeaderboardInfo> leaderboardInfos = new ArrayList<LeaderboardInfo>();
@@ -68,9 +72,14 @@ public class LeaderboardController {
         if(!sessionService.isLoggedIn()) {
             return "redirect:/login";
         }
+
         // -- autentisering ferdig
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
+
+
+        int numberOfNotifications = sessionService.getNumberOfNotifications();
+        model.addAttribute("numberOfNotifications", numberOfNotifications);
 
         Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
         model.addAttribute("leaderboard", leaderboard);
@@ -81,6 +90,8 @@ public class LeaderboardController {
             model.addAttribute("statsList",leaderboard.getFfaStats());
         } else if(statsType.equals("thg")) {
             model.addAttribute("statsList",leaderboard.getThgStats());
+        } else if(statsType.equals("1v1")) {
+            model.addAttribute("statsList",leaderboard.getOneVsOneStats());
         }
         model.addAttribute("statsType", statsType);
 
@@ -101,6 +112,9 @@ public class LeaderboardController {
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
 
+        int numberOfNotifications = sessionService.getNumberOfNotifications();
+        model.addAttribute("numberOfNotifications", numberOfNotifications);
+
         return "createLeaderboard";
     }
 
@@ -114,6 +128,7 @@ public class LeaderboardController {
         // -- autentisering ferdig
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
+
 
 
         boolean valid = true;
@@ -140,6 +155,7 @@ public class LeaderboardController {
             leaderboard.getTotalStats().add(new TotalStats(userId));
             leaderboard.getFfaStats().add(new FFAStats(userId));
             leaderboard.getThgStats().add(new THGStats(userId));
+            leaderboard.getOneVsOneStats().add(new OneVsOneStats(userId));
             MockDB.addLeaderboard(leaderboard);
             MockDB.addLeaderboardIdToUser(userId, leaderboard.getId());
 
@@ -163,6 +179,9 @@ public class LeaderboardController {
         String user = sessionService.getUsername();
         model.addAttribute("user", user);
 
+        int numberOfNotifications = sessionService.getNumberOfNotifications();
+        model.addAttribute("numberOfNotifications", numberOfNotifications);
+
 
         // hvis eier
         if(sessionService.getUserId().equals(MockDB.getOwnerId(leaderboardId)))  {
@@ -177,7 +196,10 @@ public class LeaderboardController {
                 model.addAttribute("statsList",leaderboard.getFfaStats());
             } else if(statsType.equals("thg")) {
                 model.addAttribute("statsList",leaderboard.getThgStats());
+            }else if(statsType.equals("1v1")) {
+                model.addAttribute("statsList",leaderboard.getOneVsOneStats());
             }
+
 
             model.addAttribute("statsType", statsType);
 
@@ -216,16 +238,12 @@ public class LeaderboardController {
             }
             return "redirect:/leaderboard/manage/" + leaderboardId ;
 
-
-
         }
 
         // hent leaderboard
         // slett spiller
         // oppdater leaderboard
         // redirect til manage
-
-
 
         return "redirect:/main";
 
@@ -313,6 +331,7 @@ public class LeaderboardController {
             leaderboard.getTotalStats().add(new TotalStats(userId));
             leaderboard.getFfaStats().add(new FFAStats(userId));
             leaderboard.getThgStats().add(new THGStats(userId));
+            leaderboard.getOneVsOneStats().add(new OneVsOneStats(userId));
 
             MockDB.updateLeaderboard(leaderboard);
             MockDB.addLeaderboardIdToUser(userId, leaderboardId);
@@ -347,6 +366,10 @@ public class LeaderboardController {
         }
 
         return "redirect:/notifications";
+
+    }
+
+    private void addPlayerToLeaderboard(String userID) {
 
     }
 

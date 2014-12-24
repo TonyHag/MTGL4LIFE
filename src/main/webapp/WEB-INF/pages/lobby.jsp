@@ -18,6 +18,8 @@
 <body>
 <jsp:include page="nav.jsp">
     <jsp:param name="user" value="${user}"></jsp:param>
+    <jsp:param name="numberOfNotifications" value="${numberOfNotifications}"></jsp:param>
+
 </jsp:include>
 
 <div class="container text-left">
@@ -34,12 +36,16 @@
             <c:when test="${lobby.gameMode == 'thg'}">
                 <h2>Two Headed Giant </h2>
             </c:when>
+            <c:when test="${lobby.gameMode == '1v1'}">
+                <h2>1v1</h2>
+            </c:when>
 
         </c:choose></div>
 
     <form action="/lobby/changeGameMode" method="post">
         <input type="hidden" name="lobbyId" value="${lobby.id}" />
         <select name="gameMode">
+            <option value="1v1">1v1</option>
             <option value="ffa">FFA</option>
             <option value="thg">Two Headed Giant</option>
         </select>
@@ -60,16 +66,13 @@
 
     <br>
 
-
     <c:choose>
         <c:when test="${lobby.gameMode == 'ffa'}">
-
             <div class="table-responsive">
                 <table class="table">
                     <thead>
                         <th>Players: </th>
                     </thead>
-
                     <tbody>
                         <c:forEach items="${lobby.players}" var="invitedPlayer">
                             <tr>
@@ -197,6 +200,51 @@
                 </tr>
             </table>
 
+        </c:when>
+
+        <c:when test="${lobby.gameMode == '1v1'}">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <th>Players: </th>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${lobby.players}" var="invitedPlayer">
+                        <tr>
+                            <td>
+                                    ${invitedPlayer.username}
+                            </td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${lobby.hostId == invitedPlayer.userId}">
+                                        <!--<b>Host</b>-->
+                                    </c:when>
+                                    <c:otherwise>
+                                        <form action="/lobby/removePlayer">
+                                            <input type ="hidden" name="removePlayer" value="${invitedPlayer.username}"/>
+                                            <input type="submit" value="Remove" class="btn btn-sm btn-warning">
+                                        </form>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+
+            <br>
+
+            <table>
+                <tr>
+                    <td>
+                        <a href="/lobby/startGame"><button class="btn btn-success">Start Game</button></a>
+                    </td>
+                    <td>
+                            ${startError}
+                    </td>
+                </tr>
+            </table>
         </c:when>
 
         <c:otherwise>
