@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MTGL4LIFE.iws" />
@@ -974,7 +973,7 @@
       <workItem from="1419009278579" duration="989000" />
       <workItem from="1419075932808" duration="469000" />
       <workItem from="1419158750156" duration="35877000" />
-      <workItem from="1419434705543" duration="976000" />
+      <workItem from="1419434705543" duration="1121000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -1160,11 +1159,15 @@
       <created>1419434834261</created>
       <updated>1419434834261</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Lagt til noe mer detaljert startfeilmelding i lobby.&#10;Fikset remove player i lobby&#10;&#10;">
+      <created>1419436376759</created>
+      <updated>1419436376759</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182236000" />
+    <option name="totallyTimeSpent" value="182381000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1273,7 +1276,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="tatt vekk overskrivt og lagt til errormessage i login" />
     <MESSAGE value="lagt til errormessage i register" />
     <MESSAGE value="jumotron i main" />
     <MESSAGE value="fikster winpercentage i leaderboard og manage leaderboard" />
@@ -1298,7 +1300,8 @@
     <MESSAGE value="flyttet noe kode inn i metode i lobbycontroller," />
     <MESSAGE value="Forenklet lobby og game. &#10;Lobby lagres bare i session og game blir ikke lagret i db før game er ferdig(for å lagre info om game til alle har confirmet).&#10;Lagt til antall notifications i navbar." />
     <MESSAGE value="merget master og branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="merget master og branch" />
+    <MESSAGE value="Lagt til noe mer detaljert startfeilmelding i lobby.&#10;Fikset remove player i lobby&#10;&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Lagt til noe mer detaljert startfeilmelding i lobby.&#10;Fikset remove player i lobby&#10;&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
