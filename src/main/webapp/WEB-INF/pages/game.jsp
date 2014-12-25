@@ -189,13 +189,13 @@
             </div>
             <div class="row">
                 <div id="poisonCounterRow2" class="col-xs-12 text-center">
-                    <div class="col-xs-1">
+                    <div class="col-xs-1 poison">
                         <button class="btn-success btn-xs"  id="subtractPoison2">-</button>
                     </div>
                     <div class="playerPoison col-xs-1" id="poison2">
                         0
                     </div>
-                    <div class="col-xs-1">
+                    <div class="col-xs-1 poison">
                         <button class="btn-success btn-xs" id="addPoison2">+</button>
                     </div>
                 </div>
