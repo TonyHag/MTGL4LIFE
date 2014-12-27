@@ -23,12 +23,7 @@ public class ValidationService {
             valid = false;
         } else if(username.length() < 3 || username.length() > 30) {
             valid = false;
-        }/* else if(!username.matches(regex)) {
-            System.out.println("username does not match regex");
-            valid = false;
-        }  */
-
-
+        }
 
         // Sjekk med regex
 

@@ -29,10 +29,10 @@ public class MockDB {
 
 
 
-
-
     // --------------- User operations -------------
     // ---------------------------------------------
+
+
 
     public static void addLeaderboardIdToUser(String userId, String leaderboardId) {
         for(User u : users) {
@@ -338,6 +338,8 @@ public class MockDB {
     }
 
     public static void addUserLossToLeaderboard(String userId, String leaderboardId, String gameMode) {
+
+        System.out.println("MockDB: adding userloss for " + getUsername(userId) + " to leaderboard " + getLeaderboardNameById(leaderboardId));
         for(Leaderboard leaderboard : leaderboards) {
             if(leaderboard.getId().equals(leaderboardId)) {
                 ArrayList<TotalStats> totalStats = leaderboard.getTotalStats();

@@ -133,10 +133,8 @@ public class LobbyController {
                      break;
                 }
             }
-
             sessionService.setLobby(lobby);
             return "redirect:/lobby";
-
 
     }
 

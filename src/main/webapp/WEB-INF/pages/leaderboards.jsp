@@ -23,10 +23,13 @@
 <div class="container text-left" role="main">
     <h1> Leaderboards </h1>
 
+
+
     <div>
         <p>Create your own leaderboard and invite your friends</p>
-        <a href="/leaderboard/create"><button class="btn btn-primary btn-sm">Create Leaderboard</button></a>
+        <a href="/leaderboard/worldLeaderboard">World wide leaderboard</a>
     </div>
+
 
     <div>
         <h3>Your leaderboards</h3>
@@ -47,12 +50,12 @@
                     </c:if>
                 </tr>
                 </tbody>
-
-
-
             </c:forEach>
-
         </table>
+    </div>
+
+    <div>
+        <a href="/leaderboard/create"><button class="btn btn-primary btn-sm">Create Leaderboard</button></a>
     </div>
 
 

@@ -17,6 +17,10 @@ public class Leaderboard {
     private String ownerId;
     private String name;
     private String description;
+
+    private String country;
+    private String bergen;
+
     private ArrayList<TotalStats> totalStats;
     private ArrayList<FFAStats> ffaStats;
     private ArrayList<THGStats> thgStats;
@@ -26,6 +30,8 @@ public class Leaderboard {
 
     private String inviteErrorMessage;
     private String ownerUsername;
+
+
     private ArrayList<String> invitedPlayerUsernames = new ArrayList<String>();
 
     public ArrayList<String> getInvitedPlayerUsernames() {
@@ -166,5 +172,21 @@ public class Leaderboard {
 
     public void setThgStats(ArrayList<THGStats> thgStats) {
         this.thgStats = thgStats;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getBergen() {
+        return bergen;
+    }
+
+    public void setBergen(String bergen) {
+        this.bergen = bergen;
     }
 }

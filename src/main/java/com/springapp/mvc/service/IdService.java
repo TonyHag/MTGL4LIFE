@@ -7,13 +7,6 @@ import java.security.MessageDigest;
  */
 public class IdService {
 
-    private static int userId = 0;
-    private static int gameId = 0;
-    private static int notificationId = 0;
-    private static int gameConfirmationId = 0;
-    private static int lobbyId = 0;
-    private static int leaderboardId = 0;
-
     public  String getLeaderboardId(String username) {
         return getHash(username);
     }
@@ -21,12 +14,6 @@ public class IdService {
     public String getLobbyId(String username) {
         return getHash(username);
     }
-
-    public static int getGameConfirmationId() {
-        gameConfirmationId++;
-        return gameConfirmationId;
-    }
-
 
     public String getGameId(String username) {
         return getHash(username);

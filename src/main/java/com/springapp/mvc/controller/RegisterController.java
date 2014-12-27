@@ -103,7 +103,10 @@ public class RegisterController {
             // Opprett ny bruker
             User newUser = new User(username, encryptedPassword, email);
             // lagre i database
-            MockDB.addUser(newUser);
+
+            // legg til i world leaderboard
+
+
             // returner til login
             return "redirect:login";
 

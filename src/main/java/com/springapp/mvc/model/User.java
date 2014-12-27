@@ -5,6 +5,8 @@ import com.springapp.mvc.model.statistics.OneVsOneStats;
 import com.springapp.mvc.model.statistics.THGStats;
 import com.springapp.mvc.model.statistics.TotalStats;
 import com.springapp.mvc.service.IdService;
+import com.springapp.mvc.service.LeaderboardService;
+import com.springapp.mvc.service.MockDB;
 
 import java.util.ArrayList;
 
@@ -15,6 +17,8 @@ public class User {
 
     private String username, password, email;
     private String id;
+    private String country;
+    private String city;
 
     private TotalStats totalStats;
     private FFAStats ffaStats;
@@ -43,9 +47,12 @@ public class User {
         oneVsOneStats = new OneVsOneStats(this.id);
         oneVsOneStats.setUsername(username);
 
-
         leaderBoardIds = new ArrayList<String>();
 
+        MockDB.addUser(this);
+
+        LeaderboardService leaderboardService = new LeaderboardService();
+        leaderboardService.addPlayerToWorldLeaderboard(username, id);
     }
 
     public ArrayList<String> getLeaderBoardIds() {
@@ -57,6 +64,8 @@ public class User {
     }
 
     public void addWin(String gameMode) {
+        System.out.println("User: Adding win to " + username);
+
         if(gameMode.equals("ffa")) {
             ffaStats.addWin();
         } else if(gameMode.equals("thg")) {
@@ -142,4 +151,19 @@ public class User {
         this.id = id;
     }
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }

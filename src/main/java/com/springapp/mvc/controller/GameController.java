@@ -159,7 +159,7 @@ public class GameController {
     }
 
     @RequestMapping("/quitGame")
-    public String quitGame(@PathParam("gameId") String gameId, ModelMap model, HttpServletRequest request) {
+    public String quitGame(ModelMap model, HttpServletRequest request) {
         SessionService sessionService = new SessionService(request);
         if(!sessionService.isLoggedIn()) {
             return "redirect:/login";
@@ -172,8 +172,7 @@ public class GameController {
         Game game = sessionService.getGame();
 
         if(game.getHostId().equals(userId)) { // Sjekker at man er host / evt senere om man er med i game
-            game.setActive(false);
-            sessionService.inActivateGame();
+
             sessionService.setGame(null);
 
             return "redirect:/lobby";

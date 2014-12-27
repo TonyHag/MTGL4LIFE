@@ -55,7 +55,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/game/quitGame?gameId=${game.id}">Back to lobby</a>
+                    <a href="/game/quitGame">Back to lobby</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

@@ -25,7 +25,20 @@
 
     <c:choose>
         <c:when test="${stats != null}" >
-            <h1>Statistics for ${stats.username}</h1>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>Statistics for ${stats.username}</h1>
+                </div>
+
+                <div class="col-md-6">
+                    <form action="/stats/search" method="post">
+                        <input type="text" name="searchForPlayer" type="search" placeholder="Find stats for a player">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+
 
             <ul class="nav nav-tabs">
                 <li role="presentation" id="totalNavTab" class="active">
@@ -49,32 +62,121 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th>Total</th>
                         <th>Wins</th>
                         <th>Losses</th>
-                        <th>Total</th>
+                        <th>Draws</th>
                         <th>Win%</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
+                        <td>${stats.total}</td>
                         <td>${stats.wins}</td>
                         <td>${stats.losses}</td>
-                        <td>${stats.total}</td>
+                        <td>TODO</td>
                         <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${stats.winPercentage}"/></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th colspan="4">Worst enemy: N/A </th>
+                            </tr>
+                            <tr>
+                                <th>T</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>D</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th colspan="4">Top victim: N/A </th>
+                            </tr>
+                            <tr>
+                                <th>T</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>D</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th colspan="4">Opponent: N/A</th>
+                            </tr>
+                            <tr>
+                                <th>T</th>
+                                <th>W</th>
+                                <th>L</th>
+                                <th>D</th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <form action="/stats/search" method="post">
+                            <input type="text" name="searchForPlayer" type="search" placeholder="Find opponent">
+                            <input type="submit" value="Search">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </c:when>
         <c:otherwise>
             <h1>Player not found</h1>
         </c:otherwise>
     </c:choose>
 
-    <form action="/stats/search" method="post">
-        <input type="text" name="searchForPlayer" type="search" placeholder="Find stats for a player">
-        <input type="submit" value="Search">
-    </form>
 
 </div>
 

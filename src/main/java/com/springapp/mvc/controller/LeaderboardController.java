@@ -6,10 +6,7 @@ import com.springapp.mvc.model.statistics.FFAStats;
 import com.springapp.mvc.model.statistics.OneVsOneStats;
 import com.springapp.mvc.model.statistics.THGStats;
 import com.springapp.mvc.model.statistics.TotalStats;
-import com.springapp.mvc.service.MockDB;
-import com.springapp.mvc.service.NotificationService;
-import com.springapp.mvc.service.SessionService;
-import com.springapp.mvc.service.ValidationService;
+import com.springapp.mvc.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -328,13 +325,10 @@ public class LeaderboardController {
 
             String userId = sessionService.getUserId();
 
-            leaderboard.getTotalStats().add(new TotalStats(userId));
-            leaderboard.getFfaStats().add(new FFAStats(userId));
-            leaderboard.getThgStats().add(new THGStats(userId));
-            leaderboard.getOneVsOneStats().add(new OneVsOneStats(userId));
+            LeaderboardService leaderboardService = new LeaderboardService();
+            leaderboardService.addPlayerToLeaderboard(user, userId, leaderboard);
+            MockDB.addLeaderboardIdToUser(userId, leaderboard.getId());
 
-            MockDB.updateLeaderboard(leaderboard);
-            MockDB.addLeaderboardIdToUser(userId, leaderboardId);
 
             return "redirect:/leaderboard/" + leaderboardId;
         }
@@ -369,8 +363,5 @@ public class LeaderboardController {
 
     }
 
-    private void addPlayerToLeaderboard(String userID) {
-
-    }
 
 }
