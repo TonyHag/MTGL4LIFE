@@ -41,7 +41,6 @@
                     </ul>
                 </li>
 
-
                 <li>
                     <a id="btn_reset">Reset Counters</a>
                     <input  type="text" id="startingHp" size="2" placeholder="20"/>
