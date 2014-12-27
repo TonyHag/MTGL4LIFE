@@ -18,6 +18,9 @@ public class Game {
     private ArrayList<String> winners;
     private ArrayList<String> losers;
     private int numberOfPlayers;
+    private boolean draw;
+
+
 
     private String winnerUsername;
     private String hostUsername;
@@ -106,6 +109,13 @@ public class Game {
 
     }
 
+    public boolean isDraw() {
+        return draw;
+    }
+
+    public void setDraw(boolean draw) {
+        this.draw = draw;
+    }
 
     public String getHostId() {
         return hostId;

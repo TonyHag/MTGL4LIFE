@@ -51,9 +51,10 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Wins</th>
-                <th>Losses</th>
                 <th>Total</th>
+                <th>Win</th>
+                <th>Loss</th>
+                <th>Draw</th>
                 <th>Win %</th>
             </tr>
             </thead>
@@ -62,9 +63,10 @@
             <c:forEach items="${statsList}" var="stats">
                 <tr>
                     <td> ${stats.username}     </td>
+                    <td> ${stats.total}        </td>
                     <td> ${stats.wins}         </td>
                     <td> ${stats.losses}       </td>
-                    <td> ${stats.total}        </td>
+                    <td> ${stats.draws}        </td>
                     <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${stats.winPercentage}"/></td>
                 </tr>
             </c:forEach>

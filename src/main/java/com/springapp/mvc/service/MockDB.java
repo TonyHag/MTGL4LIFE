@@ -84,7 +84,7 @@ public class MockDB {
 
     public static void addUser(User user) {
         boolean userAdded = users.add(user);
-        System.out.println("User("+ user.getUsername() + ") added: " + userAdded);
+        System.out.println("User nr " + users.size() +"("+ user.getUsername() + ") added: " + userAdded);
     }
 
     public static boolean isUsernameAvailable(String username) {
@@ -103,6 +103,15 @@ public class MockDB {
         for (User u : users) {
             if(u.getId().equals(userId)) {
                 u.addWin(gameMode);
+            }
+        }
+    }
+
+
+    public static void addUserDraw(String userId, String gameMode) {
+        for (User u : users) {
+            if(u.getId().equals(userId)) {
+                u.addDraw(gameMode);
             }
         }
     }
@@ -292,6 +301,48 @@ public class MockDB {
          return false;
     }
 
+    public static void addUserDrawToLeaderboard(String userId, String leaderboardId, String gameMode) {
+
+        for(Leaderboard leaderboard : leaderboards) {
+            if(leaderboard.getId().equals(leaderboardId)) {
+                ArrayList<TotalStats> totalStats = leaderboard.getTotalStats();
+                for(TotalStats s : totalStats) {
+                    if(s.getUserID().equals(userId)) {
+                        s.addDraw();
+                    }
+                }
+                leaderboard.setTotalStats(totalStats);
+
+                if(gameMode.equals("ffa")) {
+                    ArrayList<FFAStats> ffaStat = leaderboard.getFfaStats();
+                    for(FFAStats s : ffaStat) {
+                        if(s.getUserID().equals(userId)) {
+                            s.addDraw();
+                        }
+                    }
+                    leaderboard.setFfaStats(ffaStat);
+                } else if(gameMode.equals("thg")) {
+                    ArrayList<THGStats> thgStats = leaderboard.getThgStats();
+                    for(THGStats s : thgStats) {
+                        if(s.getUserID().equals(userId)) {
+                            s.addDraw();
+                        }
+                    }
+                    leaderboard.setThgStats(thgStats);
+                } else if(gameMode.equals("1v1")) {
+                    ArrayList<OneVsOneStats> oneVsOneStats = leaderboard.getOneVsOneStats();
+                    for(OneVsOneStats s : oneVsOneStats) {
+                        if(s.getUserID().equals(userId)) {
+                            s.addDraw();
+                        }
+                    }
+                    leaderboard.setOneVsOneStats(oneVsOneStats);
+                }
+                break;
+            }
+        }
+    }
+
     public static void addUserWinToLeaderboard(String userId, String leaderboardId, String gameMode) {
 
         for(Leaderboard leaderboard : leaderboards) {
@@ -329,11 +380,8 @@ public class MockDB {
                     }
                     leaderboard.setOneVsOneStats(oneVsOneStats);
                 }
-
-
                 break;
             }
-
         }
     }
 

@@ -8,7 +8,7 @@ import com.springapp.mvc.service.MockDB;
 public class Statistics {
     private String username;
     private String userID;
-    private int wins, losses, total;
+    private int wins, losses, draws, total;
     private double winPercentage;
 
     public Statistics() {
@@ -33,6 +33,12 @@ public class Statistics {
         losses++;
         total++;
         winPercentage = (double) wins/total*100;
+
+    }
+
+    public void addDraw() {
+        draws++;
+        total++;
 
     }
 
@@ -82,5 +88,13 @@ public class Statistics {
 
     public void setWinPercentage(double winPercentage) {
         this.winPercentage = winPercentage;
+    }
+
+    public int getDraws() {
+        return draws;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
     }
 }

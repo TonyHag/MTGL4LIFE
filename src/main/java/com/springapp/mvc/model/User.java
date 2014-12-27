@@ -76,6 +76,19 @@ public class User {
         totalStats.addWin();
     }
 
+    public void addDraw(String gameMode) {
+        System.out.println("User: Adding draw to " + username);
+
+        if(gameMode.equals("ffa")) {
+            ffaStats.addDraw();
+        } else if(gameMode.equals("thg")) {
+            thgStats.addDraw();
+        } else if(gameMode.equals("1v1")) {
+            oneVsOneStats.addDraw();
+        }
+        totalStats.addDraw();
+    }
+
     public void addLoss(String gameMode) {
         if (gameMode.equals("ffa")) {
             ffaStats.addLoss();

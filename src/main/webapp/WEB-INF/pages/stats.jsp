@@ -74,7 +74,7 @@
                         <td>${stats.total}</td>
                         <td>${stats.wins}</td>
                         <td>${stats.losses}</td>
-                        <td>TODO</td>
+                        <td>${stats.draws}</td>
                         <td><fmt:formatNumber type="number" maxFractionDigits="1" value="${stats.winPercentage}"/></td>
                     </tr>
                     </tbody>

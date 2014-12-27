@@ -54,6 +54,39 @@ public class GameController {
         return "game";
     }
 
+
+    @RequestMapping(value = "/game/declareDraw")
+    public String gameDraw(ModelMap model, HttpServletRequest request) {
+        SessionService sessionService = new SessionService(request);
+        if(!sessionService.isLoggedIn()) {
+            return "redirect:/login";
+        }
+        // -- autentisering ferdig
+        String username = sessionService.getUsername();
+        model.addAttribute("user", username);
+
+        Game game = sessionService.getGame();
+        game.setHostUsername(username);
+
+        game.setDraw(true);
+
+        GameConfirmationData confirmationData = new GameConfirmationData(game);
+
+        MockDB.addGameConfirmationData(confirmationData);
+
+        NotificationService notificationService = new NotificationService();
+        notificationService.sendGameConfirmations(game);
+
+        sessionService.getLobby().getId();
+        sessionService.inActivateGame();
+        sessionService.setGame(null);
+
+        MockDB.addGame(game);
+
+        return "redirect:/lobby";
+
+    }
+
     @RequestMapping(value = "/game/declareWinner", method = RequestMethod.POST)
     public String declareWinner(ModelMap model, @RequestParam("winner") String winnerName, HttpServletRequest request) {
         SessionService sessionService = new SessionService(request);

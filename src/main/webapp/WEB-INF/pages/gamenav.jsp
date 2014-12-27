@@ -38,6 +38,7 @@
                                 </form>
                             </li>
                         </c:forEach>
+                        <li><a href="/game/declareDraw">Draw</a></li>
                     </ul>
                 </li>
 

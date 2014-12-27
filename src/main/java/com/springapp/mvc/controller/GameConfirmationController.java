@@ -51,47 +51,77 @@ public class GameConfirmationController {
                 System.out.println("GameConfirmationController: Updating players");
 
                 Game game = MockDB.getGame(gameId);
+                if(game.isDraw()) {
+                    ArrayList<Player> players = game.getPlayers();
 
-                ArrayList<Player> players = game.getPlayers();
-                // oppdater spillere
-                ArrayList<String> winners = game.getWinners();
+                    String sameLeaderboardId = "";
+                    for(Player p : players) { // sjekker for vinnerens leaderboard om alle andre tilhører samme
+                        ArrayList<String> leaderboardIds = MockDB.getLeaderboardIdsForUser(p.getUserId());
 
-                // Sjekke om alle tilhører samme leaderboard
-                String sameLeaderboardId = "";
-                for(String id : winners) { // sjekker for vinnerens leaderboard om alle andre tilhører samme
-                    ArrayList<String> leaderboardIds = MockDB.getLeaderboardIdsForUser(id);
-
-                    for(String leaderboardId : leaderboardIds) {
-                        if(playersInSameLeaderboard(leaderboardId, players)) {
-                            sameLeaderboardId = leaderboardId; // siste leaderboard med alle vil være gjeldene
-                            // her bør det lages en liste av sammeLeaderBoardIds hvis alle er med i flere leaderboards
+                        for(String leaderboardId : leaderboardIds) {
+                            if(playersInSameLeaderboard(leaderboardId, players)) {
+                                sameLeaderboardId = leaderboardId; // siste leaderboard med alle vil være gjeldene
+                                // her bør det lages en liste av sammeLeaderBoardIds hvis alle er med i flere leaderboards
+                            }
                         }
                     }
 
+                    for(Player p : players) {
+                        if(!sameLeaderboardId.equals("")) {
+                            System.out.println("Adding draw to leaderboard");
+                            MockDB.addUserDrawToLeaderboard(p.getUserId(), sameLeaderboardId, game.getGameMode());
+                        }
 
-                }
-
-                for (String winnerId : winners) {
-                    if(!sameLeaderboardId.equals("")) {
-                        System.out.println("Adding win to leaderboard");
-                        MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId, game.getGameMode());
+                        MockDB.addUserDrawToLeaderboard(p.getUserId(), "worldLeaderboard", game.getGameMode());
+                        System.out.println("adding user draw to user : " + p.getUsername());
+                        MockDB.addUserDraw(p.getUserId(), game.getGameMode());
                     }
 
-                    MockDB.addUserWinToLeaderboard(winnerId, "worldLeaderboard", game.getGameMode());
-                    System.out.println("adding user win to user : " + MockDB.getUsername(winnerId));
-                    MockDB.addUserWin(winnerId, game.getGameMode());
+
+                } else {
+                    ArrayList<Player> players = game.getPlayers();
+                    // oppdater spillere
+                    ArrayList<String> winners = game.getWinners();
+
+                    // Sjekke om alle tilhører samme leaderboard
+                    String sameLeaderboardId = "";
+                    for(String id : winners) { // sjekker for vinnerens leaderboard om alle andre tilhører samme
+                        ArrayList<String> leaderboardIds = MockDB.getLeaderboardIdsForUser(id);
+
+                        for(String leaderboardId : leaderboardIds) {
+                            if(playersInSameLeaderboard(leaderboardId, players)) {
+                                sameLeaderboardId = leaderboardId; // siste leaderboard med alle vil være gjeldene
+                                // her bør det lages en liste av sammeLeaderBoardIds hvis alle er med i flere leaderboards
+                            }
+                        }
+
+
+                    }
+
+                    for (String winnerId : winners) {
+                        if(!sameLeaderboardId.equals("")) {
+                            System.out.println("Adding win to leaderboard");
+                            MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId, game.getGameMode());
+                        }
+
+                        MockDB.addUserWinToLeaderboard(winnerId, "worldLeaderboard", game.getGameMode());
+                        System.out.println("adding user win to user : " + MockDB.getUsername(winnerId));
+                        MockDB.addUserWin(winnerId, game.getGameMode());
+                    }
+
+                    ArrayList<String> losers = MockDB.getGame(gameId).getLosers();
+                    for(String loserId : losers) {
+                        if(!sameLeaderboardId.equals("")) {
+                            System.out.println("Adding win to leaderboard");
+                            MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId, game.getGameMode());
+                        }
+                        MockDB.addUserLossToLeaderboard(loserId, "worldLeaderboard", game.getGameMode());
+                        System.out.println("adding user loss to user : " + MockDB.getUsername(loserId));
+                        MockDB.addUserLoss(loserId, game.getGameMode());
+                    }
+
                 }
 
-                ArrayList<String> losers = MockDB.getGame(gameId).getLosers();
-                for(String loserId : losers) {
-                    if(!sameLeaderboardId.equals("")) {
-                        System.out.println("Adding win to leaderboard");
-                        MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId, game.getGameMode());
-                    }
-                    MockDB.addUserLossToLeaderboard(loserId, "worldLeaderboard", game.getGameMode());
-                    System.out.println("adding user loss to user : " + MockDB.getUsername(loserId));
-                    MockDB.addUserLoss(loserId, game.getGameMode());
-                }
 
                 // slett game og gameconfirmation
 
@@ -143,40 +173,72 @@ public class GameConfirmationController {
                 System.out.println("GameConfirmationController: Updating players");
 
                 Game game = MockDB.getGame(gameId);
-                ArrayList<Player> players = game.getPlayers();
-                // oppdater spillere
-                ArrayList<String> winners = game.getWinners();
 
-                String sameLeaderboardId = "";
-                for(String id : winners) {
-                    ArrayList<String> leaderboardIds = MockDB.getLeaderboardIdsForUser(id);
+                if(game.isDraw()) {
+                    ArrayList<Player> players = game.getPlayers();
 
-                    for(String leaderboardId : leaderboardIds) {
-                        if(playersInSameLeaderboard(leaderboardId, players)) {
-                            sameLeaderboardId = leaderboardId;
+                    String sameLeaderboardId = "";
+                    for(Player p : players) { // sjekker for vinnerens leaderboard om alle andre tilhører samme
+                        ArrayList<String> leaderboardIds = MockDB.getLeaderboardIdsForUser(p.getUserId());
+
+                        for(String leaderboardId : leaderboardIds) {
+                            if(playersInSameLeaderboard(leaderboardId, players)) {
+                                sameLeaderboardId = leaderboardId; // siste leaderboard med alle vil være gjeldene
+                                // her bør det lages en liste av sammeLeaderBoardIds hvis alle er med i flere leaderboards
+                            }
                         }
                     }
 
+                    for(Player p : players) {
+                        if(!sameLeaderboardId.equals("")) {
+                            System.out.println("Adding draw to leaderboard");
+                            MockDB.addUserDrawToLeaderboard(p.getUserId(), sameLeaderboardId, game.getGameMode());
+                        }
 
-                }
-
-                for (String winnerId : winners) {
-                    if(!sameLeaderboardId.equals("")) {
-                        MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId, game.getGameMode());
+                        MockDB.addUserDrawToLeaderboard(p.getUserId(), "worldLeaderboard", game.getGameMode());
+                        System.out.println("adding user draw to user : " + p.getUsername());
+                        MockDB.addUserDraw(p.getUserId(), game.getGameMode());
                     }
-                    MockDB.addUserWinToLeaderboard(winnerId, "worldLeaderboard", game.getGameMode());
-                    MockDB.addUserWin(winnerId, game.getGameMode());
+
+
+                } else {
+                    ArrayList<Player> players = game.getPlayers();
+                    // oppdater spillere
+                    ArrayList<String> winners = game.getWinners();
+
+                    String sameLeaderboardId = "";
+                    for(String id : winners) {
+                        ArrayList<String> leaderboardIds = MockDB.getLeaderboardIdsForUser(id);
+
+                        for(String leaderboardId : leaderboardIds) {
+                            if(playersInSameLeaderboard(leaderboardId, players)) {
+                                sameLeaderboardId = leaderboardId;
+                            }
+                        }
+
+
+                    }
+
+                    for (String winnerId : winners) {
+                        if(!sameLeaderboardId.equals("")) {
+                            MockDB.addUserWinToLeaderboard(winnerId, sameLeaderboardId, game.getGameMode());
+                        }
+                        MockDB.addUserWinToLeaderboard(winnerId, "worldLeaderboard", game.getGameMode());
+                        MockDB.addUserWin(winnerId, game.getGameMode());
+                    }
+
+                    ArrayList<String> losers = MockDB.getGame(gameId).getLosers();
+                    for(String loserId : losers) {
+                        if(!sameLeaderboardId.equals("")) {
+                            MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId, game.getGameMode());
+                        }
+                        MockDB.addUserLossToLeaderboard(loserId, "worldLeaderboard", game.getGameMode());
+                        MockDB.addUserLoss(loserId, game.getGameMode());
+                    }
+                    // slett game og gameconfirmation
+
                 }
 
-                ArrayList<String> losers = MockDB.getGame(gameId).getLosers();
-                for(String loserId : losers) {
-                    if(!sameLeaderboardId.equals("")) {
-                        MockDB.addUserLossToLeaderboard(loserId, sameLeaderboardId, game.getGameMode());
-                    }
-                    MockDB.addUserLossToLeaderboard(loserId, "worldLeaderboard", game.getGameMode());
-                    MockDB.addUserLoss(loserId, game.getGameMode());
-                }
-                // slett game og gameconfirmation
 
 
                 // Hvis alle har svart på notifications
