@@ -66,8 +66,6 @@ public class Leaderboard {
         ffaStats.add(new FFAStats(userId));
         thgStats.add(new THGStats(userId));
         oneVsOneStats.add(new OneVsOneStats(userId));
-
-
     }
 
     public void removeUser(String userId) {

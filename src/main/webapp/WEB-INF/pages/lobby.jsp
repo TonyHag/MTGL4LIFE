@@ -77,7 +77,7 @@
                         <c:forEach items="${lobby.players}" var="invitedPlayer">
                             <tr>
                                 <td>
-                                        ${invitedPlayer.username}
+                                        ${invitedPlayer.username} (${invitedPlayer.rating})
                                 </td>
 
                                 <td>
@@ -139,7 +139,7 @@
                 <c:forEach items="${lobby.players}" var="invitedPlayer">
                     <tr>
                         <td>
-                                ${invitedPlayer.username}
+                                ${invitedPlayer.username} (${invitedPlayer.rating})
                         </td>
 
                         <td>
@@ -212,7 +212,7 @@
                     <c:forEach items="${lobby.players}" var="invitedPlayer">
                         <tr>
                             <td>
-                                    ${invitedPlayer.username}
+                                    ${invitedPlayer.username} (${invitedPlayer.rating})
                             </td>
                             <td>
                                 <c:choose>

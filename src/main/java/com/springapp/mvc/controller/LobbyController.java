@@ -176,6 +176,7 @@ public class LobbyController {
             newPlayer.setUsername(invitePlayer);
             newPlayer.setUserId(MockDB.getUserId(invitePlayer));
             newPlayer.setHp(20);
+            newPlayer.setRating(MockDB.getRatingById(newPlayer.getUserId()));
             lobby.getPlayers().add(newPlayer);
             lobby.getTeam1().add(newPlayer);
             sessionService.setLobby(lobby);
@@ -281,6 +282,8 @@ public class LobbyController {
         hostPlayer.setUserId(lobby.getHostId());
         hostPlayer.setUsername(lobby.getHostUsername());
         hostPlayer.setHp(20);
+        hostPlayer.setRating(MockDB.getRatingById(hostPlayer.getUserId()));
+
         lobby.getPlayers().add(hostPlayer);
         lobby.getTeam1().add(hostPlayer);
 

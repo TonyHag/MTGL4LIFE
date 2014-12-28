@@ -2,10 +2,7 @@ package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.leaderboard.Leaderboard;
 import com.springapp.mvc.model.leaderboard.LeaderboardInfo;
-import com.springapp.mvc.model.statistics.FFAStats;
-import com.springapp.mvc.model.statistics.OneVsOneStats;
-import com.springapp.mvc.model.statistics.THGStats;
-import com.springapp.mvc.model.statistics.TotalStats;
+import com.springapp.mvc.model.statistics.*;
 import com.springapp.mvc.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -81,14 +78,25 @@ public class LeaderboardController {
         Leaderboard leaderboard = MockDB.getLeaderboard(leaderboardId);
         model.addAttribute("leaderboard", leaderboard);
 
+        StatisticsComparator c = new StatisticsComparator();
         if(statsType == null || statsType.equals("total")) {
-            model.addAttribute("statsList",leaderboard.getTotalStats());
+            ArrayList<TotalStats> stats = leaderboard.getTotalStats();
+            stats.sort(c);
+            model.addAttribute("statsList", stats);
+
         } else if(statsType.equals("ffa")) {
-            model.addAttribute("statsList",leaderboard.getFfaStats());
+            ArrayList<FFAStats> stats = leaderboard.getFfaStats();
+            stats.sort(c);
+            model.addAttribute("statsList", stats);
+
         } else if(statsType.equals("thg")) {
-            model.addAttribute("statsList",leaderboard.getThgStats());
+            ArrayList<THGStats> stats = leaderboard.getThgStats();
+            stats.sort(c);
+            model.addAttribute("statsList", stats);
         } else if(statsType.equals("1v1")) {
-            model.addAttribute("statsList",leaderboard.getOneVsOneStats());
+            ArrayList<OneVsOneStats> stats = leaderboard.getOneVsOneStats();
+            stats.sort(c);
+            model.addAttribute("statsList", stats);
         }
         model.addAttribute("statsType", statsType);
 
@@ -187,17 +195,27 @@ public class LeaderboardController {
             model.addAttribute("leaderboard", leaderboard);
 
 
+            StatisticsComparator c = new StatisticsComparator();
             if(statsType == null || statsType.equals("total")) {
-                model.addAttribute("statsList",leaderboard.getTotalStats());
+                ArrayList<TotalStats> stats = leaderboard.getTotalStats();
+                stats.sort(c);
+                model.addAttribute("statsList", stats);
+
             } else if(statsType.equals("ffa")) {
-                model.addAttribute("statsList",leaderboard.getFfaStats());
+                ArrayList<FFAStats> stats = leaderboard.getFfaStats();
+                stats.sort(c);
+                model.addAttribute("statsList", stats);
+
             } else if(statsType.equals("thg")) {
-                model.addAttribute("statsList",leaderboard.getThgStats());
-            }else if(statsType.equals("1v1")) {
-                model.addAttribute("statsList",leaderboard.getOneVsOneStats());
+                ArrayList<THGStats> stats = leaderboard.getThgStats();
+                stats.sort(c);
+                model.addAttribute("statsList", stats);
+
+            } else if(statsType.equals("1v1")) {
+                ArrayList<OneVsOneStats> stats = leaderboard.getOneVsOneStats();
+                stats.sort(c);
+                model.addAttribute("statsList", stats);
             }
-
-
             model.addAttribute("statsType", statsType);
 
 

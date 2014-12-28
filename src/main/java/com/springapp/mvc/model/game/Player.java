@@ -7,6 +7,7 @@ public class Player {
 
     private String username;
     private String userId;
+    private int rating;
     private int hp;
     private int poison;  //Vi trenger denne og :)
     private String team = "1";
@@ -45,5 +46,13 @@ public class Player {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }
