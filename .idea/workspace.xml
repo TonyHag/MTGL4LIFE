@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b5e6964e-d97e-464c-96bf-9457dd536915" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/statistics/StatisticsComparator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/leaderboard/Leaderboard.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/leaderboard/Leaderboard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LeaderboardController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LeaderboardController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/LobbyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/game/Player.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/game/Player.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lobby.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/lobby.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MTGL4LIFE.iws" />
@@ -977,7 +971,7 @@
       <workItem from="1419434705543" duration="1121000" />
       <workItem from="1419544514222" duration="11767000" />
       <workItem from="1419676151472" duration="3982000" />
-      <workItem from="1419686122606" duration="14392000" />
+      <workItem from="1419686122606" duration="14416000" />
     </task>
     <task id="LOCAL-00001" summary="whoop">
       <created>1417787454093</created>
@@ -1187,11 +1181,15 @@
       <created>1419769203304</created>
       <updated>1419769203305</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="sortert leaderboard etter rating">
+      <created>1419771791961</created>
+      <updated>1419771791961</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212522000" />
+    <option name="totallyTimeSpent" value="212546000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1301,7 +1299,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Remake av session login, logout og autentisering" />
     <MESSAGE value="Oppdatert Gameconfirmation iht ny sessionkode" />
     <MESSAGE value="Oppdatert game, leaderrboard og lobby iht ny sessionkode" />
     <MESSAGE value="litt javadoc i sessionservice" />
@@ -1326,7 +1323,8 @@
     <MESSAGE value="Lagt til draws" />
     <MESSAGE value="Lagt til Elo-rating. Total rating for spiller og i world lederboard oppdateres, men ikke for spesifikke lederboards, enda." />
     <MESSAGE value="ikke lenger dobbelt opp med spillere i hello" />
-    <option name="LAST_COMMIT_MESSAGE" value="ikke lenger dobbelt opp med spillere i hello" />
+    <MESSAGE value="sortert leaderboard etter rating" />
+    <option name="LAST_COMMIT_MESSAGE" value="sortert leaderboard etter rating" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
