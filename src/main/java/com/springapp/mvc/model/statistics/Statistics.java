@@ -1,6 +1,7 @@
 package com.springapp.mvc.model.statistics;
 
 import com.springapp.mvc.service.MockDB;
+import com.springapp.mvc.service.RatingService;
 
 /**
  * Created by eirikskogland on 19.12.14.
@@ -10,6 +11,7 @@ public class Statistics {
     private String userID;
     private int wins, losses, draws, total;
     private double winPercentage;
+    private int rating;
 
     public Statistics() {
     }
@@ -21,6 +23,7 @@ public class Statistics {
         losses = 0;
         total = 0;
         winPercentage = 0.0;
+        rating = 1500;
     }
 
     public void addWin() {
@@ -39,6 +42,11 @@ public class Statistics {
     public void addDraw() {
         draws++;
         total++;
+
+    }
+    public void updateRating(int opponentRating, double score) {
+        RatingService ratingService = new RatingService();
+        rating = ratingService.updateRating(rating, opponentRating, score);
 
     }
 
@@ -96,5 +104,13 @@ public class Statistics {
 
     public void setDraws(int draws) {
         this.draws = draws;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }

@@ -62,6 +62,7 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th>Rating</th>
                         <th>Total</th>
                         <th>Wins</th>
                         <th>Losses</th>
@@ -71,6 +72,7 @@
                     </thead>
                     <tbody>
                     <tr>
+                        <td>${stats.rating}</td>
                         <td>${stats.total}</td>
                         <td>${stats.wins}</td>
                         <td>${stats.losses}</td>

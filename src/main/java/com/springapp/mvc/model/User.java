@@ -7,6 +7,7 @@ import com.springapp.mvc.model.statistics.TotalStats;
 import com.springapp.mvc.service.IdService;
 import com.springapp.mvc.service.LeaderboardService;
 import com.springapp.mvc.service.MockDB;
+import com.springapp.mvc.service.RatingService;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,8 @@ public class User {
     private THGStats thgStats;
     private OneVsOneStats oneVsOneStats;
 
+    private int rating;
+
     private ArrayList<String> leaderBoardIds;
 
     public User(String username, String password, String email) {
@@ -34,6 +37,8 @@ public class User {
 
         IdService idService = new IdService();
         this.id = idService.getUserId(username);
+
+        rating = 1500;
 
         totalStats = new TotalStats(this.id);
         totalStats.setUsername(username);
@@ -63,7 +68,7 @@ public class User {
         this.leaderBoardIds = leaderBoardIds;
     }
 
-    public void addWin(String gameMode) {
+    public void addWin(String gameMode, int opponentRating) {
         System.out.println("User: Adding win to " + username);
 
         if(gameMode.equals("ffa")) {
@@ -74,9 +79,12 @@ public class User {
             oneVsOneStats.addWin();
         }
         totalStats.addWin();
+        rating = updateRating(opponentRating, 1);
+        totalStats.setRating(rating);
+
     }
 
-    public void addDraw(String gameMode) {
+    public void addDraw(String gameMode, int opponentRating) {
         System.out.println("User: Adding draw to " + username);
 
         if(gameMode.equals("ffa")) {
@@ -87,9 +95,12 @@ public class User {
             oneVsOneStats.addDraw();
         }
         totalStats.addDraw();
+        rating = updateRating(opponentRating, 0.5);
+        totalStats.setRating(rating);
+
     }
 
-    public void addLoss(String gameMode) {
+    public void addLoss(String gameMode, int opponentRating) {
         if (gameMode.equals("ffa")) {
             ffaStats.addLoss();
         } else if (gameMode.equals("thg")) {
@@ -98,6 +109,15 @@ public class User {
             oneVsOneStats.addLoss();
         }
         totalStats.addLoss();
+        rating = updateRating(opponentRating, 0);
+        totalStats.setRating(rating);
+
+    }
+
+    public int updateRating(int opponentRating, double score) {
+        RatingService ratingService = new RatingService();
+        return ratingService.updateRating(rating, opponentRating, score);
+
     }
 
     public FFAStats getFfaStats() {
@@ -178,5 +198,13 @@ public class User {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 }

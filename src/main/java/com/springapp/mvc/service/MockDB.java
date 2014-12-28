@@ -99,27 +99,37 @@ public class MockDB {
         return available;
     }
 
-    public static void addUserWin(String userId, String gameMode) {
+    public static int getRatingById(String id) {
+        for(User u : users) {
+            if(u.getId().equals(id)) {
+                return u.getRating();
+            }
+        }
+        System.out.println("MockDB: Player not found lloking for rating");
+        return -1;
+    }
+
+    public static void addUserWin(String userId, int opponentRating, String gameMode) {
         for (User u : users) {
             if(u.getId().equals(userId)) {
-                u.addWin(gameMode);
+                u.addWin(gameMode, opponentRating);
             }
         }
     }
 
 
-    public static void addUserDraw(String userId, String gameMode) {
+    public static void addUserDraw(String userId, int opponentRating , String gameMode) {
         for (User u : users) {
             if(u.getId().equals(userId)) {
-                u.addDraw(gameMode);
+                u.addDraw(gameMode, opponentRating);
             }
         }
     }
 
-    public static void addUserLoss(String userId, String gameMode) {
+    public static void addUserLoss(String userId, int opponentRating , String gameMode) {
         for (User u : users) {
             if(u.getId().equals(userId)) {
-                u.addLoss(gameMode);
+                u.addLoss(gameMode, opponentRating);
             }
         }
     }
@@ -309,6 +319,10 @@ public class MockDB {
                 for(TotalStats s : totalStats) {
                     if(s.getUserID().equals(userId)) {
                         s.addDraw();
+                        // Oppdaterer leaderboardsets total rating i henhold til spillerens total raiting
+                        if(leaderboardId.equals("worldLeaderboard")) {
+                            s.setRating(MockDB.getRatingById(userId));
+                        }
                     }
                 }
                 leaderboard.setTotalStats(totalStats);
@@ -351,8 +365,15 @@ public class MockDB {
                 for(TotalStats s : totalStats) {
                     if(s.getUserID().equals(userId)) {
                         s.addWin();
+
+                        // Oppdaterer leaderboardsets total rating i henhold til spillerens total raiting
+                        if(leaderboardId.equals("worldLeaderboard")) {
+                            s.setRating(MockDB.getRatingById(userId));
+                        }
                     }
                 }
+
+
                 leaderboard.setTotalStats(totalStats);
 
                 if(gameMode.equals("ffa")) {
@@ -394,6 +415,11 @@ public class MockDB {
                 for(TotalStats s : totalStats) {
                     if(s.getUserID().equals(userId)) {
                         s.addLoss();
+
+                        // Oppdaterer leaderboardsets total rating i henhold til spillerens total raiting
+                        if(leaderboardId.equals("worldLeaderboard")) {
+                            s.setRating(MockDB.getRatingById(userId));
+                        }
                     }
                 }
                 leaderboard.setTotalStats(totalStats);

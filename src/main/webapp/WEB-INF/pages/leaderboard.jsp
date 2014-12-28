@@ -51,6 +51,7 @@
             <thead>
             <tr>
                 <th>Name</th>
+                <th>Rating</th>
                 <th>Total</th>
                 <th>Win</th>
                 <th>Loss</th>
@@ -63,6 +64,7 @@
             <c:forEach items="${statsList}" var="stats">
                 <tr>
                     <td> ${stats.username}     </td>
+                    <td> ${stats.rating}       </td>
                     <td> ${stats.total}        </td>
                     <td> ${stats.wins}         </td>
                     <td> ${stats.losses}       </td>
