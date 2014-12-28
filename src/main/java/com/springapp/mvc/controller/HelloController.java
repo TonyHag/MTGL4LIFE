@@ -35,10 +35,16 @@ public class HelloController {
 
         EncryptionService encryptionService = new EncryptionService();
         MockDB.users = new ArrayList<User>();
-        MockDB.addUser(new User("Tony", encryptionService.encryptPassword("asdf"), "asdf"));
-        MockDB.addUser(new User("Jonas", encryptionService.encryptPassword("asdf"), "asdf"));
-        MockDB.addUser(new User("Hakon", encryptionService.encryptPassword("asdf"), "asdf"));
-        MockDB.addUser(new User("Eirik", encryptionService.encryptPassword("asdf"), "asdf"));
+        User u1 = new User("Tony", encryptionService.encryptPassword("asdf"), "asdf");
+        User u2 = new User("Eirik", encryptionService.encryptPassword("asdf"), "asdf");
+        User u3 = new User("Hakon", encryptionService.encryptPassword("asdf"), "asdf");
+        User u4 = new User("Jonas", encryptionService.encryptPassword("asdf"), "asdf");
+        User u5 = new User("Gaute", encryptionService.encryptPassword("asdf"), "asdf");
+        User u6 = new User("Kim", encryptionService.encryptPassword("asdf"), "asdf");
+        User u7 = new User("Tor", encryptionService.encryptPassword("asdf"), "asdf");
+        User u8 = new User("Leiv", encryptionService.encryptPassword("asdf"), "asdf");
+        User u9 = new User("Fredrik", encryptionService.encryptPassword("asdf"), "asdf");
+        User u10 = new User("Oscar", encryptionService.encryptPassword("asdf"), "asdf");
 
 
         System.out.println("HelloPage");
