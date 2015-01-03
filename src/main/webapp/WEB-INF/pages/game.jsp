@@ -110,9 +110,13 @@
                 </form>
             </div>
             <div class="col-xs-4">
-                <input type="text" id="startingHp" size="4" placeholder="20"/>
+
                 <button class="btn btn-sm btn-primary" id="btn_reset">Reset Counters</button>
+
             </div>
+                    <div class="col-xs-4">
+                        <input type="text" id="startingHp" size="4" placeholder="20" style="margin: 0 30% 0 30%;"/>
+                    </div>
             <div class="col-xs-4">
                 <button class="btn btn-sm btn-primary" id="btn_toggle_poison">Poison Counters</button>
             </div>
