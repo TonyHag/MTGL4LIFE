@@ -24,3 +24,6 @@
     width: 30px;
     border-radius: 15%;
 }
+body {
+    padding: 0;
+}
