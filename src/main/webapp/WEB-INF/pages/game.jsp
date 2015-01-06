@@ -333,8 +333,21 @@
         });
 
 
+        $("#btn_rolldice").click(function () {
+            var dice = $("#diceSides").val();
+            dice =  parseInt(dice);
+            var diceResult = 0;
+            if(isNaN(dice)) {
+                dice = 6;
+            }
+            diceResult = Math.floor((Math.random() * dice) + 1);
+
+            window.alert(parseInt(diceResult));
+        });
+
 
     });
+
 
 
 </script>

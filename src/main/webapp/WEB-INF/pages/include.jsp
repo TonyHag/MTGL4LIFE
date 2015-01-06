@@ -24,6 +24,7 @@
 <script src="/resources/js/bootstrap.js"></script>
 <script src="/resources/js/bootstrap.min.js"></script>
 
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 

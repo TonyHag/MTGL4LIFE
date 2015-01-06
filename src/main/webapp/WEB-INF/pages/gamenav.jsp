@@ -50,6 +50,10 @@
                 <li>
                     <a id="btn_toggle_poison">Poison Counters</a>
                 </li>
+                <li>
+                <a id="btn_rolldice">Roll a dice</a>
+                <input  type="text" id="diceSides" size="2" placeholder="6"/>
+                </li>
 
             </ul>
 
