@@ -54,6 +54,8 @@ public class RegisterController {
         String password1 = data.getPassword1();
         String password2 = data.getPassword2();
         String email = data.getEmail();
+        String country = data.getCountry();
+        String city = data.getCity();
 
         boolean validInput = true;
 
@@ -101,7 +103,7 @@ public class RegisterController {
             String encryptedPassword = encryptionService.encryptPassword(password1);
 
             // Opprett ny bruker
-            User newUser = new User(username, encryptedPassword, email);
+            User newUser = new User(username, encryptedPassword, email, country, city);
             // lagre i database
 
             // legg til i world leaderboard

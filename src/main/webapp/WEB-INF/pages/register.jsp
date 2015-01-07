@@ -71,6 +71,18 @@
                             <input type="password" class="form-control" name="password2" placeholder="Retype Password" />
                         </div>
 
+                        <p>${country}</p>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                            <input type="text" class="form-control" name="country" placeholder="Country" />
+                        </div>
+
+                        <p>${city}</p>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"  ></i></span>
+                            <input type="text" class="form-control" name="city" placeholder="City" />
+                        </div>
+
 
                         <input class="btn btn-success" type="submit" value="Register">
 

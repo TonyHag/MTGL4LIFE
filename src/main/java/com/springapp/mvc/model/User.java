@@ -30,10 +30,12 @@ public class User {
 
     private ArrayList<String> leaderBoardIds;
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, String country, String city) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.country = country;
+        this.city = city;
 
         IdService idService = new IdService();
         this.id = idService.getUserId(username);
