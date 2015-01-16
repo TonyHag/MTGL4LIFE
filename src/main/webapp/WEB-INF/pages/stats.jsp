@@ -38,7 +38,11 @@
                     </form>
                 </div>
             </div>
-
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Your location: ${"FML :("}</p>
+                </div>
+            </div>
 
             <ul class="nav nav-tabs">
                 <li role="presentation" id="totalNavTab" class="active">

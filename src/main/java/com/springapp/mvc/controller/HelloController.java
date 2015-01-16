@@ -44,7 +44,7 @@ public class HelloController {
         User u7 = new User("Tor", encryptionService.encryptPassword("asdf"), "asdf", "Norway", "Bergen");
         User u8 = new User("Leiv", encryptionService.encryptPassword("asdf"), "asdf", "Norway", "Bergen");
         User u9 = new User("Fredrik", encryptionService.encryptPassword("asdf"), "asdf", "Norway", "Bergen");
-        User u10 = new User("Oscar", encryptionService.encryptPassword("asdf"), "asdf", "Norway", "Bergen");
+        User u10 = new User("Oskar", encryptionService.encryptPassword("asdf"), "asdf", "Norway", "Bergen");
 
 
         System.out.println("HelloPage");

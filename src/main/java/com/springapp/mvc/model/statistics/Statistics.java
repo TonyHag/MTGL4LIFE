@@ -12,6 +12,8 @@ public class Statistics {
     private int wins, losses, draws, total;
     private double winPercentage;
     private int rating;
+    private String country;
+    private String city;
 
     public Statistics() {
     }
@@ -113,4 +115,12 @@ public class Statistics {
     public void setRating(int rating) {
         this.rating = rating;
     }
+
+    public String getCountry() { return country; }
+
+    public void setCountry(String country) { this.country = country; }
+
+    public String getCity() { return city; }
+
+    public void setCity(String city) { this.city = city; }
 }
